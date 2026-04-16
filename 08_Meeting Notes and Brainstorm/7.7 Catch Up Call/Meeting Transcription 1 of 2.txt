@@ -1,0 +1,192 @@
+# Meeting Transcription
+
+  Meeting started: 7/7/2025, 7:31:19 PM
+  Duration: 33 minutes
+  Participants: Terry Wu, Thomas Yang
+
+  [View original transcript](https://app.tactiq.io/api/2/u/m/r/SsSzOO9TnplXhxgx7IlY?o=txt)
+
+    
+
+  
+
+  
+    ## Highlights
+
+    > 21:47 Terry Wu: gonna be fun and that I think is the most important thing versus like trying to find a completely
+> 29:24 Thomas Yang: Oh, not yet. Maybe I'll hit someone hit on some of those tonight. Well, I sleep.
+
+  ## Transcript
+
+  00:00 Terry Wu: Hello. What's up? Thank you. Hello. Test test. You know what's going on? Can you hear me?
+01:51 Thomas Yang: Hey Terry. What's good? Yeah. How well you can hear me, right?
+01:58 Terry Wu: Yeah, I'm just testing my my audio.
+02:01 Thomas Yang: Right. Testing testing.
+02:03 Terry Wu: All right, cool. What's good with you, dude?
+02:04 Thomas Yang: You sound crisp? Only much dude. Oh I was invested into brainstorming this idea.
+02:11 Terry Wu: Hell yeah. Me too.
+02:13 Thomas Yang: After I send out some apps. spent like the whole day, I was gonna do something like we go, but I was like, f***, we code I think of some New ideas and new structures.
+02:25 Terry Wu: For sure. How do you, how does, like one even like start coding this stuff? Like is it?
+02:32 Thomas Yang: oh, Sorry, go ahead.
+02:35 Speaker: Hi everyone, this is an automated message to let you know my Tactiq extension: https://tactiq.io/r/transcribing is transcribing this meeting for me so I can give my full attention to you.
+02:37 Terry Wu: Like what what is usually like the infrastructure that's needed is like Java. Like I don't know how does it how does it even work?
+02:45 Thomas Yang: Oh I'm more familiar with Unity and c sharp. So we could start with that just for the pro type. If we like hit any based on how we want to build, like the
+02:53 Terry Wu: Sweet.
+02:58 Thomas Yang: theme, the aesthetics and the graphics. If we ever hit a wall with unity, we could explore other engines. Well, I think it's a good start. We can get something yeah, fast with the A quick MVP with it.
+03:10 Terry Wu: Now, I'm good. I guess for MVP.
+03:16 Thomas Yang: um,
+03:20 Terry Wu: I was like, thinking something rudimentary like we take showdown like Pokemon Showdown, the open source, and just like, change the mechanics, and then, like, change the images of the Pokemon to like, Placeholders. But it like if we're using unity and c sharp, are you thinking like something that's more fleshed out? Like
+03:38 Thomas Yang: Yeah, might just be easier to start from scratch because in the code is ours and
+03:42 Terry Wu: Yeah.
+03:42 Thomas Yang: I don't have to spend time learning. How showdown does it go? Because it's gonna be a pretty like, because they have the, I bet they have a bunch of network code too, and it's gonna be annoying like, Getting that all configured but I can take a look. Maybe it's not a bad idea. I
+03:58 Terry Wu: Yeah.
+04:01 Thomas Yang: can put it in.
+04:02 Terry Wu: because I'm just thinking, like, because they've done all the math around like like how damage is calculated and like the range of damage, all that sort of stuff and like,
+04:12 Thomas Yang: No yeah that's a good point actually. Now that I think about it if I'll take a
+04:14 Terry Wu: obviously, we haven't fleshed out like those details, but like, I'm sure the formulas are also on a wiki somewhere. if we were to like create our own sort of like damage engine and all that sort of stuff, Probably would be good to take a look at like how they do. It also, if we're going to like do something similar, mechanically
+04:42 Thomas Yang: look if it's easy to um set up like a local like like have it run on a service then actually that might give us an event like a quick way to test between you and me just playing and choosing a lineup and prototyping that But yeah, I'll give it a quick look, if it's easy to set up, we could do something like that. Otherwise Yeah.
+05:08 Terry Wu: Yeah, I'm good. Either way, I'm not a technical guy, so whatever is easy for
+05:11 Thomas Yang: Okay. Yeah.
+05:12 Terry Wu: you. And
+05:14 Thomas Yang: So yeah, yeah.
+05:17 Terry Wu: I was thinking for this catch up. Maybe what we could do is if you wanted to I know that I put a bunch of documents in, you put a bunch of documents in.
+05:27 Thomas Yang: Yeah.
+05:29 Terry Wu: Maybe we could like one go through any sort of things, we wanted to talk about or like reactions or go through your comments, and then I can go through a walkthrough of like that type chart that matchup chart that I created. and then, We could talk through like what we need to feasibly. like theory crafts and like, like I think the most obvious one is like, we just have to create a bunch of champions and like
+05:58 Thomas Yang: Yeah. Like the idea of thinking up with the design and seeing where our thoughts
+05:59 Terry Wu: Ideate on like what those look like. What kind of moves or like type of roles of all that sort of stuff? So we should like, think through what we need to actually flush out from a good content perspective that we can then put into like it's the game and code and and actually have a MVP that works I think ideally then we could start testing me and you just like battle each other and then continue expanding on the roster or whatever we need expand on.
+06:34 Thomas Yang: are also in the prototype built and builds folder. You made there. I create new
+06:39 Terry Wu: Yep.
+06:40 Thomas Yang: document that kind of like Help implementation, why? It's like figure out the things that Will need that. I think we need to get an initial MVP going. I think if we can answer some of these questions we should have enough to build something, A basic.
+07:03 Terry Wu: All right, you want?
+07:04 Thomas Yang: These are my thoughts. Yeah, but yeah, sure.
+07:05 Terry Wu: To start there. Which one is it? That game design. Document. T Yang?
+07:11 Thomas Yang: No. It's in the folder. Number two.
+07:18 Terry Wu: Okay.
+07:19 Thomas Yang: And it's that document MVP. Turn based battles.
+07:21 Terry Wu: Cool.
+07:23 Thomas Yang: Yeah. Does it help you want me to share my screen?
+07:28 Terry Wu: Now, I have it up.
+07:29 Thomas Yang: Okay.
+07:31 Terry Wu: Yeah, you can you can share if you want actually.
+07:31 Thomas Yang: Oops. Yeah, forget about that. Okay?
+07:34 Terry Wu: I'm good.
+07:35 Thomas Yang: Yeah, I think you're right. Doesn't probably oh, it doesn't matter. Let me see, MVP. All right. You see that?
+07:51 Terry Wu: Yep.
+07:51 Thomas Yang: Yeah, okay, so um, I think we're both on board with first point. Like, make sure we get down a couple of, like, ideas that we want for a working battle system, so that's everything under the combat mechanics. Make sure we're, we have a couple of, like, their resources like the resources. We want to test out mechanically some items. I have some skills monsters. Etc. Already get point. Second one is the monster choices. So ideally what I was envisioning. Is like how you can choose a team, how I can choose a team. Against each other. Just what that would look like.
+08:44 Thomas Yang: Some Skill Choices. I think we can go over that skill matrix or the type matrix that you made and then have some concrete skills and what the numbers behind them actually do like status effects damage numbers, etc. A quick UI discussion about what I should. We should both be both be seeing on the screen. Like it could be literally just squares or like Little Ai generated mock-ups of the monsters, Hero blues, or whatever. Agree on 2D or 3D for the prototype. I think 2D is fine for now.
+09:26 Thomas Yang: And yeah, just a mock-up combat layout. So, um, We could have a player versus AI, but in my experience, coding up an AI like a battle AI is like, really hard. But we so we could just do what we I think both kind of talked about earlier which is like a player versus player mock-up where we both see like two different screens and make our choices NOx. Execute those commands.
+09:56 Terry Wu: Yeah.
+09:57 Thomas Yang: Um and yeah and this one was like, I think we both had a couple ideas in terms of like the resources and stuff. So I guess we could pick up a couple, create a couple systems to test out and see what sticks.
+10:13 Terry Wu: Yeah.
+10:14 Thomas Yang: And finally things, I think it'd be good to get like a metric of what we want to get out this MVP. Like does this battle system feel familiar for a long time. Pokemon players like you And the casual a little bit more, casual player like me. Like, I only have like two Pokemon games under my belt, and how fun are the tactical choices? Because I think looking at both me and my me and your I think ideas we both want meaningful like builds and team lineups, right? If
+10:49 Terry Wu: Yeah.
+10:50 Thomas Yang: it's not tactical like I think it's a good time. It's I think it this MVP can show us like what's missing what's missing and what we need more of But yeah, yeah, that's basically it.
+11:04 Terry Wu: That's a good overview, I think. Let's just run through each of these bullet points. One by one, I thank thematically. agree on sort of like we need alignment on these things and like
+11:16 Thomas Yang: Okay.
+11:17 Terry Wu: I think in spirit, we won't be able to align today and some things will just need testing and I also think, like, There's going to be an airplane between the more complex. A battle system is the like the lower. Your retention rates are going to be But your retention like the users that you do have high engagement with are
+11:35 Thomas Yang: Great.
+11:40 Terry Wu: going to be like super loyal super users that just like really. If they get through a hop then they really like you. So like there's a push and pull like Have mass market. Do you want to go?
+11:50 Thomas Yang: Yeah, no, I agree completely.
+11:51 Terry Wu: And how technically challenging do you want to go? And I think those are like, there's like some curve and there's probably a sweet spot, right? so like on the, on the battle system thing, my initial reaction is I guess in terms of like Term-based strategy games that I played the most that I'm most comfortable with is obviously the Pokemon franchise but I've also
+12:15 Thomas Yang: Right.
+12:17 Terry Wu: played like grid based games like Final Fantasy Tactics as well as like Like Baldur's Gate and all that sort of stuff, right? and so there are like interesting combat mechanics that each game has I think as a starting point like we could use like I'm a little like my perspective. Probably siled. Because I know what. Like, I know like the Pokemon mechanics really well. And I know what? Has been good about those mechanics and what people play around that, like this mechanics, not that great, or they could have done more with that mechanic and all that sort of stuff. So, maybe, as we think about this battle system, what I can tactically do is like, just go Take a look at showdown because Showdown has all the data, right? And be like, I like these type of moves, I like these type of secondary effects. I like these type of status ailments. I think this status ailment is broken or not as fun, right? Like evasion, for instance.
+13:24 Terry Wu: Is is a move and casual play. That's completely abandoned and competitive play under smogon rules but under like vgc rules Like the Nintendo sanctions. Like they don't think through that. Everything is fair play but it's like b*******. When you can just like completely change the game to RNG. um, so things like that, what I could do is like start thinking through And like putting a list down and saving it into this folder that we can like have a deeper discussion on on like on that as well. So I can definitely work on that.
+14:02 Thomas Yang: Yeah, that's a good starting point. I like that.
+14:04 Terry Wu: And then for you might have more exposure to like other games. So like there could be interesting mechanics like I don't know, like Final Fantasy has like ultimates, right? I think. there's probably like, Some some like some other games that I just haven't played enough they like each game probably has something unique. Maybe we pull from it, maybe we don't but like Also it doesn't like what do you think? Do you think it matters that it looks and feels different than Pokemon?
+14:37 Thomas Yang: I think it.
+14:37 Terry Wu: And like it's like 80% the same, but 20% different. Well, that's still feel fresh like I don't know. Like I have no idea.
+14:45 Thomas Yang: I'm leaning towards if we want a market for it, they're definitely needs to be a differentiating factor. Um, I'm thinking like, just just, for example, I think expedition 33 did something like that where it like, I mean jrpgs or basically Turn-based combat games, right? Um, but they added their own little twists. We're using modern or
+15:09 Terry Wu: Yeah.
+15:13 Thomas Yang: like more like recently popular games. Like Souls like a Dodging in parrying and adding that to the mix to kind of rejuvenate the genre um, now like the choices that we make doesn't have to be like action based like that, but I definitely agree that there needs to be some sort of fresh factor to Draw players in. Like mechanically and like Make it so that hey, this is just another Pokemon.
+15:42 Terry Wu: Okay.
+15:46 Thomas Yang: Why do I have to buy this game? I could just buy like another Pokemon even though they're s*** right now.
+15:51 Terry Wu: Yeah.
+15:52 Thomas Yang: because like Nintendo like It whether they make a good game or not, they have the marketing advantage and the brand name matters, like so much.
+16:02 Terry Wu: I I totally agree. I so one thing I don't know if you're aware, but they, they're gonna create a battler in 26. Called Pokemon.
+16:13 Thomas Yang: Nintendo. Pokemon champions, let me take quick. Look.
+16:18 Terry Wu: 'S. They're basically creating a battle system.
+16:21 Thomas Yang: Mm-hmm.
+16:22 Terry Wu: My view, my actually I have a different thesis around how this plays out. like, I think it's gonna be really good and draws attention to like competitive aspects of like Pokemon mechanics but I don't think they will facilitate The right ecosystem and community for the game. And I also think it's gonna be a filler Where they like stop facilitating support for it as much once gen10 hits. Like I think it's just gonna be like one of those.
+16:53 Terry Wu: Intermediary like Pokemon Mystery Dungeon Pokemon like right? Like those like Pokemon Puzzle League and all the other stuff like So I think it's actually going to be a net. Good to like people's mind, share around like a turn-based strategy game and like the competitive components to it. But that the flip side is because they're going to launch in 26. I totally agree that we can't just be 99% the same as the game.
+17:26 Terry Wu: There has to be some unique component to it. And I'm not sure how that manifests because there's like, a couple ways it could manifest like one, it could be a battle format. two, it could be like an actual Mechanic itself. And then three, I think. and this was part of that, like, initial document around our unique selling product proposition, it's just like We're building it with the competitive like we're building everything with the competitive aspect in mind versus Pokemon or super smash. They like fell into this.
+18:02 Terry Wu: Like competitive as like people fell in love in the competitive aspect but it wasn't built made for that. and so, There's just like pain points that just exist that we could just solve for. And I think that is I think that's a fairly material like selling point. But I do think maybe we may need and maybe we don't, maybe we can test it. We can see how you like it user feedback around it and like I think at the end of
+18:26 Thomas Yang: Okay.
+18:27 Terry Wu: the day just has to be fun. Like if it's a new mechanic it has to be it has to be fun.
+18:32 Thomas Yang: Yeah, no, yeah absolutely. Yeah. I'm a little worried about like we need to have
+18:33 Terry Wu: I think.
+18:37 Thomas Yang: we into PVP right now. Maybe once the battle mechanics become clearer that might like Olivia my fears. Yeah, it's just like the history of a lot of like for
+18:46 Terry Wu: Yeah.
+18:49 Thomas Yang: instance, the like battle royale games and like overwatch clones, it's a very hard Market to kind of establish of what hold in initially. If that makes sense.
+19:07 Terry Wu: Yeah.
+19:08 Thomas Yang: But I think there's we talked about this before too. I think there's a lot of opportunity in terms of like the endgame content in Pokemon, for instance, like everywhere I go every like Pokemon fan, they talk about battlefrontier and being pissed off. That it's not in the recent games.
+19:26 Terry Wu: Absolutely. I think like I think one obvious answer is like, Like a PVE format. That is just like a rogue light. Like we like It because like it's already proved like that model has proven out with Pokey
+19:45 Thomas Yang: Mm-hmm.
+19:45 Terry Wu: Rogue. and like, that is something that the main Franchise doesn't have rights like a fan game and like it's grooving out. That people like that concept. It's literally the same game, but just to flipped on a different format and like, It it caught, it caught fire. So like That's something. Maybe we can see like how that like just use that as like a lessons learned early case study and then another case study was thinking about
+20:13 Thomas Yang: Yeah.
+20:14 Terry Wu: is like super smash versus Like Nickelodeon's, super smash equivalent like whatever it's called, all-star brawl or whatever. like, They had programmers on the Nickelodeon, like, obviously the budget was bad. So, but we're gonna be on a tight budget, too. It's just us two, They try to make it with like the competitive aspect in mind, so like they kept things like wave dashing and all that sort of stuff. In the game.
+20:44 Terry Wu: but I would say, the reason why they were never able to get traction was like, ultimately The game itself wasn't fun. It was like stale. Like yeah, you can have all these complicated mechanics, but if at the end of the day, the game boils down to you, choosing a single character that has a grab infinite.
+21:05 Thomas Yang: Yeah.
+21:05 Terry Wu: Like that, just ruins the whole game five. So like we could have a really cool concept like I don't know, I'll just throw something out there. You could have like some sort of time concept of like you traveling back. A turn or like different like Branches of like I don't know whatever like some weird concepts that could be interesting. But if, at the end of the day, the game battling system is stale such that there's like, one champion or like a team of, if you, if you have a team with X, Y and Z Champion, you're just gonna beat out all the other unique sort of teams and stuff.
+21:43 Terry Wu: like that that in itself is just gonna steal the game and like it's just not
+21:47 Thomas Yang: Yeah.
+21:47 Terry Wu: gonna be fun and that I think is the most important thing versus like trying to find a completely
+21:54 Terry Wu: unique mechanic. I think in itself having like a flourishing balanced metagame,
+21:55 Thomas Yang: Yeah.
+21:59 Terry Wu: Is a new mechanic in itself and like that's really hard to figure out, I think.
+22:06 Thomas Yang: Yeah. Yeah. Oh so yeah that actually that reminds me. We should have another thing here. A lot of game developers have things called design pillars. I'm basically like several points like I guess in the startup industry it's like Northstar. But in
+22:23 Terry Wu: Yeah.
+22:24 Thomas Yang: this case it's like multiple North stars like what things do. We want to maintain this game for instance like a variety and balanced meta.
+22:33 Terry Wu: Yeah. I was thinking like that was sort of the design doc that I was putting together
+22:36 Thomas Yang: Um, yeah.
+22:38 Terry Wu: like That was like sort of I was like trying to make it like our Bible so we can like kind of bake those two things to a single doc.
+22:51 Thomas Yang: Okay, sounds good. Yeah, the one that you should go through the game design, talk then.
+22:58 Terry Wu: Yeah, let's let's go through let's get through these other questions. Monster Choices and Skill Choices. Get Player, the options. I was thinking of, like, You know, just through Pokemon, I think. A team of five or six. If it's like a 1v1 you switch out and all that sort of stuff is probably the right pacing. I liked. In Gen 4. I like the idea of like you didn't have full information to start of the game.
+23:34 Terry Wu: Um, in Gen 5. It's switched. So that like, there's like this team preview so that like, you see your opponent six? So upfront, you can pretty much game plan like, Hey, I need to make sure this person doesn't die or else I'm screwed. Or I
+23:47 Thomas Yang: I think those are good things to test. I can put them all of them down like no
+23:47 Terry Wu: need to take out this one guy. And once I take him out, I can then use this other guy to take out the rest of the team. it makes it way more linear with, like, Not much reaction on the spot because you have a game game plan before the game even starts. But at the same time, I know some people also like the team preview aspect. I always almost thinking like, Is there a way to give Some information but not full information. So like maybe it's like Eight. You see a team of roster of eight and like you pick five of eight. Or you pick six of eight or something. That way you don't know what the full team's gonna look like.
+24:27 Terry Wu: And there's still some uncertainty until You discover over the course of the game, like what the roster opponent's roster is, but at the same time, there's some preview and initial information. It was like thinking that might be a good sort of middle ground.
+24:46 Thomas Yang: information. No preview. That makes preview like yes, only see first two or first. For first couple of monsters.
+25:01 Terry Wu: Yep.
+25:01 Thomas Yang: Or all preview.
+25:04 Terry Wu: Yeah, and skill choices.
+25:07 Thomas Yang: Oh, another thing, maybe we could bake in is, do you think how about like having it as a massive skill? Like Some of them, especially like the mind type monsters can sneak a peek at some of
+25:20 Terry Wu: Yeah.
+25:23 Thomas Yang: the preview.
+25:25 Terry Wu: I agree. I think I think those are those are mechanics and like you had a question. I think there was a comment that I read like If an active Pokemon that's active, can they do stuff with like those inactive in your roster? Kind of like in TCG pocket where like you can do stuff with, like you're active Roster Pokemon, impacting your bench Pokemon. Like we can test all those things out like to see.
+25:54 Terry Wu: If there's mechanics are because like my My answer for like mechanics is like, yes. To like almost anything interesting because like, as long as as long, as you balance it, right? As long as it's not like overly complicated. Any new mechanic is going to be I think like in that positive and as long as it's not broken,
+26:17 Thomas Yang: Right. Yeah true.
+26:19 Terry Wu: And then UI. I think we could take a lot of inspiration, just from the Pokemon Games, but also like from Pokemon Stadium and stuff. and like Pokemon Colosseum as another example, as like,
+26:34 Thomas Yang: Oh man, love Coliseum.
+26:36 Terry Wu: Yeah. Like as like what an Overworld could look like versus the PVP. Obviously. There's so much we could do with this idea and like there's so many directions, we can go. But I do think getting the battle simulator, right? And just like what PVP would look like. Before like any of the like I think we have some ideas of like what a cool narrative would look like and how to tie things together. Like I think Pokemon does a really bad job.
+27:06 Terry Wu: in like, you have a thousand Pokemon designs, but like, there's only five that you emotionally resonate with Because the game doesn't really take the time for you to like really learn the lore of like all the Pokemon. And so like, if we just do champions, no evolutions, right? That cuts your total universe of monsters to like half, basically. And then, if you spend more time, On on like actually tying the world together to the game itself.
+27:42 Terry Wu: Like it would, it would it would tie things together like Why is water good against fire, right? Or like Why is there this triangle that exists with these type of elements? But you can tie a story with that. and you could tie sort of like, Lore of your creatures. And I think that will also create differentiation and brandability. It's not just like, Oh we created a bunch of monsters.
+28:11 Terry Wu: That are competitively viable to create interesting mechanics. It's also like, Yeah. But I want to play this guy, because he's cool. And I know he's like, backstory and like, I like the design of this guy. It's like, I'm not just using him because he's broken. He's got this one broken move. and I think having that aspect, Will like make this thing totally amplified, but that obviously that's like a longer term vision, but that's just, I think we should set that foundation, now, because it gives us the optionality down the road for other things.
+28:45 Thomas Yang: Yeah, I'm I'm bored with that too. I think I like the idea of like emotionally I think with characters and giving them more death rather than quantity. I think I
+28:53 Terry Wu: Yeah.
+28:56 Thomas Yang: saw that you put like emotional And like Thai like some sort of emotional connection with it. And I think later on in the story section of the game design, talk about, I also made a note of that. So I think
+29:12 Terry Wu: Yeah.
+29:12 Thomas Yang: Where yeah design wise. That's something that we should definitely focus on in the future.
+29:18 Terry Wu: Agree. And then Like, did you watch the pokedex fillers guy? Some of his shorts?
+29:24 Thomas Yang: Oh, not yet. Maybe I'll hit someone hit on some of those tonight. Well, I sleep.
+29:26 Terry Wu: Okay. Yeah. It honestly doesn't have to be like, like the most amazing writing or whatever. But I think if you just like, put in time to like, write more like it's like Stardew Valley like if people find it endearing that like the guy,
+29:39 Thomas Yang: Right.
+29:43 Terry Wu: You know, created backstories for all the, like, all the all the town towns people and like, The stories in itself. The script is like, whatever. Like it's kind of like Cringy, but like People love that s*** because like he put time in for you to have like an Easter like just like whether it be Easter eggs or like things that tight like just like a A narrative that just like ties things together and it's not just like Yo let's battle. And we like made up a narrative so that it's just whatever the minimum
+30:12 Thomas Yang: Yeah. Yeah.
+30:14 Terry Wu: amount for it to kind of make sense, but it's mostly focused on battling if we can tie in the story, I think it's good.
+30:21 Thomas Yang: In the game design, dog. We don't have to go over it like today but I had a point where I think a lot of gamers want like Their characters to feel real. Like a lot of it from what you said and like waste like they should kind of be expressive. I feel like
+30:41 Terry Wu: Yeah.
+30:43 Thomas Yang: Feel sad or have hopes and dreams, and I think that can help organically keep make the world feel alive with like very many more effort.
+30:51 Terry Wu: Yeah. A hundred percent and it's also why I you'll see later in the chart matchup stuff.
+30:58 Thomas Yang: Yeah.
+30:58 Terry Wu: I thought through like What is the quote vibe of each element? Because like there might be a specific typing and or play style that like some like resonates with you, right? Like Some people just like water Pokemon and some people like Fire Pokemon and stuff like, people like Fire Pokemon because they're like, Super Cool. And they're really aggro and stuff like that. So like I I put put together like themes of each of the 15 types to be like, What is like, what is that? You know. Like mind is like, you know, more.
+31:32 Terry Wu: special attacks and more like spiritual or like, you know, like stuff like that and like It also enables us to then. Dovetail that component into like a broader narrative and lore. Versus like Oh we created book type Pokemon because there's a bunch of bug type, inverty and city and it's it's a it's a dead type. It's useless. We didn't really think about the the parody of like the type matchups.
+31:59 Terry Wu: But you know, we just had a bunch of bug design. So we created a bug type book like just being thoughtful around each of the types why they need to exist in their game and what it represents from a lower perspective and from a battling perspective and tying that together, I think makes it really crisp, right? Like it's like a lot of thought and creativity being put through like you, I think people respect that.
+32:20 Thomas Yang: Yeah. Oh sorry. Going back to the UI real quick. I'll just put, we can just use
+32:21 Terry Wu: Yeah.
+32:26 Thomas Yang: like the old school like Pokemon Red, and Green UI. So like Main screen, you have Pokemon main Pokemon versus Main Pokemon. On your turn. You can see your turn options. And you have options to look at your item inventory. You have options to. Look at your bed. What do you call it? Non-active? Pokemon.
+33:02 Terry Wu: Your party? Yeah.
+33:03 Thomas Yang: Yeah, your party. For the MVP. I'll just do this for now.
+33:06 Terry Wu: Yeah. Agree. Have you played Pokemon yet?
+33:12 Thomas Yang: Not yet. I went to the website but it I'll play it. Yeah.
+33:14 Terry Wu: Play it on. It's actually really fun. It's pretty fun.
+  

@@ -1,0 +1,483 @@
+# Meeting Transcription
+
+  Meeting started: 7/7/2025, 8:06:02 PM
+  Duration: 72 minutes
+  Participants: Terry Wu, Thomas Yang
+
+  [View original transcript](https://app.tactiq.io/api/2/u/m/r/YB0B60tfrEgmXCrsXgMB?o=txt)
+
+    
+
+  
+
+  
+    ## Highlights
+
+    > 00:26 Terry Wu: Over the next week or so.
+> 01:39 Thomas Yang: can like test it on the way or in batches. Like I think it's important that we
+> 16:21 Terry Wu: Creates a reason for there to be a fire, electric Pokemon, or whatever or a creature. And also gives an excuse to start thinking about like dual typings and all of that, but like I agree. Like just being thoughtful around that I think people respect and we'll find that delightful. and then, from expressive standpoint, like I think what's important is people want to have Their own custom. Like they resonate to a creature and they want a personalize it to some degree.
+> 21:57 Thomas Yang: Risk reward.
+> 26:09 Thomas Yang: I'll take a look at that and see if I can integrate it before our next when we want to. Test out this MVP. Deadline. Thingy.
+> 28:03 Terry Wu: but like, there's like held items for instance and like each Pokemon can hold one item and there's like, It's really those items are really important to the competitive aspect because like There's like an item for instance, called Choice Scarf.
+> 29:27 Terry Wu: Yep. Correct. So, take a look at like Pokemon showdown like the Create a team. Like that basically gives you all the inputs. You you need on a monster pretty much. Um, and I can walk through that, we can maybe like tomorrow or another day. I show you like, You know how I how I feel that out and you know, and provide some commentary on that but Anyways, terrain.
+> 32:20 Terry Wu: And if a pokemon's weak to rock, it takes like 1/4 or up to one half. So someone sets up stealth rock and you bring in a charizard. You lose 50% of your health upon switching in stupid and so like moves that like have these long-term beneficial things should short-term like screw over. Someone's like stamina. So like it breaks their momentum and I think that's like a really important concept and something that will be unique to our game that Pokemon doesn't do and it solves for a really critical pain point and in the competitive aspect,
+> 51:34 Terry Wu: like, If you're forced, if you have five slots, then you can have coverage. But then also have like both fire blast and flamethrower. rather than deciding between fireblast first flamethrower flamethrower, being 95 power 100% accurate, fire blast being 125, power 85%, accurate, Right. Then you have to physically choose whether you want to hold the risk of
+> 01:06:18 Thomas Yang: Whiskey by something like that. And
+> 01:09:07 Terry Wu: because like, They give you the whole universe items but the like realistically there's like 40 items that's like important.
+> 01:09:25 Terry Wu: yeah, and like nature's for instance there's like 26 different natures But really, there's A bunch of them are redundant, right? Like we can clean up use that as a starting point but we can start cleaning up some of the stuff that is like just like redundant or not, right? Like not important.
+
+  ## Transcript
+
+  00:00 Terry Wu: You know, sorry about that.
+00:02 Thomas Yang: No worries.
+00:04 Terry Wu: I it was like playing Baldur's gate on this computer and I changed the settings so that it like never goes idle. And I think that melted my computer's hard drive or like hardware. So, it like this computer crashes, every two hours when it gets too hot because I think I like I took one of the fans or something. But I'm getting a new computer.
+00:23 Thomas Yang: Man. That's good.
+00:26 Terry Wu: Over the next week or so.
+00:29 Thomas Yang: Is it a gaming laptop?
+00:31 Terry Wu: Yeah, it's A zephyrus. I don't know it. I bought it for gaming in mind. It. I didn't really use it that
+00:39 Speaker: Hi, I’m transcribing this call with my Tactiq AI Extension: https://tactiq.io/r/transcribing
+00:39 Terry Wu: much for gaming though. Cool, I think we're good with this stock, right? Or was there anything else you
+00:45 Thomas Yang: Yeah.
+00:45 Terry Wu: wanted to?
+00:46 Thomas Yang: I think that covers all that we can move on to the next documents.
+00:48 Terry Wu: Okay.
+00:53 Thomas Yang: Because like we'll get some more clarity on these other ones once we go over the game design. Doc yeah.
+00:57 Terry Wu: Yeah. so, maybe to summarize here, Maybe we could do is like next steps. Is Do you want to just start coding stuff and then for me? I'll just start. compiling a bunch of like, Game mechanics and stuff like that. Like item, whatever. And like we can react to it or like Or like see if that works as like sort of a next sort of thing that we should work towards.
+01:30 Thomas Yang: Yeah. Also I think we could also like once I get the framework done you can grip feed me some of like mechanics. You really like I can implement it and then we
+01:38 Terry Wu: Yeah.
+01:39 Thomas Yang: can like test it on the way or in batches. Like I think it's important that we
+01:44 Thomas Yang: don't get bored of our own game.
+01:47 Terry Wu: Yeah. I think. Okay, cool. So what we'll do is I'll I'll start outlining some
+01:48 Thomas Yang: Yeah.
+01:53 Terry Wu: mechanics You can like I'll just put them in the drive so that you can see them in real time. if you wanted to, like start, Building out some of the MVP stuff and then outside of the coding stuff, maybe we can both work together around. Like creature concepts, or like what? Because I think that's like the coolest part is like, you can put a little bit of your flavor. It's some of these some of these things as well.
+02:20 Terry Wu: and then, And then we'll go and then we'll go from there.
+02:25 Thomas Yang: Yeah, it sounds good.
+02:26 Terry Wu: But then from, oh, just like a dumb question. Like, from a technical perspective. I use chat cheap ET to like, Create visual vibes of this game, like obviously. my initial thought was like this Okami, like paintbrush look is like I think fairly unique. And like tested. And also I think it just looks sick. Like just the inspiration around is just like sick but one wanted to get your thoughts on it and then two like, How does like, one actually bake that into a game? Like, what is actually required?
+03:03 Thomas Yang: So my thoughts on it, I like the cute ones. I think my favorite was the Fox one.
+03:09 Terry Wu: Yeah.
+03:10 Thomas Yang: I really like that design, but I guess that's just straight up Okami.
+03:14 Terry Wu: yeah, this
+03:18 Thomas Yang: My roommate really like the total one when he was looking at it. It was a big fan of that. I don't like the bird one.
+03:27 Terry Wu: Yeah, me neither. I I just like I didn't I didn't prompt any of it. Like they
+03:29 Thomas Yang: Yeah.
+03:32 Terry Wu: just decided to choose these more. So I think we can like keep prompting and
+03:33 Thomas Yang: I just, yeah.
+03:37 Terry Wu: getting but like from like a stylistic. Do you think this type of like Brushstroke-esque, Okami style. 2D, I don't know. Maybe you could probably do this in 3D too. I just I don't know how hard that stuff is.
+03:52 Thomas Yang: Yeah, the we'd have to play around with some haters. I'm not that great at it, but maybe I can look at like okami's and see how they did it.
+04:01 Terry Wu: Yeah.
+04:01 Thomas Yang: I like the art style. I think as long as it doesn't limit us in terms of like we should design and it appeals to whatever we agreed to. Or like the thematic and aesthetic frameworks, I'm fine with it. I also don't mind like Yeah like we're still early. We don't have to kind of behold ourselves to this concept I guess there's anything else on the end that we like we can think about it in terms of artistic direction.
+04:35 Terry Wu: Yeah, agree. I
+04:37 Thomas Yang: Where you are right though. We should get it. We should come up with one sooner rather than later.
+04:44 Terry Wu: on this, the way that I was thinking about it was the left side is, okay, what I like about Pokemon is It's so brandable like it's just so iconic. the problem is like, when you just do like chibi Kawaii models, People are gonna immediately point towards like Hey, this is a ripoff. and then the second thing is, like, It kind of limit like it's just like a little bit. I wouldn't call it like childish and stuff but like, like for battler, I think you want probably like cooler looking stuff and so the way that I was actually thinking about splitting it was like Um like maybe an awakened and unawakened form. Like an unawakened is just like what it's like you're cute.
+05:36 Terry Wu: Sort of like creature that follows you in the overworld kind of like in Soulsilver where like you can have a Pokemon follow you. and then in the awaken mode, it gives an excuse to say like Oh You know it awakens into like it's battle mode or whatever and then like it's like a more cooler constant like a stronger sort of concept. and then you can dovetail like the idea of paint brushes of like Like cosmetic changes of like people really like the cute because I think they're really iconic or like a lot, it's very more brandable.
+06:08 Thomas Yang: Mm-hmm.
+06:09 Terry Wu: Like that might be a way to. And also because like I think it also solves for like not needing to do evolutions. Like evolutions. I always had felt like like a three, a two stage evolution, basic second. First evolution, second evolution. Like the middle, the Middle Pokemon always gets left like forgotten, like no one gives a s*** about charmeleon or war turtle or ivysaur, right? It's usually just the basic and then the final evolution, And so I think we could skip evolutions all together right? Because we're mostly focused on the battling system and then just do like an awaken verse on awakened form which is effectively just a basic versus final evolution form.
+06:49 Thomas Yang: I think I. Yeah. When I first saw, I think I liked it a lot. I I like you said simplifies that evolution design. Also, it gives like that cute but also cool factor.
+07:02 Terry Wu: Yeah.
+07:03 Thomas Yang: Let's see. Unrelated though, I wasn't like enamored with, like the mythic part of it. I'm just worried like it kind of limits our design choices, but I thought
+07:14 Terry Wu: Yeah. Hundred percent, we don't need to like it doesn't have to be entirely off like mythology or whatever.
+07:22 Thomas Yang: Yeah.
+07:23 Terry Wu: Right. Like there's so many endearing Pokemon. That are not like mythological like related. So I told like I wouldn't want to limit either.
+07:35 Thomas Yang: Okay. Yeah. Good.
+07:36 Terry Wu: I guess the question is more. So, does this art limit like this art style limit anything? I think the answer is no.
+07:45 Thomas Yang: Yeah, I don't think so. I don't think so either.
+07:45 Terry Wu: like, like I'm thinking about like if you take a look at like the typing the type charts I had like I had like one Typing called. Cyber. Basically like a steel, like a Concord steel type or like robot, or art, like
+08:00 Thomas Yang: Mmm.
+08:03 Terry Wu: manufactured type. Right. And like, you'll notice like, in in Pokemon they kind of like screwed themselves because they limited based off of their one, they have a lot of, like redundant types. Like a rock and ground. But also, they're like things that don't fully.
+08:19 Thomas Yang: Yeah.
+08:24 Terry Wu: Like, there's this Pokemon called golurk. It's literally a robot like a Like the Iron Giant. You know what type that is. It's freaking ground and ghost.
+08:36 Thomas Yang: Our thoroughly metal. What the f***?
+08:37 Terry Wu: yeah, so like
+08:40 Thomas Yang: Dude this looks like the Maple story golems like the littlest egg. Yes dude.
+08:44 Terry Wu: Yeah, it does. and like, I think. So, the type the 15 types that I had? This is like when I was like thinking about building a game like a year ago was like, What? Kevin getting rid of the redundancies but also making sure that there's a lot of stretch for like future design and stuff. And I think like Pokemon kind of screwed themselves. Right. Like they They kind of like, for instance, they invented a new type called Fairy. And then they, like retroactively turned Pokemon into fairy type.
+09:23 Terry Wu: but like, if you have the right types in mind to start dictated by both like matchup parody and like competitive aspect, but also Thinking through like, what are the potential universal designs? and I just like, basically took inspiration, I was like From like every type of game, like, What are the elemental or types and stuff? Like, I just like consolidated, the full universe and like, got got it down to this 15 I think hopefully that will give us more flexibility when it comes to design and building new champions and stuff.
+09:57 Thomas Yang: Yeah, I like I like, I like that. Or at least it's a definitely a good starting point.
+10:03 Terry Wu: Yeah. Also, it's clean. Like I think once we have like 30 types, Like, that s*** is gonna be so confusing.
+10:10 Thomas Yang: Yeah. Yeah. Back to the artwork, though. I like to using this. I think. Yeah, I think it's
+10:14 Terry Wu: Yeah.
+10:19 Thomas Yang: we can use it. So comedy style for our prototypes. Yeah I'm also like I haven't really thought about this in death. Yeah boy if there anything new like pops up our Added to the, Our generate some I guess images and see how it feels.
+10:39 Terry Wu: Yeah. And like once we create a doc around like our creature concepts, then we can like actually throw in those like those descriptions into the prompt. In the middle like refine it. So I'm not I'm not worried about the initial set. I think the harder thing is like actually being thoughtful around the creatures. I think from like a mechanic standpoint. We can rip a lot from like Showdown.
+11:05 Terry Wu: Like they pretty much covered. So many mechanics with items and abilities, and all that sort of stuff. So, that is more like, What is the total universe? What do we like from that universe? And what are some additional things we could think about? But 80% of it is there from a creature creation standpoint.
+11:21 Thomas Yang: Yeah, I know. Absolutely otherwise you'll get our asses and that and it's not a
+11:24 Terry Wu: we're almost have to start from scratch because it's like, You can't make it look exactly like Pokemon. Yeah, and like this turtle guy on your screen.
+11:37 Thomas Yang: Yeah.
+11:38 Terry Wu: Like he's he's visually very different than a grass, turtle Pokemon. Visually he doesn't look like a torterra or venusaur.
+11:49 Thomas Yang: You know. Yeah yeah.
+11:49 Terry Wu: Right. so like, we can still take similar concepts of like Like right. Like this Fox Guy looks very different than nine tails, but it looks like these are Okami rip off, right? And then this bird guy looks like freaking mulcherous and hello but like I think we can We'll need to figure out how to like differentiate there but I think we can like just from like one or two props. We already see a very different style than Pokemon right now and on the screen. Okay, cool.
+12:24 Thomas Yang: Like that.
+12:25 Terry Wu: And then the last thing here, you wanted to call out with your comments.
+12:28 Thomas Yang: Oh yeah I think yeah I just added like this for realistic creature design. I was more thinking about like frameworks like a design framework. And in terms of like how we could think about Building relevant like a monsters. And not this one, but this one. Uh, let's see. Was there anything? I interesting I added here. I just made a comment about like I think one of the pos for Pokemon was There's sort of design that anyone can latch onto. We're a little bit limited on the resources. So yeah, maybe it probably makes sense to have like a like several
+13:18 Terry Wu: Yeah.
+13:23 Thomas Yang: like maybe 50 However many like really good ones for a focused market. Um I was thinking like one of the other things we could base The thinking of of is like regional thematic elements, for instance, like Pokemon that live in different ecosystems. Like city looking monsters tundra monsters, like wherever they live, we can beat that in as like inspiration as well. I think we touched upon this unique visual appeal, making a different look make it look different from Pokemon so people don't say it's just a knockoff.
+14:01 Thomas Yang: and in general, like in like animated media, media like movies and games in general, I really like expressive like characters especially like the cute characters and I think it's very endearing when Developers or animators, have just like simple animations to give each. Master. Like a little personality. And also I like it when developers at things where animations where like your character interacts with the their environments and other monsters, whether it be when they're idle or when like you're doing an action I think it really helps bring like mod the characters to life.
+14:48 Terry Wu: And yeah.
+14:49 Thomas Yang: And I just thought like this skull goes into like animation assets rather than design um, like have facial features or whatever such that they can like show a variety of emotions, your excitement, etc. Also to help kind of like the monsters, kind of feel alive, but those were just, yeah. So, yeah, those are a couple points. I had here.
+15:14 Terry Wu: Yeah. I, a couple thoughts there, a totally around the regional variance or like, If they're in a certain city, like it matches the alignment of the theme of the city or like city monsters or whatever. I think a way to dovetail it to the way that I built out like the type chart and stuff is like maybe like each type. Itself has like it, like kind of like avatar, right? Like there's like the water, the fire, and the grass.
+15:48 Terry Wu: And what? I don't know what the fourth one is, but like, they each have their own vibe. and culture and all that sort of stuff, and like, we could do that with each of the typings and then like And then go from there and then there's like dual typings and stuff and and all that. Like almost like, think about it like as a map. There's like 15 towns and then there's like, roads, that connect each of the 15 towns and in between the roads of like maybe a fire town in an electric town. You know, it.
+16:21 Terry Wu: Creates a reason for there to be a fire, electric Pokemon, or whatever or a creature. And also gives an excuse to start thinking about like dual typings and all of that, but like I agree. Like just being thoughtful around that I think people respect and we'll find that delightful. and then, from expressive standpoint, like I think what's important is people want to have Their own custom. Like they resonate to a creature and they want a personalize it to some degree.
+16:55 Terry Wu: I think things like what Neopets does, right? With like paint brushes like I'm
+17:00 Thomas Yang: Yeah, right. Yeah, I remember that.
+17:00 Terry Wu: ripping that concept for this because like one our theme is like this paintbrush artistic style. Like it almost That asset itself aligns. but like to create, Um you know different, some people like gold stuff, right? Like you can create a gold paintbrush to turn your little fox guy, gold. Right, or like you have a shiny variant and all that sort of stuff. So you can flex that you have the super rare one. You pay a s*** ton of money to like in a gotcha to get it or whatever, right? Like people care about that stuff and then from an expressive standpoint I think what Maple Story does right is like Your your avatar and maplestory you can like f2f3 or whatever.
+17:43 Terry Wu: But like, people people were like, the most popular thing that people bought the shop, right? We're like the the expressions, like, people love buying the kissy face. We're all Right. And like I'm just thinking about like, would people buy that for this game, a hundred percent and like I would, I would buy an emotion emoji to like grief
+18:01 Thomas Yang: Oh no. Absolutely.
+18:04 Terry Wu: people in battle, so that like, while people are like figuring out what move to make, I could spam a move to grief, though, with like a funny emoticon, right?
+18:10 Thomas Yang: yeah, do
+18:12 Terry Wu: Like
+18:12 Thomas Yang: Good f*** being like nice. Like I hate how all these like multiplayer games are just getting rid of like, toxic behaviors, like, okay.
+18:24 Terry Wu: Yeah, I mean it's like I don't think that's taught. I mean it's toxic behavior but it's like filtered. Right. It's not like you.
+18:30 Thomas Yang: Yeah, I know I was just saying like in Hearthstone, they got rid of like the GG like the emoting because the people were using it using it toxically.
+18:37 Terry Wu: That's so funny. Yeah.
+18:43 Thomas Yang: It's just like whatever.
+18:48 Terry Wu: And anything else that you wanted to chat about on this document?
+18:51 Thomas Yang: Yeah, we should definitely go over the core gameplay aspects, the solidify the MVP stuff. Just to see like, which mechanics we really want to test out and which mechanics
+19:08 Terry Wu: Yeah.
+19:09 Thomas Yang: we can just leave out for maybe another time or leave out for forever. Will help me figure out what the code up to.
+19:18 Terry Wu: Got it. Okay, let's start with all these bullets here, the combat mechanics,
+19:19 Thomas Yang: Yeah.
+19:22 Terry Wu: right?
+19:23 Thomas Yang: Okay. Flow. Yeah, flow I like so I agree with. We can skip that.
+19:24 Terry Wu: Oh, game flow. Okay.
+19:29 Thomas Yang: Design Intent. Yeah, This is basically why I just said, Okay, yeah, let's go through this bullet points.
+19:34 Terry Wu: So I think this you probably need to actually code it. Freeform non-grid, basically Pokemon style. I think that's pretty straightforward. Turn to order logic. I think it's, it should be dictated by a speed stat.
+19:52 Thomas Yang: Agreed.
+19:53 Terry Wu: Whoever is the faster base speed or like, speed investment. Like, the way that Pokemon does it is, every Pokemon has a base speed. But to get the fastest speed, you also have to have a plus speed nature and invest, 250, yeah. Like 510 evs. Every four EV is one step point and you can add max to 252 evs on one stat. So like people just do 252 speed plus jolly nature to ensure that it will at most be the same speed as the fastest opponent. Like if you're like finding a clone right, you're at you know, for a fact that you're at least like at worst the same speed, if not better.
+20:36 Terry Wu: so, I think
+20:36 Thomas Yang: Do people do? Oh sorry, go finish.
+20:39 Terry Wu: Yeah. Sorry you
+20:39 Thomas Yang: On my bed. Oh yeah. I was just gonna ask, Do people do this for all their Pokemon or just like their their starter?
+20:48 Terry Wu: In the competitive side, they do it for every Pokemon and like people will run speed tiers. so, like if you have a base, 90 speed Pokemon, Right. You will run. you will run, maybe, you don't want to be the fastest of the base 90 speed tiers, but you want to be faster than A plus speed based 80. So then what you can do is run 232 speed.
+21:14 Terry Wu: And then not have and then reinvest your nature into plus attack instead of plus speed that way, you know like there's like weight like things like flexibility of like speed tears. And it is a big component of like the competitive aspect and like I think it's it's a good mechanic to have is like thinking through. You know, because I think going first is one of the biggest drivers of decision.
+21:41 Terry Wu: Making is like, if you go first or you go second, you're gonna choose different decisions.
+21:45 Thomas Yang: Mmm.
+21:45 Terry Wu: And I think based off of merit, not based off like a coin flip. And like being thoughtful around what you invest in. Because if you invest in speed, you can't invest in defense, we can invest in health.
+21:55 Thomas Yang: Yeah.
+21:56 Terry Wu: Right.
+21:57 Thomas Yang: Risk reward.
+21:58 Terry Wu: Exactly.
+22:01 Thomas Yang: Is it okay if I just use the speed staff for now? I kind of lost. I still look
+22:04 Terry Wu: Yep. it's, it's entirely just
+22:07 Thomas Yang: good use about the EV stuff just speed, okay?
+22:09 Terry Wu: Like the Evs are like a mechanic. To, but it's ultimately speed. Yeah.
+22:17 Thomas Yang: Oer evs, we can go over this later but Evie, our avs. I just to make sure I
+22:20 Terry Wu: Yeah.
+22:22 Thomas Yang: understand it really our evs in Pokemon, just the figure out how you can distribute your stats when you level up.
+22:28 Terry Wu: Exactly. So so, in casual play, every time you like find a wild Pokemon, There's like something called an ivy when you catch them It's an intrinsic value. Like what's abstract all of that. Basically, like there's RNG to it's a good. It's it has good genetics or bad genetics. And then the EV is more like environment. Like as you go through casual play and you fight more geodudes or defense heavy Pokemon.
+22:57 Terry Wu: Your effort values for the defense that increases. So what people can do is like Let's say you want to build a tank Pokemon. You only fight you dudes, you don't want to fight pikachu's because like you're you don't, why would you invest in speeds? That's And so in Pokemon Showdown, what what ends up happening is, it's a simulator that just like enables you to customize what where your stat distribution is.
+23:24 Terry Wu: um and like you can do, you can basically invest half of your stats to To once like one certain stat and then one another. So like you could do 252 and Hb and 252 in speed but you can't do. 508 in 504 or 508 in speed itself. So like it has a cat but like ultimately,
+23:45 Thomas Yang: I see.
+23:47 Terry Wu: it's whoever is faster. We'll go first.
+23:51 Thomas Yang: For this prototype. Should I, maybe I can abstract that out and just kept speeds that at like, I don't know, 50 or something. 90
+24:00 Terry Wu: yeah, so what you could do is basically Like as a prototype when we have creatures. We just we just have base. We could start with just base stats. like this creatures based that is 90 this creatures based out as a hundred
+24:15 Thomas Yang: Okay. Yeah. Sounds good.
+24:20 Terry Wu: And then like the base, there's like the calculation that they do, which is like your base that ultimately results in X speed. Uh at level 100 right the base that is just so right? Because like there's like a level progression in Pokemon so like at Level 100. A hundred speed base speed is 212. Speed. But you, if you invest all your speed evs, you can go to like 212 to 260 or whatever, right? So that's sort of like the
+24:58 Thomas Yang: I see, okay that's how it adds a little bit more complexity at Max locals.
+25:01 Terry Wu: Exactly. So like it gives it's really good like that mechanic is fundamentally. Why people like Pokemon is because like You can create an anti-medis that distribution on your post. Like maybe someone will think you're like you are the meta riot you which is all speed and all special attack. But they don't realize you're actually running HP and special attack or HP and speed because you're actually a support.
+25:32 Terry Wu: Right? You or whatever? Right? Like that's what brees a lot of creativity and I
+25:33 Thomas Yang: Okay, so here's what I'll do. I'll implement a offer supplement, like Just
+25:36 Terry Wu: think there's a lot of fun.
+25:44 Thomas Yang: paste, stats. Got that. I don't know. 100 For now, I'm gonna look into how I be
+25:48 Terry Wu: Yeah.
+25:50 Thomas Yang: and if it works in detail and like implementation wise, and if I can get that before our
+25:55 Terry Wu: It's on smogon, by the way, all the stuff like, there's got to be like articles,
+25:57 Thomas Yang: That's welcome.
+26:00 Terry Wu: that explain all all the battle mechanics. And they probably have the code somewhere.
+26:07 Thomas Yang: Oh great.
+26:08 Terry Wu: Yeah.
+26:09 Thomas Yang: I'll take a look at that and see if I can integrate it before our next when we want to. Test out this MVP. Deadline. Thingy.
+26:21 Terry Wu: Also. Pokemon showdown documentation, probably has all of it, too. I would I would probably start there.
+26:33 Thomas Yang: I'll check that.
+26:38 Terry Wu: Okay, actions per turn. I think just simply having one one per turn. You can either attack or switch out. Makes it. I think it's I think it's simple, but I think it's It, it's I think it's like very beautiful how simple it is, just like, right? Like It's like poker. You either check Call our fold. You make one action, right? I think
+27:01 Thomas Yang: Yeah.
+27:06 Terry Wu: like that idea. Like an act one action per turn. Is is like, whatever Pokemon dies? I think that formula is right. I think it's a good formula.
+27:18 Thomas Yang: I'm on board with that. When they, when in Pokemon, when someone uses like a potion or something, does that pick up a turn? Or
+27:27 Terry Wu: Yeah, it does. So in casual play,
+27:29 Thomas Yang: that's,
+27:31 Terry Wu: so like when you play casual or like poke rogue, for instance, since it's like Pve When you use an item, it takes it takes the turn away. So like you can't attack and use a super potion. In PVP and competitive, there's no concept of items. Like it's like, you know, like, in in Super Smash, it's like no items final destination like that meme Pokemon. It's similar.
+27:56 Thomas Yang: Yeah. Yeah. No items, okay? It's got you.
+28:03 Terry Wu: but like, there's like held items for instance and like each Pokemon can hold one item and there's like, It's really those items are really important to the competitive aspect because like There's like an item for instance, called Choice Scarf.
+28:19 Terry Wu: Is a really good concept. Basically, what it does is it increases your Pokemon speed by 50%, but whatever. Move you choose, you're locked into that move until you switch out.
+28:30 Thomas Yang: I see.
+28:32 Terry Wu: and so, like, It catches people by surprise. Because like, you would expect your Pokemon to be faster but it's not and they just outsped you. So you have to like be aware of like those situations and like But like that item is like, I wouldn't say broken, even though it gives you speed because then you're locked into a move, right? So then you could take
+28:54 Thomas Yang: Hmm.
+28:54 Terry Wu: advantage of the fact that They're stuck into a move, you could bring in a Pokemon that resists that move, and then they have to switch out, right? So then they lose a turn, right? So like the idea of like control over the game, And momentum. It's not like, it doesn't like you can break them momentum of the game. It's like not. Yeah, like so items like that are cool. I think.
+29:16 Thomas Yang: Yeah, so no like inventory items but yes to held items.
+29:21 Terry Wu: Yeah.
+29:22 Thomas Yang: Okay. And how are items you configure before you enter a battle, right?
+29:27 Terry Wu: Yep. Correct. So, take a look at like Pokemon showdown like the Create a team. Like that basically gives you all the inputs. You you need on a monster pretty much. Um, and I can walk through that, we can maybe like tomorrow or another day. I show you like, You know how I how I feel that out and you know, and provide some commentary on that but Anyways, terrain.
+29:58 Terry Wu: No resource system. So One thing that I think is quite broken, is the resource system in? Pokemon is very arbitrary. For instance fire blast has five PP so it only at pp being powerpoints. I think meaning If you don't heal. You can only use fireblasts five times before you're out, and then there's something called like a ppop. You can bring five the five PP to 8pp and it's scales.
+30:31 Terry Wu: It scales with base PPS. So something that like Earthquake has 10 PP if you use PP up three times, you can grow it from 10 to 16. Etc. Etc. It's very arbitrary. And not really good for competitive gaming because like a strong move, like fire blast can actually get out stalled. Especially when some abilities. Force Pokemon, to use two PP. Instead of 1pp. It's called like pressure ability and a bunch of legendaries have that.
+31:03 Terry Wu: And so the stamina system is not very good because it doesn't solve for anything and it was arbitrary. And one big pain point is the The move recover is 10, base pp. and so, when you use pp up three times, it's 16 So, you can recover 16 times. so if you have like a blissey, which is like high HP, high defense stat, You can like stall out people's like really strong moves by just spamming recover and it like, it's just like, not fun and it makes games like 60, turns and takes like two hours. And like a lot of it is just like, How do you manage around dealing once with one stalley Pokemon? Because there's No Stamina aspect to it.
+31:47 Terry Wu: and so I think like moves like healing or like, Setting up traps and stuff like that that are like disproportionately. Beneficial to the user. Like another move. For instance is called stealth rocks. And it's the number one. Most broken move in Pokemon. Because once you set it up anytime your opponent switches they take stealth rock damage in. They basically take one eighth health they lose 1/8 chip health.
+32:17 Terry Wu: Every time they switch
+32:19 Thomas Yang: Hmm.
+32:20 Terry Wu: And if a pokemon's weak to rock, it takes like 1/4 or up to one half. So someone sets up stealth rock and you bring in a charizard. You lose 50% of your health upon switching in stupid and so like moves that like have these long-term beneficial things should short-term like screw over. Someone's like stamina. So like it breaks their momentum and I think that's like a really important concept and something that will be unique to our game that Pokemon doesn't do and it solves for a really critical pain point and in the competitive aspect,
+32:53 Thomas Yang: Yeah. Tangentially related, I added In my comments here, I mentioned like a mana system, like, I guess the ones you have it in mtg, slated aspire. Yeah, we could play around with you either of those because I think we'll be
+33:08 Terry Wu: Yeah.
+33:11 Thomas Yang: interesting is for instance in the madness system If the player puts a still with rock, what could have it so that it occupies abortion of your your mana and then that limits the other skills that you can play in the term. Oh I guess you
+33:27 Terry Wu: Yeah.
+33:27 Thomas Yang: could always do that for the stamina. So I guess it comes out aesthetic and what we like well what's more intuitive to players when we iterate and alpha test it?
+33:37 Terry Wu: Yeah, the same. I think same, I think we're talking about the same mechanic.
+33:40 Thomas Yang: Yeah.
+33:41 Terry Wu: whether it's called stamina or mana, but I think In spirit, it's achieving the same thing. Yeah, I think actually like mana
+33:47 Thomas Yang: Okay.
+33:48 Terry Wu: better. I actually like Right? Like MP verse HP. It's like very intuitive.
+33:53 Thomas Yang: MP. Okay traditional. Okay, so I'll implement the management system.
+33:59 Terry Wu: Yeah, a group. And like I think it's one of those things like in maple, right? Like every turn
+34:01 Thomas Yang: Sick.
+34:04 Terry Wu: your mana Gets recovery, right? and like, maybe it's one of those things where like Like do you when you switch out? Do you regain your full man out? Or like do you still have to wait a few turns? Right for it to be a productive person. Like it. You have to like
+34:25 Thomas Yang: Oh, that's a good point.
+34:26 Terry Wu: Write. So like, there's, there's like ways that we could test test it. But I think this concept is going to be really good. I think this is a really good concept.
+34:37 Thomas Yang: So for now on maybe we can have it so that the mana recovers per turn. Unless there's a satisfact or if the player has something like Stealth rock on the board.
+34:53 Terry Wu: Yeah, something like that. Like there could be an entry hazard that f**** over someone's mana.
+34:57 Thomas Yang: I like that. Yeah I like the concept. So if you bench
+34:59 Terry Wu: if you're an active, like, let's say fire blast, or I'll say like everyone has a hundred manna and like a monster can have A high stamina. Base that like this is could be a new style together. It's like the recovery of your mana. Um like there's like different ways that we can play with it and like the stronger, the move like a fire blast versus a flamethrower. Fire blast Will.
+35:25 Terry Wu: use more mana and then when you switch out, let's say you switch out when you have 60 of 100 mana, when that Pokemon is resting or that monsters resting The recovery of the mana per turn is much faster than when it was an active. Monster like maybe recovers five per turn on an active slot. But once you like bench, it maybe it goes to 10. It grows to 10 or something.
+35:55 Thomas Yang: A Pokemon. They has it gets higher mana recovery.
+36:00 Terry Wu: Yeah.
+36:00 Thomas Yang: Otherwise. All Pokemon have a base mana recovery. And a max.
+36:10 Terry Wu: Yeah.
+36:10 Thomas Yang: Mana pool. Which gets consumed when they use a skill.
+36:13 Terry Wu: Something like that. And it's so like one strategy that people used to do all the time. was, and this was like in Gen 4, when there was no team preview, And so this was a limiting factor of like, having no team preview. Is just like People have dedicated leads and so if you just had a bad lead versus your opponents lead, like they just get a structural advantage from the beginning. And so some people used to, like, do this. Strategy with Fortress. Where basically fortress is high defense. Has a lot of resistances.
+36:52 Terry Wu: And they set up stealth rock first turn. And then they also has access to spikes, which is another entry hazard that does damage upon. It's like stacks basically and then when they know that you're the fortress is going to die. And the ability of fortress is called sturdy, which means you cannot die in one hit. So and you're guaranteed. Like stealth rocks with this guy, and then, like, after you said it up, you
+37:14 Thomas Yang: Yeah.
+37:16 Terry Wu: press explosion, then you just like you basically set up stealth rocks and you kill something. And like if you have MP right like you if you set up stealth rocks it's like Hi, Mana usage. you can't explode the next turn you have like switch out and kind of like this is more strategy, it's not like brainless, you know like I think and like it just like We can then. Calibrate how broken and move is right by tweaking. Its mana consumption.
+37:48 Thomas Yang: Yeah. Yeah. and I think it also gives flexibility if the player chooses to invest in, I'd say more mana and they character they could, but at the cost of something else,
+38:00 Terry Wu: Exactly. Like let the fortress set up stealth rocks and blow up but now you have
+38:00 Thomas Yang: Yeah.
+38:05 Terry Wu: less defense because of it.
+38:07 Thomas Yang: Yeah, sounds good looks like sounds like the madness system like solves at least
+38:12 Terry Wu: Yeah, dude, I'm high. I really like this.
+38:13 Thomas Yang: on paper, so yeah, a lot of s***.
+38:15 Terry Wu: I really like this system actually. I think it's really good. I think it's elegant. I don't know, we'll have to play test it.
+38:21 Thomas Yang: I think so too. Yeah, we'll have to play test it. All right. Next one. Anything else. Sorry. Anything else for resource you wanted
+38:28 Terry Wu: No.
+38:28 Thomas Yang: and okay?
+38:30 Terry Wu: Terrain and status effects. In the new games, there's a bunch of like static like status effects, I think is like you could just do the traditional like paralyzed slows down speed. I think a couple of broken status effects. That exist are for freeze. Freeze is just like if you do ice beam, for instance, it's just like an ice. It's very strong ice move. There's a 10% chance. You freeze their opponent and
+38:56 Thomas Yang: Yeah.
+38:57 Terry Wu: the freezer opponent is like flip a coin. Basically, if it's like heads, you're still frozen. You can't do anything. it's like, I think that's like kind of crazy and broken. Burn does residual damage like one one. How much does it do? There's like six percent so like 118th. A turn and then also have your attack, but there's
+39:26 Thomas Yang: 18th of total dam operation, okay?
+39:27 Terry Wu: Of your HP. Yeah. You lose like 6.25% of your What does that? Oh 124th. Right? Is that? No? What 116th? It's 116th of your health. You lose every turn when you're burned. You lose 116, residual health
+39:41 Thomas Yang: That's it.
+39:44 Terry Wu: and your attack status halved, but there's no equivalent on the special side like you can get burned and then you're Pokemon becomes pretty much like Like crap.
+39:56 Thomas Yang: Mmm.
+39:56 Terry Wu: if you're a physical attacker and you get burned, but on the special side, there's nothing that checks the special attack, the right like there's just like
+40:03 Thomas Yang: oh, That's hilarious.
+40:06 Terry Wu: their status, their status was just like Very arbitrary. And like, Paralyzation for instance, there's a 20, I think it was 25% chance. You get paralyzed and they reduced it down over time and the new version. But the main point of it was you're supposed to it slows your speed stat. But there's like a bunch of like these things that we can tweak you know those status ailments to be more competitive friendly I think.
+40:35 Thomas Yang: Right? So the ones that require of coin flip, what else was a sleep was also.
+40:41 Terry Wu: Sleep, sleep is another one. and like there's like Pokemon like Darkrai that I have this move called like dark void 85% chance, it hits, and it puts your Pokemon to sleep and you have
+40:48 Thomas Yang: Mmm.
+40:54 Terry Wu: I don't know. A 50% chance to wake up every time, but you can be asleep for like five turns. It's just like brutal.
+41:00 Thomas Yang: Right. instead of a coin flip or maybe we can keep a coin flip, but maybe instead of coin flip, what about like a meter that builds up every time you use a one of those status effects And then when you hit the top of the meter, it triggers.
+41:19 Terry Wu: so, The way that competitive solves for sleep, for instance, it's like fundamentally a broken move. Is this thing called sleep? Pause. Um, and like, people just when they play the physical games itself, not the simulator, just gentleman's agreement, not like, if you break sleep claws, you automatically forfeit and lose, but basically at no point can more than one pokemon be asleep. Right? So the fix is like, if your pokemon's asleep, you like switch it out.
+41:48 Thomas Yang: Oh, I see.
+41:49 Terry Wu: and like, it'll be asleep like when you switch it back in but like, Like a lot of these status elements are there to like break momentum. And I think, That is a good reason to use status elements and that in spirit we shouldn't fit, we shouldn't change.
+42:06 Thomas Yang: Okay.
+42:06 Terry Wu: But I think like things that like are really. Broken broke it like sleep isn't like super broken but like things like when you use ice beam and there's a 10% chance of freezes, like something that should like just be an edge case that shouldn't happen. Just like completely turns the tide of the game I think is like not great and I think they changed that frozen mechanic recently in rcs legends. I forgot there's like a new it's called, like frostburn or something.
+42:34 Terry Wu: So they've they've been making some fixes, but we should just be aware like maybe as we build a list of stuff. We can keep in mind like what is generally overpowered and what's underpowered as a status ailment.
+42:48 Thomas Yang: Okay. Maybe just for A/b testing. I can keep, for instance, freeze. Keep the coin flip mechanic for now until we think of something better. But then for things like
+42:55 Terry Wu: Yeah.
+42:58 Thomas Yang: sleep and paralyze, where Pokemon showdown has all some of it, I'll do it their way.
+43:04 Terry Wu: Yeah.
+43:05 Thomas Yang: Okay.
+43:08 Terry Wu: Yeah, because like all. So the meter is a good and interesting concept. I worry that it's over solving because like like, when I build a team for instance, Maybe one or two Pokemon use status ailments like some are like some guys are
+43:25 Thomas Yang: I see nice and
+43:25 Terry Wu: just like fighters, right? So like it's not worth building a whole complicated mechanic around, I think
+43:34 Thomas Yang: Okay.
+43:35 Terry Wu: Yeah. And then terrain The OG terrains back in when I was playing was like rain sunlight and all that, right? Like when you have rain, empowers water moves I like the terrain because it adds an extra dimension of like now, you not only have to control the momentum of the game and like type matchups, but you have to control Or. Taking consideration. The terrain and like, How do you counter return and stuff like that, maybe right? Or like, in the earlier competitive games like Terrain was overpowered because There was a Pokemon called Politoed.
+44:20 Terry Wu: And also ninetales, they all had these, like hidden abilities that, like, based off of their ability when you switch them in it changes the weather to sunlight, or to rain, and it was like a permanent change. and so,
+44:35 Thomas Yang: Oh wow. Okay. f*** that.
+44:37 Terry Wu: That like, it's like one like basically turn one. Someone brings in politoed. You're fading fighting a rain team.
+44:42 Thomas Yang: Yeah.
+44:43 Terry Wu: you know, like he's just like it's just rain forever and like you can counter it
+44:45 Thomas Yang: You're done, yeah.
+44:48 Terry Wu: and stuff but like I think having a time limit. so also, without those abilities Using sandstorm or sunny day or whatever, there was not enough length. It was five turns. Inclusive the turn that you, you used it so you use rain dance. Then like that's turned one, the four turns of rain where you can like use hydro pump and like Destroy s***, but it like that's not that long and like you wasted a turn setting up rain. And you're doing a passive move on your first turn.
+45:25 Thomas Yang: Yeah. Okay.
+45:27 Terry Wu: so, They created an item called Damp Rock, which enabled. rain to last an extra three turns, for eight turns, So I think like having a concept of like an item that enhances the turns. is like a was a good concept and I also think like Abilities. To like turn on rain and stuff is a good concept, just not permanent. But I also think it should be equal to every type of terrain.
+46:01 Terry Wu: So, one thing that was an interesting concept that never worked in competitive, was this thing called Trick room. basically, it made slower Pokemon Faster that like whoever had the slowest speed go first instead of the faster speed go first. But there was no item that it extended that to from five terms to eight turns. So there's really only four turns of it.
+46:25 Thomas Yang: Yeah.
+46:26 Terry Wu: But like it's a really cool concept because then you can build a team around it rather than investing in speed, then you can invest in HP and attack. So all your Pokemon get come like collectively bulkier and stronger. And like so I I'm like Super Pro terrain but it has to be fair across every terrain and we can't just give like water and fire terrains. And that's it. I think you have to give terrains to every every type
+46:53 Thomas Yang: That'd be a fun creative exercise just coming up with like thematic rooms or terrains for each of the types.
+46:57 Terry Wu: Yeah. Yeah. A hundred percent, like power plant, or volcano or whatever.
+47:02 Thomas Yang: Every like what you go like, f***. Yeah. Or like f******, you know, gojos like domain expansion, like I'm ever gonna like gojo.
+47:09 Terry Wu: Yeah, hundred percent. But like the mind that's nice and stuff. Yeah, I agree.
+47:13 Thomas Yang: Yeah. Okay, so in terms of implementation, I'll take I'll take inspiration from the existing ones for now.
+47:23 Terry Wu: Yeah, and then in the neat Oh the new games they have like grassy. Take a look
+47:23 Thomas Yang: I'll add.
+47:26 Terry Wu: at smogon just like Google grassy, terrain electric terrain and stuff.
+47:30 Thomas Yang: Okay, smoke on to more recent terrain.
+47:32 Terry Wu: And it's yeah and it's cool like grassy terrain for instance. If you have a grass type Pokemon like you heal in the terrain in the right lights, like very thematic to a grass type Pokemon.
+47:45 Thomas Yang: Yeah.
+47:45 Terry Wu: Right.
+47:49 Thomas Yang: More recentering grassy field, etc. Okay. Key things about terrain just to summarize here. It should have a type and a time limit. Right.
+48:03 Terry Wu: Yeah.
+48:03 Thomas Yang: Type plus time limit for our game system. Do you think it should occupy like mana? Like, it takes a minute to sustain or just when you cast it, it consumes manner?
+48:18 Terry Wu: When you cast it should be like, kind of like stealth rock. Like, It's a big mana. Hit up front.
+48:24 Thomas Yang: Thank you. Okay. Sounds good.
+48:30 Terry Wu: but also, I was like thinking about that because like, like, One. What what people used to do was like, if you saw water like a rain team, you like basically fight the terrain by using a different terrain. And you go back and forth, pretty much. And so it can't be such a big hit to mana that like you can't recast it. Immediately after someone counters, you with like another terrain.
+48:59 Thomas Yang: Mm-hmm.
+48:59 Terry Wu: Because then whoever goes second just like wins the terrain battle, right? Like there has to be some Complexity or thought around. Like, what is the mana consumption of it?
+49:09 Thomas Yang: Yeah. Oh, Mmm. maybe for now we can limit the terrain to Each player's side of the field.
+49:22 Terry Wu: Hmm.
+49:23 Thomas Yang: alright, although actually otherwise no that might not work is Then what's you're like basically having the yeah, having the value proposition.
+49:30 Terry Wu: What's the point, right? You already have control over.
+49:33 Thomas Yang: Yeah.
+49:34 Terry Wu: Maybe it should just be like a low low mana consumption for now is playtest it.
+49:37 Thomas Yang: Well. Okay, and then we balance it by just having to be like a little bit of advantage.
+49:42 Terry Wu: Yeah.
+49:43 Thomas Yang: Okay. Is a little bit. Of advantage.
+49:51 Terry Wu: Cool, held items. I think we talked about that already move variety. I like the concept of four. I remember when I was playing competitively, it just like the more moves you have, like, if you have five slots, It like takes away, a lot of the creativity, I think there should be opportunity cost of moves. And like, I think four was like, those like actual sweet spot because like almost every champion I wanted to have five so I had to give up something.
+50:30 Terry Wu: And to justify the fourth move. Right? So like I think that concept of like, Four is probably the right number, right?
+50:38 Thomas Yang: Yeah, I agree with four. That's what Pokemon and all the competitive scenes have right.
+50:45 Terry Wu: Yeah.
+50:46 Thomas Yang: And I think we keep that at a for now. I don't really have a good gauge of it other than, from like a casual
+50:52 Terry Wu: Yeah, I playing a lot it's it's really like there's so many times. I wish I had
+50:53 Thomas Yang: standpoint.
+50:58 Terry Wu: a fifth move slot but if I did like the wind conditions would have been more clear. Right. It's like
+51:03 Thomas Yang: Yeah, actually. Oh sorry yeah. Sorry didn't get you off.
+51:05 Terry Wu: Yeah, no, go for it.
+51:07 Thomas Yang: Oh actually no like it's a thing in casual too because there are times where I'm using a TM I'm like, which Pokemon do I put it on? And it's good that they limited slots before. Otherwise I just have like a one purpose. There's all Pokemon with all the things I need. Yeah, but sorry, what
+51:23 Terry Wu: Yeah, exactly.
+51:26 Thomas Yang: were you gonna say?
+51:27 Terry Wu: yeah, and like if you have more slots, then you don't have to wait coverage or as accuracy like
+51:31 Thomas Yang: Yeah.
+51:34 Terry Wu: like, If you're forced, if you have five slots, then you can have coverage. But then also have like both fire blast and flamethrower. rather than deciding between fireblast first flamethrower flamethrower, being 95 power 100% accurate, fire blast being 125, power 85%, accurate, Right. Then you have to physically choose whether you want to hold the risk of
+51:52 Thomas Yang: You don't even have to think about it, right?
+51:56 Terry Wu: an accuracy of a move. But if you had an extra slot, Then you would like there is no opportunity cost, you could just have both. they're like and without giving up coverage because like yeah you can have fire blasts and flamethrower but now you can't have You know, a flying attack wherever that gives you extra coverage.
+52:18 Thomas Yang: Yeah. Agreed.
+52:19 Terry Wu: Okay. Cool.
+52:21 Thomas Yang: Coverage.
+52:23 Terry Wu: I think that gives us a starting point is to like, Building out this this engine and then real quick, we do have to head out and like a couple minutes but I would I just I'll do a verbal sort of walk through
+52:34 Thomas Yang: Same.
+52:36 Terry Wu: on the type chart.
+52:39 Thomas Yang: Okay.
+52:40 Terry Wu: I think. Yeah, if you want to pull it up.
+52:46 Thomas Yang: Charts Great, Cabrio Essence type or this one.
+52:49 Terry Wu: The word one. The word was good. So it's like, thinking through. The challenges that Pokemon had with the type chart one. I think the parity isn't there like they're just certain types that were stronger like in Gen. One psychic was like left unchecked, it was like fundamentally a very strong type with no resistances and then they create like they created steel type and dark type. To resist and be immune of like this type to like keep it in check. So they never created a type chart from the start that had parity and balance.
+53:29 Terry Wu: and then the second thing is, their type matchup charts, have just like a lot of Types that are just inferior like bug, for instance has not much offensive. Coverage and a lot of defensive weaknesses, and it was just like, If you are a bug type Pokemon, you, you suck, basically. It's just like, not great. And so, what I wanted to do was create parody through a scoring system. Basically, I wanted to make sure your offensive and defensive. Aspects. Our balanced.
+54:05 Terry Wu: so, every time there's a super effective attack or 2x, You know, you get more points in the scoring system. If there's a lot of things that resist you, you get less points, right? And if you like, The Do an attack, and your opponent's immune to it, right? Like, you get like negative points, right? So, I basically just created a scoring system to say, like, If you have a lot of physical, Benefits like you're really strong in a physical side, you're super effective, a lot of physical sides. Then on the defensive side, you should also have a lot of things that are super effective against you. That way, there's no one type. That's like very dominant. And I also did my best to like one make the logic still make sense.
+54:59 Terry Wu: So the fire grass water, sort of triangle still exists there like I kept it unchanged.
+55:05 Thomas Yang: Yeah.
+55:08 Terry Wu: And then I also mapped it out to like vibes of each type. So like electric clearly fast, a wind clearly fast. Like these are like glass cannon type like they should have be really strong on the offensive side. But also at the same time, then be really weak on the defensive side. Like if you have really good, offensive typing, you should have really weak defensive typing but like water and grass or more balance. You should probably have. You know, a balanced offensive typing and defensive typing.
+55:40 Terry Wu: Like that's kind of how I thought about it. So making sure some of the logic still makes sense. You can't have like fire beat water, just doesn't make sense.
+55:49 Thomas Yang: oh,
+55:49 Terry Wu: Make sure there's parity, make sure there's diversity. in like, In in sort of weaknesses and strengths. and then making sure that they're still like triangles or You know, counterparts. So like I did the firegrass water. I did. I basically grabbed Terra grounded when flying, I made them counterparts. So like in Pokemon for instance a ground type cannot attack a flying type but I just made it like symmetrical I said then flying type can attack a ground type because the ground type can underground.
+56:33 Terry Wu: And then I made ground type for instance, when I think about ground or ice, I think about slow when I think about slow, I think about like the more defensive in mind. So like, Then they have more resistances. So the way to read this is Going across the rows is like fire attacking all the different vertical columns and what is the resistance strengths and then on the vertical side, the columns
+56:53 Thomas Yang: Yeah.
+56:57 Terry Wu: is the defense matchup.
+56:59 Thomas Yang: Okay, so for instance, Cosmic would have a two times advantage against mine.
+57:04 Terry Wu: So yeah.
+57:05 Thomas Yang: But mine would be like two times weak and I can look at here mind. And then what I say, cosmic,
+57:15 Terry Wu: Yeah.
+57:15 Thomas Yang: Oh no. Okay, so it could potentially be different, right?
+57:18 Terry Wu: so, it doesn't have to be like, Water or super effective against fire and fire is weak against water. It doesn't
+57:23 Thomas Yang: I see.
+57:26 Terry Wu: have to have that symmetry. But like for the fire grass water triangle, I kept the symmetry.
+57:34 Thomas Yang: Right, because it makes sense.
+57:36 Terry Wu: Because like that's the classic and then I kept the symmetry for ground and flying. and then I did and then I rounded out what I call the elemental essences
+57:41 Thomas Yang: Got you?
+57:46 Terry Wu: electric and ice, and I had, I had them as sort of Like yin and yang to some degree as well. Like they're kind of like bundled together and then for the more like, spiritual or magical, essences, I have mine, spirit, cursed and bless. Which is effectively the Pokemon equivalent of psychic. Dark or mine spirit ghost curses dark slash poison and then blast is like fairy. I basically, I made that a whole sort of, like,
+58:25 Thomas Yang: Hmm.
+58:26 Terry Wu: Each one is really strong against one. Each one is immune to one. Each one is weak to one, right? And I made a square there that like it's balanced there. and then I made,
+58:43 Thomas Yang: This section here.
+58:43 Terry Wu: and then I and then I have conceptual essences, which is like mythic
+58:48 Thomas Yang: Yeah.
+58:49 Terry Wu: Cyber and cosmic mythic being like dragons and s***. Cosmic being like out of the world, like, alien space jet cyber being like
+58:56 Thomas Yang: Space. Yeah.
+58:59 Terry Wu: manufactured artificial.
+59:01 Thomas Yang: Yeah.
+59:03 Terry Wu: And then I I did it like actually this one I I didn't have it like a triangle. I just said cyber beats both of them to keep them in check and I said Mythic and cosmic. What I ended up doing here is rather than having full parody because like I thought there we can add a little more variance. I was like, maybe mythic when I think about dragons are just like legendaries that have higher base stats, These are just going to be like half stronger creatures.
+59:35 Terry Wu: so, I offset that like I expect their base stats to be higher. I offset it by having worse matchups. Then cosmic, I did the opposite. I said
+59:44 Thomas Yang: so,
+59:48 Terry Wu: These guys will have better matchups. Compared to any other type. From like a scoring system but then offset it with like worse. Like in eight trades, like it'll just be like worst based ads. And then I also did the same with With flying and ground. I made ground like extra defensive
+01:00:09 Thomas Yang: The.
+01:00:10 Terry Wu: Tara, you'll see. It's immune to. When it's the fourth vertical one, it's immune to round itself.
+01:00:20 Thomas Yang: Oh, here.
+01:00:22 Terry Wu: Immune to wind, immune to electric resist, ice, psychic, ghosts dark. It's like resist a bunch of s***. And then on the offensive side, it's only super effective against two things. Right.
+01:00:38 Thomas Yang: On the offensive that's error. Right? Yeah, okay.
+01:00:38 Terry Wu: And then it's not very effective. It's not very effective against five things. In completely ineffective against one thing, right? So for like an offense perspective, it's asked but defensive perspective, it's amazing.
+01:00:50 Thomas Yang: I see.
+01:00:51 Terry Wu: and then I made it like, extra from matchup perspective, a scoring system of like getting one extra resistance, net, all things considered, but then I said, like, what we could do is play around with Maybe. For terror types. Your opponents moves are just more accurate because it's like, these are like big Wally Pokemon. Right, so something that's 80% accurate will be 90% accurate against all these types type forms.
+01:01:22 Thomas Yang: Hmm.
+01:01:23 Terry Wu: Like that's something that we could play around with and then wind, I did the flip, I made it. I made it have like worse Matchups. but when I think about, when I think about like evasiveness and stuff, so, maybe what you could do is rather than having like, Accuracy, as a status ailment, just like all wind types. You know, get 10% extra invasiveness. So something that's a hundred percent accurate is now. 90% accurate.
+01:01:51 Thomas Yang: Got you?
+01:01:53 Terry Wu: so like I was like playing around with like if you take a look at the word document, Balance isn't just on type parody. I think it's like a bullet number four. There's all a lot of other things that will. Impact game balance. So like type distribution of monsters, like in Pokemon, they're a lot of water types. So given that there's just a disproportionate amount of water champions electric is going to be a very strong offensive move and type. Let's see if they take that into consideration as we do creature creation.
+01:02:30 Terry Wu: Your move pool depth, right? Like electric and water have really good, strong moves, but blood does not like we have to balance the different moves as well. And then average that distribution like dragons generally have higher stat distributions higher base stats than like bug types. And so like, as we build creatures and stuff, we have to keep those things in back pocket. To ensure that there's like balance and all these other things outside, I'd like just type matchup advantages.
+01:03:01 Thomas Yang: Right? Right, so the chart right? Just to make sure understanding this correctly, it's not just like, for instance, 2x damage what you're saying is it could be like 2x other things like it.
+01:03:13 Terry Wu: Oh no. So for this matchup chart it's in it's this is entirely just on damage output.
+01:03:18 Thomas Yang: Oh, I see.
+01:03:18 Terry Wu: but,
+01:03:19 Thomas Yang: But this is just an attended them.
+01:03:20 Terry Wu: I, Yeah. I was suggesting you can't just look at that as the sole factor balancing the
+01:03:26 Thomas Yang: I see, I see.
+01:03:26 Terry Wu: game.
+01:03:32 Thomas Yang: And so, that's something we consider when we're making the
+01:03:37 Terry Wu: and these are things like, What Pokemon can't do. Well, they started doing it a little bit but they do it after a release of every new like main main storyline game, is like they'll change the stats of Pokemon. what we could do in real time because like we keep the competitive aspect in mind is like you just like real time Nerf and Buff Movesets and Pokemon based stats and stuff like that.
+01:04:03 Thomas Yang: Patch notes, people love reading those.
+01:04:06 Terry Wu: Yeah. And like, how smogon does it basically is like Basically, it's based off they have different tiers. There's like an overuse tier and underused here. Never used here. Rarely used here whatever and like uber tier.
+01:04:18 Thomas Yang: Mm-hmm.
+01:04:20 Terry Wu: and Itally says, you can only use a certain subset of champions and each of the tiers, And it's based off of usage. So when a Pokemon falls under specific usage percentage, if it'll switch between overuse to underused, for instance,
+01:04:37 Thomas Yang: Oh, that's cool.
+01:04:39 Terry Wu: And then so then there's different game formats. It's not just like Right. Because like there are going to be champions that are going to be stronger than others. Full stop. Like that's just going to exist, right? And people are gonna choose the best six or eight or whatever. So when you have these tears, at least you can play different tiers and stuff. And then the second thing is, When things get too dominant. They track it by. Like percent usage.
+01:05:08 Terry Wu: and then, Basically, they let the community vote. so, if you have a certain elo threshold, In that certain tier and there's like a testing what they call a control testing. They will. They will basically create an environment or a tier without that. Pokemon in tests. They basically strip them out and like test the what the new tier would look like. Without that Pokemon existing because it gets eliminated out.
+01:05:41 Terry Wu: What? And they'll like, people test that and they like build elo. And then, after all of that, it gives them once. They hit a certain elope. The ability to say yes or no, this Pokemon should be banned or upgraded to the next year or not.
+01:05:54 Thomas Yang: Yeah.
+01:05:55 Terry Wu: And like that concept of like that community. Vote and stuff, people really like that, right? Because it's like, And this also not just like anyone can vote. It's like people who have high degree of expertise or like they put in the work to say, Yeah, like, this makes sense to To vote. Yes. Or no. On
+01:06:18 Thomas Yang: Whiskey by something like that. And
+01:06:21 Thomas Yang: It's generally pretty favorable.
+01:06:26 Terry Wu: Yeah and it also gives us like real-time feedback. You can like let's say we
+01:06:29 Thomas Yang: Yeah.
+01:06:30 Terry Wu: really like to like one challenge with Pokemon was like if it was an overused Pokemon that became too broken. Then it becomes uber and then uber is like fighting all the like Legendaries. And so, like, We'll have like a rent, like Salamence became uber, but like, everyone loves salamence iconic Pokemon. You can't use an OU, right? Like, I'd rather nerf a pokemon's base that or like, take away a certain move, that makes them unfair.
+01:07:00 Terry Wu: And like to continue making this like environment more balanced right versus like just like, Oh, you can never use this Pokemon ever again.
+01:07:07 Thomas Yang: I see got you. I like the some concept that the dynamic usage pool like percentage, I'm thinking Alice in terms of This doesn't have to be a concept, but like, it could force players into some variety. Like, for instance, if it does become a roguelike mechanic. Instead of using the same pokemon every single time, like the percentage can shoot and control, what like Pokemon is available to the player. And forces them to adapt to like different strategies using different lineups.
+01:07:44 Terry Wu: Yeah.
+01:07:49 Thomas Yang: Yeah, cool. Before we go I was thinking like as placeholder as both an item placeholders, what it makes do, you think it makes sense, if I just like Go on to smoke on show down, Look at all the universal pools, dual quick mapping based on this type chart kind of remap the names to and then put it into the game as a
+01:08:07 Terry Wu: Yeah. Yeah, if we if we're using like showdown as the base game engine to start like
+01:08:11 Thomas Yang: start. Okay.
+01:08:16 Terry Wu: as like a pilot pilot, like an alpha version. Basically the the code set that you need to change is just like you basically need to delete some of the Typings. Remap some of the Typings rename, some of the Typings and then, And that's pretty much. As pretty much it, right? And then like from an item perspective because they already have the library in them, like all you have to do is like fix the code base of like, Oh, I think this one's too broken because it gives 30% extra attack. Maybe it should be 25%.
+01:08:54 Terry Wu: But like that, those are like pretty quick fixes and because like it starts out with a library of items and stuff. Like we can like what we can do is then refine and delete all the useless stuff that's like not viable.
+01:09:05 Thomas Yang: Yeah.
+01:09:07 Terry Wu: because like, They give you the whole universe items but the like realistically there's like 40 items that's like important.
+01:09:14 Thomas Yang: I see.
+01:09:14 Terry Wu: Well, probably less but there's like 300 different total items that you can choose from.
+01:09:20 Thomas Yang: Okay, great. I'll see where they
+01:09:20 Terry Wu: And then like, yeah.
+01:09:23 Thomas Yang: I'll see where they swear that data and see if I can modify that.
+01:09:25 Terry Wu: yeah, and like nature's for instance there's like 26 different natures But really, there's A bunch of them are redundant, right? Like we can clean up use that as a starting point but we can start cleaning up some of the stuff that is like just like redundant or not, right? Like not important.
+01:09:45 Thomas Yang: Yeah.
+01:09:49 Terry Wu: Yeah, and then and then we start character creation.
+01:09:49 Thomas Yang: All right.
+01:09:56 Terry Wu: Which we can then use placeholders. Right, like I guess like, in the code, like Charizard will have all the base stats that typings like, I'm sure in the code, it's just like in a library you just like change the Charizard's name to whatever we want to change like create a creature name to be and then you could change the types in the base stats and all that. Yeah, like funnels it into right. Like I think we should just use all their battle system in formulas to start. Um, and then we yeah, showdowns and then we can create our own.
+01:10:23 Thomas Yang: Show dance.
+01:10:28 Terry Wu: Our own numbers and our own formulas for how much damage output is or how much that distributions are compared to base stats and stuff. But I think it gives us
+01:10:37 Thomas Yang: Yeah. Agreed.
+01:10:38 Terry Wu: it gives a good start starting point that way, we don't have to tour around with that complicated math. We already like start with something that's relatively proven out.
+01:10:46 Thomas Yang: Okay. Yeah. So you showdowns for move numbers. Items. Yeah.
+01:11:02 Terry Wu: Yeah, so I think it's like, we, we take everything as is and then just change
+01:11:02 Thomas Yang: Anything, I'm missing. Okay.
+01:11:06 Terry Wu: the type matchup. And then, and then we start inputting in some monsters that we want to play around with. And then over time, delete and change, items and moves, and all that sort of stuff. But they like, starting with the library of hundreds of hundreds of things will be useful.
+01:11:25 Thomas Yang: Design include just Pokemon monsters, too. Like there's stats and whatnot.
+01:11:30 Terry Wu: Yeah, I think so and we could we like delete them over time but there's no point
+01:11:32 Thomas Yang: Yeah. Yeah.
+01:11:35 Terry Wu: in like burning calories on that. Because like, yeah.
+01:11:40 Thomas Yang: That's good.
+01:11:41 Terry Wu: Okay, cool, awesome, look good. Yeah, I'm excited. Man. This is gonna be a fun
+01:11:42 Thomas Yang: Great. Great, starting point. Yeah.
+01:11:46 Terry Wu: game. There's gonna be what
+01:11:47 Thomas Yang: I don't know how.
+01:11:49 Terry Wu: Yeah.
+01:11:49 Thomas Yang: Oh sorry. Go ahead.
+01:11:50 Terry Wu: as I say, a lot of my friends are gonna be interested in playing this, so,
+01:11:53 Thomas Yang: Yeah, my roommates.
+01:11:53 Terry Wu: We're gonna have some characters, too.
+01:11:55 Thomas Yang: My roommate has been complaining, my buddy has been complaining about black of good Pokemon games. So There's a market for it.
+01:12:03 Terry Wu: I I agree. 100% agree. All right, man.
+01:12:04 Thomas Yang: Yeah. Cool. I don't know how long this will take. Well, we can check in like every two days or I can just give daily update updates on. My set of status is on my end
+01:12:16 Terry Wu: Yeah, I mean we're chatting daily anyways. So like we need to hop on. We can
+01:12:16 Thomas Yang: at least. Yeah. So Perfect.
+01:12:21 Terry Wu: Pending like whatever. Like if we're both free or whatever, like Because like, I don't know right now, I'm like pretty excited in this sort of stuff. So like, I see that you're just like randomly in the, in the drive and like, build adding stuff. And I'm always adding stuff too. So I think we'll get a good cadence going.
+01:12:39 Thomas Yang: Yeah.
+01:12:41 Terry Wu: All right, man.
+01:12:41 Thomas Yang: This momentum going great. All right.
+01:12:43 Terry Wu: I think this is recorded. So what I'll do is I'll try to summarize it. This whole transcript also.
+01:12:47 Thomas Yang: Yeah.
+  
