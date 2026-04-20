@@ -65,12 +65,15 @@ class AccountProfile:
 
 def _meta_to_dict(meta: MetaState) -> dict:
     return {
-        "unlocked_champions": sorted(meta.unlocked_champions),
-        "pc_bonuses":         meta.pc_bonuses,
-        "total_runs":         meta.total_runs,
-        "best_stage":         meta.best_stage,
-        "perm_currency":      meta.perm_currency,
-        "unlocked_moves":     {k: sorted(v) for k, v in meta.unlocked_moves.items()},
+        "unlocked_champions":  sorted(meta.unlocked_champions),
+        "pc_bonuses":          meta.pc_bonuses,
+        "total_runs":          meta.total_runs,
+        "best_stage":          meta.best_stage,
+        "perm_currency":       meta.perm_currency,
+        "unlocked_moves":      {k: sorted(v) for k, v in meta.unlocked_moves.items()},
+        "fate_seal_draws":     dict(meta.fate_seal_draws),
+        "fate_seal_unlocked":  {k: sorted(v) for k, v in meta.fate_seal_unlocked.items()},
+        "champion_resonance":  {k: dict(v) for k, v in meta.champion_resonance.items()},
     }
 
 
@@ -112,6 +115,7 @@ def _party_member_to_dict(m: PartyMember) -> dict:
         "is_shiny":      m.is_shiny,
         "held_item":     m.held_item,
         "custom_moves":  m.custom_moves,
+        "resonance":     dict(m.resonance) if m.resonance else {},
     }
 
 
@@ -150,14 +154,19 @@ def _account_to_dict(profile: AccountProfile) -> dict:
 # ═══════════════════════════════════════════════════════════════
 
 def _meta_from_dict(d: dict) -> MetaState:
-    raw_moves = d.get("unlocked_moves", {})
+    raw_moves        = d.get("unlocked_moves", {})
+    raw_fs_unlocked  = d.get("fate_seal_unlocked", {})
+    raw_champ_res    = d.get("champion_resonance", {})
     return MetaState(
-        unlocked_champions = set(d.get("unlocked_champions", [])),
-        pc_bonuses         = d.get("pc_bonuses", {}),
-        total_runs         = d.get("total_runs", 0),
-        best_stage         = d.get("best_stage", 0),
-        perm_currency      = d.get("perm_currency", 0),
-        unlocked_moves     = {k: set(v) for k, v in raw_moves.items()},
+        unlocked_champions  = set(d.get("unlocked_champions", [])),
+        pc_bonuses          = d.get("pc_bonuses", {}),
+        total_runs          = d.get("total_runs", 0),
+        best_stage          = d.get("best_stage", 0),
+        perm_currency       = d.get("perm_currency", 0),
+        unlocked_moves      = {k: set(v) for k, v in raw_moves.items()},
+        fate_seal_draws     = dict(d.get("fate_seal_draws", {})),
+        fate_seal_unlocked  = {k: set(v) for k, v in raw_fs_unlocked.items()},
+        champion_resonance  = {k: dict(v) for k, v in raw_champ_res.items()},
     )
 
 
@@ -200,6 +209,7 @@ def _party_member_from_dict(d: dict) -> PartyMember:
         is_shiny      = d.get("is_shiny", False),
         held_item     = d.get("held_item"),
         custom_moves  = d.get("custom_moves", []),
+        resonance     = d.get("resonance", {}),
     )
 
 
@@ -250,25 +260,77 @@ def _account_path(save_dir: str) -> str:
 
 def save_account(profile: AccountProfile, save_dir: str = ".") -> str:
     """
-    Atomically persist the AccountProfile.
+    Persist the AccountProfile as safely as possible.
 
-    Writes to a .tmp file first, then renames to the real path.
-    This prevents a corrupt save if the process is killed mid-write.
+    Strategy
+    --------
+    1. Serialise to JSON in memory.
+    2. Write to a .tmp file alongside the real file.
+    3. Attempt os.replace() — atomic on POSIX, best-effort on Windows.
+       On Windows, OneDrive / antivirus scanners can briefly lock the target
+       file, causing a PermissionError.  We retry up to _REPLACE_RETRIES
+       times with a short sleep between attempts.
+    4. If all replace attempts fail (e.g. file persistently locked), fall back
+       to writing directly to the target path.  This is not atomic but ensures
+       the save is never silently lost.
+    5. The .tmp file is always cleaned up, even on failure.
 
     Returns the final save path.
     """
+    import time
+
+    _REPLACE_RETRIES  = 5
+    _REPLACE_DELAY_S  = 0.15   # seconds between retry attempts
+
     path    = _account_path(save_dir)
     tmp     = path + ".tmp"
+
     try:
         payload = json.dumps(_account_to_dict(profile), indent=2, ensure_ascii=False)
+
+        # ── Step 1: write to temp file ────────────────────────────
         with open(tmp, "w", encoding="utf-8") as f:
             f.write(payload)
-        os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+
+        # ── Step 2: atomic replace with retry for Windows locks ───
+        replaced = False
+        last_err: Exception | None = None
+        for attempt in range(1, _REPLACE_RETRIES + 1):
+            try:
+                os.replace(tmp, path)
+                replaced = True
+                break
+            except PermissionError as exc:
+                last_err = exc
+                log.warning(
+                    "save_account: os.replace() denied (attempt %d/%d) — "
+                    "file may be locked by OneDrive or antivirus. Retrying in %.0fms…",
+                    attempt, _REPLACE_RETRIES, _REPLACE_DELAY_S * 1000,
+                )
+                time.sleep(_REPLACE_DELAY_S)
+
+        # ── Step 3: fallback direct write if replace never succeeded ─
+        if not replaced:
+            log.warning(
+                "save_account: os.replace() failed after %d attempts (%s). "
+                "Falling back to direct write — save may not be atomic.",
+                _REPLACE_RETRIES, last_err,
+            )
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(payload)
+            # Clean up the orphaned .tmp
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+
         log.debug("Account saved: %s (active_run=%s, total_runs=%d)",
                   path, profile.active_run is not None, profile.meta.total_runs)
+
     except Exception:
         log.exception("Failed to save account to %s", path)
         raise
+
     return path
 
 

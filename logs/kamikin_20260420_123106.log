@@ -1,0 +1,8 @@
+2026-04-20 12:31:06 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260420_123106.log
+2026-04-20 12:31:06 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-20 12:31:06 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=1 best_stage=1 active_run=True)
+2026-04-20 12:31:16 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=1 best_stage=1 active_run=True)
+2026-04-20 12:33:11 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-20 12:33:11 [INFO    ] wilderness.town                — Sanctum unlock: Kitzen → Aerial Ace  (cost 5, remaining 2)
+2026-04-20 12:34:55 [INFO    ] __main__                       — Session interrupted by player (Ctrl-C)
+2026-04-20 12:34:55 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally

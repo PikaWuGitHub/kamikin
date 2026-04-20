@@ -63,6 +63,19 @@ def load_meta(directory: str = ".") -> MetaState:
 
 # ── PC interaction helpers ───────────────────────────────────────
 
+def _resonance_stars(resonance: dict) -> str:
+    """Compact 5-star indicator."""
+    stats = ("vit", "sta", "mgt", "mag", "grd", "wil", "swf")
+    if not resonance:
+        return ""
+    avg = sum(resonance.get(s, 0) for s in stats) / len(stats)
+    thresholds = (80, 60, 40, 20, 0)
+    for threshold, stars in zip(thresholds, range(5, 0, -1)):
+        if avg >= threshold:
+            return "★" * stars + "☆" * (5 - stars)
+    return "☆☆☆☆☆"
+
+
 def pc_summary(meta: MetaState) -> str:
     """Return a formatted string showing the current PC state."""
     lines = ["\n  ── PC (Permanent Unlocks) ────────────────────────"]
@@ -70,14 +83,16 @@ def pc_summary(meta: MetaState) -> str:
         lines.append("  (empty — deposit champions after elite battles to unlock them)")
     else:
         for name in sorted(meta.unlocked_champions):
-            bonus = meta.pc_bonuses.get(name, 0)
-            bonus_str = f"  [IV ×{bonus}]" if bonus > 0 else ""
+            bonus       = meta.pc_bonuses.get(name, 0)
+            bonus_str   = f"  [×{bonus} dupes]" if bonus > 0 else ""
             tutor_count = len(meta.unlocked_moves.get(name, set()))
-            tutor_str = f"  [{tutor_count} tutor moves]" if tutor_count else ""
-            lines.append(f"  • {name}{bonus_str}{tutor_str}")
+            tutor_str   = f"  [{tutor_count} moves]" if tutor_count else ""
+            res         = meta.champion_resonance.get(name, {})
+            res_str     = f"  {_resonance_stars(res)}" if res else "  (no resonance)"
+            lines.append(f"  • {name:<18}{res_str}{bonus_str}{tutor_str}")
     lines.append(
         f"\n  Total runs: {meta.total_runs}  |  Best stage: {meta.best_stage}"
-        f"  |  Wandering Sage currency: {meta.perm_currency} 𝕮"
+        f"  |  Sanctum currency: {meta.perm_currency} 𝕮"
     )
     return "\n".join(lines)
 

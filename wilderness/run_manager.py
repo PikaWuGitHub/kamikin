@@ -27,6 +27,15 @@ from .config import (
     SHOP_HEAL_MAX_COST, SHOP_HEAL_STATUS_COST, SHOP_MP_RESTORE_COST,
     SHOP_REVIVE_COST,
 )
+
+# ── Resonance constants ───────────────────────────────────────────
+# All 7 base stats can each roll a Resonance value from 1 to 100.
+RESONANCE_STATS   = ("vit", "sta", "mgt", "mag", "grd", "wil", "swf")
+RESONANCE_MIN     = 1
+RESONANCE_MAX     = 100
+# Star thresholds: average Resonance value → ★ count (0–5)
+# avg ≥ 80 = ★★★★★,  60 = ★★★★☆,  40 = ★★★☆☆,  20 = ★★☆☆☆,  else ★☆☆☆☆
+_RES_STAR_THRESHOLDS = (80, 60, 40, 20, 0)
 from .models import (
     RunState, MetaState, PartyMember, NodeType,
     RewardType, Item, ItemType,
@@ -36,11 +45,10 @@ from .move_tutor import run_move_tutor
 from .rewards import normal_battle_rewards, elite_battle_rewards, apply_reward
 from .enemy_gen import (
     generate_normal_encounter, generate_elite_encounter,
-    generate_recruit_candidate,
 )
 from .map_gen import generate_map, describe_branches
 from .battle_hooks import run_wilderness_battle, get_champion_roster
-from .pc_system import handle_pc_deposit, update_run_stats, pc_summary
+from .pc_system import update_run_stats, pc_summary, save_meta as _save_meta_pc
 from .scaling import party_member_scaled_stats, apply_level_up
 
 # TYPE_CHECKING import keeps save_manager out of the runtime cycle
@@ -293,13 +301,148 @@ def offer_rewards(run: RunState, options: list):
 
 
 # ═══════════════════════════════════════════════════════════════
+# RESONANCE HELPERS
+# ═══════════════════════════════════════════════════════════════
+
+def roll_resonance() -> Dict[str, int]:
+    """Roll a fresh set of Resonance values (1–100 per stat)."""
+    return {stat: random.randint(RESONANCE_MIN, RESONANCE_MAX)
+            for stat in RESONANCE_STATS}
+
+
+def resonance_stars(resonance: dict) -> str:
+    """
+    Convert a resonance dict to a 5-star rating string.
+
+    Averages all stat values (0 counts as 0 for absent stats) and maps
+    to a star count:  avg ≥ 80 → ★★★★★,  60 → ★★★★☆ … etc.
+    """
+    if not resonance:
+        return "☆☆☆☆☆"
+    avg = sum(resonance.get(s, 0) for s in RESONANCE_STATS) / len(RESONANCE_STATS)
+    for threshold, stars in zip(_RES_STAR_THRESHOLDS, range(5, 0, -1)):
+        if avg >= threshold:
+            return "★" * stars + "☆" * (5 - stars)
+    return "☆☆☆☆☆"
+
+
+def _show_resonance(resonance: dict, indent: str = "    "):
+    """Print a compact resonance breakdown (two rows of stats)."""
+    if not resonance:
+        print(f"{indent}Resonance: (unknown)")
+        return
+    line1 = (f"VIT:{resonance.get('vit',0):>3}  "
+              f"STA:{resonance.get('sta',0):>3}  "
+              f"MGT:{resonance.get('mgt',0):>3}  "
+              f"MAG:{resonance.get('mag',0):>3}")
+    line2 = (f"GRD:{resonance.get('grd',0):>3}  "
+              f"WIL:{resonance.get('wil',0):>3}  "
+              f"SWF:{resonance.get('swf',0):>3}  "
+              f"  {resonance_stars(resonance)}")
+    print(f"{indent}{line1}")
+    print(f"{indent}{line2}")
+
+
+# Width of the inner content area inside the box borders (║ ... ║)
+_CARD_W = 58
+
+def _card_line(text: str = "") -> str:
+    """Return one padded inner line for the champion card."""
+    return f"  ║  {text:<{_CARD_W}}║"
+
+def _show_champion_card(champion, level: int, is_shiny: bool, resonance: dict):
+    """
+    Print a full reveal card for a recruitment candidate.
+
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  ✦ RECRUITMENT — A champion can join you!               ║
+    ╠═══════════════════════════════════════════════════════════╣
+    ║  Glacyn ✨ SHINY  [Frost]  Lv21                         ║
+    ║  Role: Bulky Special Attacker                            ║
+    ║  Niche: Frost control with high WIL                      ║
+    ║                                                          ║
+    ║  Base Stats              Resonance               Stars   ║
+    ║  VIT  88  STA  87        VIT  72  STA  45               ║
+    ║  MGT  78  MAG 109        MGT  88  MAG  61   ★★★☆☆      ║
+    ║  GRD  88  WIL 109        GRD  33  WIL  90               ║
+    ║  SWF  80  BST 639        SWF  57                         ║
+    ╚═══════════════════════════════════════════════════════════╝
+    """
+    W      = _CARD_W
+    shiny  = " ✨ SHINY" if is_shiny else ""
+    t_str  = champion.type1 + (f"/{champion.type2}" if champion.type2 else "")
+    bst    = (champion.base_vit + champion.base_sta + champion.base_mgt +
+              champion.base_mag + champion.base_grd + champion.base_wil + champion.base_swf)
+    stars  = resonance_stars(resonance)
+
+    border = "═" * (W + 4)
+    print()
+    print(f"  ╔{border}╗")
+    print(f"  ║  {'✦ RECRUITMENT OFFER':<{W}}║")
+    print(f"  ╠{border}╣")
+    print(_card_line())
+
+    # Name / type / level
+    header = f"{champion.name}{shiny}  [{t_str}]  Lv{level}"
+    print(_card_line(header))
+
+    # Role / niche
+    if champion.role:
+        print(_card_line(f"Role:  {champion.role}"))
+    if champion.niche:
+        # Wrap niche at W-8 chars if long
+        niche_text = champion.niche
+        prefix = "Niche: "
+        while len(prefix + niche_text) > W:
+            cut = niche_text[:W - len(prefix)].rsplit(" ", 1)[0]
+            print(_card_line(f"{prefix}{cut}"))
+            niche_text = niche_text[len(cut):].strip()
+            prefix = "       "
+        print(_card_line(f"{prefix}{niche_text}"))
+
+    print(_card_line())
+
+    # Column headers
+    print(_card_line(f"  {'Base Stats':<22}  {'Resonance':<22}  {'Rating'}"))
+    print(_card_line(f"  {'─'*20}  {'─'*20}  {'─'*6}"))
+
+    # Stat rows (pair them up: VIT/STA, MGT/MAG, GRD/WIL, SWF/BST)
+    rows = [
+        ("VIT", champion.base_vit, "STA", champion.base_sta,
+         "vit", resonance.get("vit", 0), "sta", resonance.get("sta", 0), ""),
+        ("MGT", champion.base_mgt, "MAG", champion.base_mag,
+         "mgt", resonance.get("mgt", 0), "mag", resonance.get("mag", 0), stars),
+        ("GRD", champion.base_grd, "WIL", champion.base_wil,
+         "grd", resonance.get("grd", 0), "wil", resonance.get("wil", 0), ""),
+        ("SWF", champion.base_swf, "BST", bst,
+         "swf", resonance.get("swf", 0), "",   None,                     ""),
+    ]
+    for (s1, v1, s2, v2, r1, rv1, r2, rv2, star_col) in rows:
+        base_part = f"{s1} {v1:>3}  {s2} {v2:>3}"
+        if rv2 is not None:
+            res_part = f"{r1.upper()} {rv1:>3}  {r2.upper()} {rv2:>3}"
+        else:
+            res_part = f"{r1.upper()} {rv1:>3}"
+        print(_card_line(f"  {base_part:<22}  {res_part:<22}  {star_col}"))
+
+    print(_card_line())
+    print(f"  ╚{border}╝")
+
+
+# ═══════════════════════════════════════════════════════════════
 # RECRUITMENT
 # ═══════════════════════════════════════════════════════════════
 
 def _make_party_member(champion, level: int, is_shiny: bool,
-                        all_champions: Dict) -> PartyMember:
-    """Create a fresh PartyMember at full HP/MP for the given level."""
-    stats = party_member_scaled_stats(champion, level)
+                        all_champions: Dict,
+                        resonance: Dict[str, int] = None) -> PartyMember:
+    """Create a fresh PartyMember at full HP/MP for the given level.
+
+    If resonance is None, a fresh set is rolled automatically.
+    Pass an explicit dict (e.g. from a candidate) to preserve a specific roll.
+    """
+    res   = resonance if resonance is not None else roll_resonance()
+    stats = party_member_scaled_stats(champion, level, res)
     return PartyMember(
         champion_name = champion.name,
         level         = level,
@@ -308,6 +451,7 @@ def _make_party_member(champion, level: int, is_shiny: bool,
         current_mp    = stats["max_mp"],
         max_mp        = stats["max_mp"],
         is_shiny      = is_shiny,
+        resonance     = dict(res),
     )
 
 
@@ -332,46 +476,90 @@ def award_exp(run: RunState, all_champions: Dict) -> None:
 
 
 def handle_recruitment(
-    run:          RunState,
-    meta:         MetaState,
-    champion,
-    level:        int,
-    is_shiny:     bool,
+    run:           RunState,
+    meta:          MetaState,
+    enemies:       list,       # List[BattleChampion] — the defeated elite team
     all_champions: Dict,
-    save_dir:     str = ".",
+    save_dir:      str = ".",
 ):
     """
     Handle post-elite monster recruitment.
 
+    Candidates are the champions the player just defeated — they choose
+    which one (if any) to recruit.  If there are multiple enemies, they
+    pick from the list; single-enemy elites skip straight to the offer.
+
     Party has space  → offer Add or Release
     Party is full    → offer Replace, Send to PC, or Release
 
-    Adding to the party also permanently unlocks the champion in meta
-    so they're available as a starter in future runs.
+    Recruiting permanently unlocks the champion in meta so they're
+    available as a starter in future runs.
     """
-    shiny_tag = " ✨ SHINY" if is_shiny else ""
-    type_str  = champion.type1 + (f"/{champion.type2}" if champion.type2 else "")
     _section("Recruitment Offer")
-    print(f"  A wild {champion.name}{shiny_tag} [{type_str}] Lv{level} appeared!")
+
+    # Build candidate list from defeated BattleChampions.
+    # Roll shiny AND Resonance independently for each — players see the full
+    # stats before choosing.
+    candidates = []
+    for bc in enemies:
+        base = all_champions.get(bc.name.lower())
+        if base is None:
+            continue
+        is_shiny  = random.random() < SHINY_CHANCE
+        res       = roll_resonance()
+        candidates.append((base, bc.level or 1, is_shiny, res))
+
+    if not candidates:
+        print("  No recruitment candidates available.")
+        return
+
+    # ── Candidate selection ───────────────────────────────────────
+    # Show full cards for ALL candidates first, then ask who to recruit.
+    if len(candidates) == 1:
+        champion, level, is_shiny, resonance = candidates[0]
+        _show_champion_card(champion, level, is_shiny, resonance)
+    else:
+        print(f"\n  {len(candidates)} champions can be recruited — review each before choosing.")
+        for i, (champ, lvl, shiny, res) in enumerate(candidates, 1):
+            input(f"\n  Press Enter to view candidate {i} of {len(candidates)}...")
+            _show_champion_card(champ, lvl, shiny, res)
+
+        # Compact recap so the player can see all names at a glance when deciding
+        print()
+        print("  ─── Recruitment Summary ──────────────────────────────────")
+        for i, (champ, lvl, shiny, res) in enumerate(candidates, 1):
+            shiny_tag = " ✨" if shiny else ""
+            type_str  = champ.type1 + (f"/{champ.type2}" if champ.type2 else "")
+            stars     = resonance_stars(res)
+            bst       = (champ.base_vit + champ.base_sta + champ.base_mgt +
+                         champ.base_mag + champ.base_grd + champ.base_wil + champ.base_swf)
+            print(f"  [{i}] {champ.name}{shiny_tag}  [{type_str}]  Lv{lvl}  BST {bst}  {stars}")
+        print(f"  [0] Skip recruitment")
+        pick = _choose_int("Choose", 0, len(candidates))
+        if pick == 0:
+            print("  You passed on recruiting anyone.")
+            return
+        champion, level, is_shiny, resonance = candidates[pick - 1]
 
     party_full = len(run.party) >= PARTY_MAX_SIZE
 
     if not party_full:
-        # Party has room — simple add or release
         print("\n  [1] Add to party  (also unlocks for future runs)")
         print("  [2] Release (skip)")
         choice = _choose_int("Choose", 1, 2)
         if choice == 2:
             print(f"  {champion.name} was released.")
             return
-        # Add to party and unlock
-        new_member = _make_party_member(champion, level, is_shiny, all_champions)
+        new_member = _make_party_member(champion, level, is_shiny, all_champions,
+                                        resonance=resonance)
         run.party.append(new_member)
+        # Unlock and record Resonance in meta
         meta.unlocked_champions.add(champion.name)
+        meta.deposit_to_pc(champion.name, resonance)   # merges resonance, no dupe msg shown
+        meta.unlocked_champions.add(champion.name)      # ensure still in set after deposit
         print(f"  {champion.name} joined the party! (Slot {len(run.party)}/{PARTY_MAX_SIZE})")
         print(f"  {champion.name} has been permanently unlocked!")
     else:
-        # Party is full — replace, send to PC, or release
         print(f"\n  Party is full ({PARTY_MAX_SIZE}/{PARTY_MAX_SIZE})!")
         print("  [1] Replace a party member  (replaced mon goes to PC)")
         print("  [2] Send to PC  (permanent unlock, skip party slot)")
@@ -383,21 +571,32 @@ def handle_recruitment(
             return
 
         if choice == 2:
-            msg = handle_pc_deposit(champion.name, meta, save_dir)
+            # Deposit to PC — resonance merged automatically
+            msg = meta.deposit_to_pc(champion.name, resonance)
+            _save_meta_pc(meta, save_dir)
             print(f"  {msg}")
+            print(f"  Resonance merged into PC record.")
             return
 
-        # Replace a party member
-        new_member = _make_party_member(champion, level, is_shiny, all_champions)
+        new_member = _make_party_member(champion, level, is_shiny, all_champions,
+                                        resonance=resonance)
         print("\n  Choose a party member to replace:")
         for i, m in enumerate(run.party, 1):
             print(f"  [{i}] {m.summary()}")
-        slot = _choose_int("Replace slot", 1, len(run.party)) - 1
-        old_name = run.party[slot].champion_name
+        slot     = _choose_int("Replace slot", 1, len(run.party)) - 1
+        old_mem  = run.party[slot]
+        old_name = old_mem.champion_name
         run.party[slot] = new_member
-        # Replaced mon goes to PC; new mon also gets unlocked
-        msg = handle_pc_deposit(old_name, meta, save_dir)
+
+        # Send replaced member to PC (merging their resonance)
+        old_res = getattr(old_mem, "resonance", {}) or {}
+        msg = meta.deposit_to_pc(old_name, old_res)
+        _save_meta_pc(meta, save_dir)
         print(f"  {old_name} was sent to the PC.  {msg}")
+
+        # Unlock new recruit and record their resonance
+        meta.unlocked_champions.add(champion.name)
+        meta.deposit_to_pc(champion.name, resonance)
         meta.unlocked_champions.add(champion.name)
         print(f"  {champion.name} joined the party! (Slot {slot + 1}/{PARTY_MAX_SIZE})")
         print(f"  {champion.name} has been permanently unlocked!")
@@ -498,11 +697,18 @@ def run_elite_battle(
         elite_opts = elite_battle_rewards(run.party)
         offer_rewards(run, elite_opts)
 
-        # Recruitment
-        champ, level, is_shiny = generate_recruit_candidate(
-            all_champions, realm, run.highest_level, SHINY_CHANCE
-        )
-        handle_recruitment(run, meta, champ, level, is_shiny, all_champions, save_dir)
+        # Recruitment — offer the champions the player just defeated
+        handle_recruitment(run, meta, enemies, all_champions, save_dir)
+
+        # Full party restoration after every elite victory
+        for member in run.party:
+            member.current_hp  = member.max_hp
+            member.current_mp  = member.max_mp
+            member.is_fainted  = False
+        living = len(run.party)
+        print(f"\n  ✦ Elite cleared — your party has been fully restored! "
+              f"({living}/{living} champions)")
+
         run.stages_won += 1
 
         between_battle_menu(run, meta, all_champions)
@@ -628,7 +834,16 @@ def run_wilderness(
         if not start_champ:
             raise ValueError(f"Starting champion '{starting_champion_name}' not found.")
 
-        starter = _make_party_member(start_champ, STARTING_LEVEL, False, all_champions)
+        # Use resonance already stored in meta (rolled during the starter ceremony),
+        # or roll fresh if none exists (e.g. dev mode / legacy saves).
+        existing_res = meta.champion_resonance.get(start_champ.name, {})
+        if existing_res:
+            starter_res = existing_res
+        else:
+            starter_res = roll_resonance()
+            meta.champion_resonance[start_champ.name] = starter_res
+        starter = _make_party_member(start_champ, STARTING_LEVEL, False, all_champions,
+                                     resonance=starter_res)
         run     = RunState(party=[starter], currency=0, stage=1)
         run.run_map = generate_map()
 

@@ -1,8 +1,11 @@
 {
   "unlocked_champions": [
-    "Myrabyte"
+    "Kyntra",
+    "Zerine"
   ],
-  "pc_bonuses": {},
-  "total_runs": 1,
-  "best_stage": 0
+  "pc_bonuses": {
+    "Zerine": 1
+  },
+  "total_runs": 2,
+  "best_stage": 1
 }

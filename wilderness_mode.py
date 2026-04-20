@@ -30,8 +30,14 @@ from wilderness.save_manager import (
     create_account, clear_active_run, ACCOUNT_FILENAME,
 )
 from wilderness.pc_system import update_run_stats, pc_summary
-from wilderness.run_manager import run_wilderness, _banner, _section
+from wilderness.run_manager import (
+    run_wilderness, _banner, _section,
+    resonance_stars as _resonance_stars,
+    roll_resonance as _roll_resonance,
+    RESONANCE_STATS as _RESONANCE_STATS,
+)
 from wilderness.battle_hooks import get_champion_roster
+from wilderness.town import run_sanctum
 from wilderness.config import STARTING_LEVEL
 
 
@@ -67,9 +73,9 @@ def _pick_starter_unlocked(all_champions: dict, profile: AccountProfile) -> str:
     for i, name in enumerate(ul_list, 1):
         c        = all_champions.get(name.lower())
         type_str = (c.type1 + (f"/{c.type2}" if c.type2 else "")) if c else "?"
-        bonus    = profile.meta.pc_bonuses.get(name, 0)
-        bonus_s  = f"  [IV ×{bonus}]" if bonus else ""
-        print(f"  [{i}] {name} [{type_str}]{bonus_s}")
+        res      = profile.meta.champion_resonance.get(name, {})
+        res_s    = f"  {_resonance_stars(res)}" if res else ""
+        print(f"  [{i}] {name} [{type_str}]{res_s}")
     print("  [r] Random")
 
     while True:
@@ -187,10 +193,10 @@ _CHAMPION_LORE: dict[str, str] = {
 }
 
 
-def _starter_ceremony(all_champions: dict) -> str:
+def _starter_ceremony(all_champions: dict) -> tuple:
     """
     Dramatically reveal 3 random champions and let the player choose one
-    as their permanent first unlock.  Returns the chosen champion's name.
+    as their permanent first unlock.  Returns (chosen_name, resonance_dict).
     """
     _banner("KAMIKIN — WILDERNESS MODE")
     print("  A new journey begins...")
@@ -198,9 +204,10 @@ def _starter_ceremony(all_champions: dict) -> str:
     input("  Press Enter to discover your first champion...")
 
     # Pick 3 distinct champions at random from the full roster
-    keys     = list(all_champions.keys())
-    selected = random.sample(keys, min(3, len(keys)))
-    picks    = [all_champions[k] for k in selected]
+    keys      = list(all_champions.keys())
+    selected  = random.sample(keys, min(3, len(keys)))
+    picks     = [all_champions[k] for k in selected]
+    resonances = [_roll_resonance() for _ in picks]
 
     # ── Anticipation build-up ──────────────────────────────────────
     print()
@@ -221,7 +228,7 @@ def _starter_ceremony(all_champions: dict) -> str:
     print()
 
     # ── Reveal each champion one at a time ────────────────────────
-    for i, champ in enumerate(picks, 1):
+    for i, (champ, res) in enumerate(zip(picks, resonances), 1):
         input(f"  Press Enter to reveal champion {i} of {len(picks)}...")
         type_str  = champ.type1 + (f" / {champ.type2}" if champ.type2 else "")
         role_str  = champ.role[:34] if hasattr(champ, "role") else ""
@@ -239,6 +246,25 @@ def _starter_ceremony(all_champions: dict) -> str:
             filled = min(width, round(val * width / 100))
             return "=" * filled + "-" * (width - filled)
 
+        # Resonance bar — 14 pips proportional to 1-100 range
+        def _res_bar(val: int, width: int = 14) -> str:
+            filled = min(width, round(val * width / 100))
+            return "■" * filled + "□" * (width - filled)
+
+        stars_str = _resonance_stars(res)
+
+        # Resonance rows — interior must be exactly 63 chars wide
+        def _res_row(s1: str, v1: int, s2: str = "", v2: int = 0) -> str:
+            if s2:
+                return (f"   {s1.upper()}  {_res_bar(v1)}  {v1:>3}"
+                        f"          {s2.upper()}  {_res_bar(v2)}  {v2:>3}  ")
+            part = f"   {s1.upper()}  {_res_bar(v1)}  {v1:>3}"
+            return part + " " * (63 - len(part))
+
+        # Header row: "   RESONANCE  ★★★★☆" left-padded to 63
+        _res_hdr = f"   RESONANCE  {stars_str}"
+        _res_header_row = _res_hdr + " " * (63 - len(_res_hdr))
+
         print()
         print( "  ┌───────────────────────────────────────────────────────────────┐")
         _typewrite(
@@ -251,6 +277,13 @@ def _starter_ceremony(all_champions: dict) -> str:
         print(f"  │   STA  {_bar(sta)}  {sta:>3}     MAG  {_bar(mag)}  {mag:>3}   │")
         print(f"  │   GRD  {_bar(grd)}  {grd:>3}     WIL  {_bar(wil)}  {wil:>3}   │")
         print(f"  │   SWF  {_bar(swf)}  {swf:>3}     TOTAL                 {total:>4}   │")
+        # Resonance section
+        print( "  │  ───────────────────────────────────────────────────────────  │")
+        print(f"  │{_res_header_row}│")
+        print(f"  │{_res_row('vit', res['vit'], 'mgt', res['mgt'])}│")
+        print(f"  │{_res_row('sta', res['sta'], 'mag', res['mag'])}│")
+        print(f"  │{_res_row('grd', res['grd'], 'wil', res['wil'])}│")
+        print(f"  │{_res_row('swf', res['swf'])}│")
         if lore_str:
             print( "  │  ───────────────────────────────────────────────────────────  │")
             words, line, lines = lore_str.split(), "", []
@@ -281,17 +314,17 @@ def _starter_ceremony(all_champions: dict) -> str:
                 _typewrite(f"  ✦  {chosen.name} joins your journey!", delay=0.04)
                 time.sleep(0.4)
                 print()
-                return chosen.name
+                return chosen.name, resonances[idx]
         except ValueError:
             pass
         # also accept by name
-        for champ in picks:
+        for j, champ in enumerate(picks):
             if raw.lower() == champ.name.lower():
                 print()
                 _typewrite(f"  ✦  {champ.name} joins your journey!", delay=0.04)
                 time.sleep(0.4)
                 print()
-                return champ.name
+                return champ.name, resonances[j]
         print(f"  Enter a number between 1 and {len(picks)}.")
 
 
@@ -343,8 +376,10 @@ def cmd_run(dev_mode: bool = False):
         if profile is None and not dev_mode:
             profile = create_account(SAVE_DIR)
             # Run the starter ceremony — player picks from 3 random champions
-            chosen = _starter_ceremony(all_champions)
+            chosen, starter_res = _starter_ceremony(all_champions)
             profile.meta.unlocked_champions.add(chosen)
+            # Store the rolled resonance so run_manager can use it instead of re-rolling
+            profile.meta.champion_resonance[chosen] = starter_res
             save_account(profile, SAVE_DIR)
             # Banner already printed inside the ceremony; just confirm the unlock
             print(f"  Your account has been created.  First unlock: {chosen}")
@@ -404,14 +439,39 @@ def cmd_run(dev_mode: bool = False):
             dev_mode  = dev_mode,
         )
 
-        # ── Run ended — return to main screen ────────────────────────
-        # In dev mode, ask whether to play again; normal mode loops back
-        # automatically (account is reloaded at the top of the next iteration).
+        # ── Run ended ────────────────────────────────────────────────
         if dev_mode:
+            # Dev mode: ask to replay in place
             print()
             if not _confirm("Play again?", default_yes=True):
                 print("  See you next time!")
                 return
+        else:
+            # Normal mode: return to main menu so the player can visit
+            # the Sanctum, view champions, or start a fresh run.
+            return
+
+
+# ═══════════════════════════════════════════════════════════════
+# SANCTUM COMMAND
+# ═══════════════════════════════════════════════════════════════
+
+def cmd_sanctum():
+    """
+    Open the Sanctum — meta-progression screen for spending perm_currency
+    to permanently unlock moves for champions.
+    """
+    profile = load_account(SAVE_DIR)
+    if profile is None:
+        print("  No account found — complete a run first to earn Sage Currency (𝕮).")
+        return
+
+    all_champions = get_champion_roster()
+
+    def _save():
+        save_account(profile, SAVE_DIR)
+
+    run_sanctum(profile.meta, all_champions, _save)
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -429,6 +489,19 @@ def _blank_meta():
     return MetaState()
 
 
+def _print_main_banner(profile: AccountProfile | None):
+    """Print the main menu header with account stats."""
+    _banner("KAMIKIN — WILDERNESS MODE")
+    if profile is not None:
+        perm = profile.meta.perm_currency
+        runs = profile.meta.total_runs
+        best = profile.meta.best_stage
+        champs = len(profile.meta.unlocked_champions)
+        print(f"  Runs: {runs}  |  Best stage: {best}  |  "
+              f"Champions: {champs}  |  Sage currency: {perm} 𝕮")
+    print()
+
+
 # ═══════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════
@@ -440,14 +513,70 @@ def main():
     log.info("Kamikin Wilderness Mode starting (dev=%s)", "--dev" in args)
 
     try:
+        # ── Non-interactive CLI flags ──────────────────────────────────
         if "--pc" in args:
             cmd_pc()
-        elif "--reset" in args:
+            return
+        if "--reset" in args:
             cmd_reset()
-        elif "--dev" in args:
+            return
+        if "--dev" in args:
             cmd_run(dev_mode=True)
-        else:
-            cmd_run(dev_mode=False)
+            return
+
+        # ── Interactive main menu ──────────────────────────────────────
+        while True:
+            profile = load_account(SAVE_DIR)
+            _print_main_banner(profile)
+
+            has_account  = profile is not None
+            has_active   = has_account and profile.active_run is not None
+            has_currency = has_account and profile.meta.perm_currency > 0
+            has_unlocks  = has_account and any(
+                profile.meta.unlocked_moves.get(c) for c in profile.meta.unlocked_champions
+            )
+
+            _W = 44  # box interior width
+            print("  ┌─────────────────────────────────────────────┐")
+            if has_active:
+                print("  │  [1]  Continue run  ⚡                      │")
+            else:
+                print(f"  │{'  [1]  Start a new wilderness run':<{_W}}│")
+            if has_account:
+                sage_hint = f"{profile.meta.perm_currency} \U0001d56e available" if has_currency else "earn \U0001d56e by running"
+                print(f"  │{'  [2]  Upgrade champions  (Sanctum)':<{_W}}│")
+                print(f"  │{'       ' + sage_hint:<{_W}}│")
+            else:
+                print(f"  │{'  [2]  Upgrade champions  (Sanctum)':<{_W}}│")
+                print(f"  │{'       no account yet':<{_W}}│")
+            print(f"  │{'  [3]  See champion details  (PC)':<{_W}}│")
+            print(f"  │{'  [Q]  Quit':<{_W}}│")
+            print("  └─────────────────────────────────────────────┘")
+            print()
+
+            choice = input("  > ").strip().lower()
+
+            if choice in ("1", ""):
+                cmd_run(dev_mode=False)
+
+            elif choice == "2":
+                if not has_account:
+                    print("  Complete a run first to open the Sanctum.")
+                    input("  [Enter to continue]")
+                else:
+                    cmd_sanctum()
+
+            elif choice == "3":
+                cmd_pc()
+                input("\n  [Enter to return to menu]")
+
+            elif choice in ("q", "quit", "exit"):
+                print("  Goodbye!")
+                break
+
+            else:
+                print("  Invalid choice — enter 1, 2, 3, or Q.")
+
     except KeyboardInterrupt:
         log.info("Session interrupted by player (Ctrl-C)")
         print("\n  Goodbye!")

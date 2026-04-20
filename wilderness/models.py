@@ -125,6 +125,11 @@ class PartyMember:
     # Custom move slots: list of move names replacing the champion's default moves.
     # Empty list = use the champion's default moveset from the CSV.
     custom_moves:  List[str] = field(default_factory=list)
+    # Resonance: individual stat potential for this champion instance (1–100 each).
+    # Keys: "vit", "sta", "mgt", "mag", "grd", "wil", "swf"
+    # Formula: stat = round((base_stat × STAT_MULT + resonance) × level / MAX_LEVEL)
+    # STA (MP) resonance is added flat (not prorated by level).
+    resonance:     Dict[str, int] = field(default_factory=dict)
 
     @property
     def hp_pct(self) -> float:
@@ -242,35 +247,58 @@ class MetaState:
     """
     Permanent progression that survives run death.
 
-    unlocked_champions — set of champion names the player can start runs with
-    pc_bonuses         — champion_name → count of duplicate deposits (IV system placeholder)
-    total_runs         — lifetime run counter
-    best_stage         — furthest stage ever reached
-    perm_currency      — persistent currency for the Move Tutor (earned per run)
-    unlocked_moves     — champion_name → set of unlocked move names (Move Tutor)
+    unlocked_champions  — set of champion names the player can start runs with
+    pc_bonuses          — champion_name → count of duplicate deposits
+    total_runs          — lifetime run counter
+    best_stage          — furthest stage ever reached
+    perm_currency       — persistent currency (𝕮) for the Sanctum / Move Tutor
+    unlocked_moves      — champion_name → set of unlocked move names (Sanctum browse tier)
+    fate_seal_draws     — champion_name → total draws performed (pity counter)
+    fate_seal_unlocked  — champion_name → set of move names obtained via Fate Seal
+    champion_resonance  — champion_name → best-known resonance values (merged from all
+                          deposited instances; used as the baseline for Sanctum upgrades)
     """
-    unlocked_champions: Set[str]               = field(default_factory=set)
-    pc_bonuses:         Dict[str, int]         = field(default_factory=dict)
-    total_runs:         int                    = 0
-    best_stage:         int                    = 0
-    perm_currency:      int                    = 0
-    unlocked_moves:     Dict[str, Set[str]]    = field(default_factory=dict)
+    unlocked_champions:  Set[str]                    = field(default_factory=set)
+    pc_bonuses:          Dict[str, int]              = field(default_factory=dict)
+    total_runs:          int                         = 0
+    best_stage:          int                         = 0
+    perm_currency:       int                         = 0
+    unlocked_moves:      Dict[str, Set[str]]         = field(default_factory=dict)
+    # Fate Seal (gacha) tracking — stored separately from browse unlocks
+    fate_seal_draws:     Dict[str, int]              = field(default_factory=dict)
+    fate_seal_unlocked:  Dict[str, Set[str]]         = field(default_factory=dict)
+    # Resonance: best-known resonance per champion (merged max across all deposited copies)
+    champion_resonance:  Dict[str, Dict[str, int]]   = field(default_factory=dict)
 
-    def deposit_to_pc(self, champion_name: str) -> str:
+    def deposit_to_pc(self, champion_name: str, resonance: Dict[str, int] = None) -> str:
         """
         Deposit a champion to the PC.
         First deposit → unlock for future runs.
-        Subsequent deposits → increment IV bonus counter.
+        Subsequent deposits → increment duplicate counter and merge Resonance.
+
+        If resonance is provided, champion_resonance[champion_name] is updated
+        by taking the max of each stat between the existing record and the new copy.
+
         Returns a message describing what happened.
         """
         name = champion_name
+
+        # Merge resonance regardless of first/duplicate (best-known composite)
+        if resonance:
+            existing = self.champion_resonance.get(name, {})
+            merged = {
+                stat: max(existing.get(stat, 0), resonance.get(stat, 0))
+                for stat in ("vit", "sta", "mgt", "mag", "grd", "wil", "swf")
+            }
+            self.champion_resonance[name] = merged
+
         if name not in self.unlocked_champions:
             self.unlocked_champions.add(name)
             return f"{name} is now permanently unlocked for future runs!"
         else:
             self.pc_bonuses[name] = self.pc_bonuses.get(name, 0) + 1
             count = self.pc_bonuses[name]
-            return f"{name} deposited (duplicate #{count}) — IV bonus stored."
+            return f"{name} deposited (duplicate #{count}) — Resonance merged."
 
     def is_unlocked(self, champion_name: str) -> bool:
         return champion_name in self.unlocked_champions

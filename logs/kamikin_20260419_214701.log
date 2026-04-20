@@ -1,0 +1,121 @@
+2026-04-19 21:47:01 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260419_214701.log
+2026-04-19 21:47:01 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-19 21:47:01 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=0 best_stage=0 active_run=True)
+2026-04-19 21:47:05 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=0 best_stage=0 active_run=True)
+2026-04-19 21:47:11 [INFO    ] wilderness.run_manager         — Run resumed: stage=2 node=battle party=[Kitzen Lv11, Thryxa Lv7]
+2026-04-19 21:47:11 [INFO    ] wilderness.run_manager         — Run ended: stages_won=1 defeated=True currency=149 party=[Kitzen Lv11 0/72HP, Thryxa Lv7 0/50HP]
+2026-04-19 21:47:11 [INFO    ] wilderness.run_manager         — Perm currency awarded: +7 → total 7
+2026-04-19 21:47:11 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=1)
+2026-04-19 21:47:12 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=1 best_stage=1 active_run=False)
+2026-04-19 21:47:23 [INFO    ] wilderness.run_manager         — Run started: starter=Thryxa Lv5 dev_mode=False
+2026-04-19 21:47:23 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-19 21:47:23 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['36/36']
+2026-04-19 21:47:23 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Mythos id=1
+2026-04-19 21:47:23 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=1, level_range=[1, 3], pool=4 champions
+2026-04-19 21:47:23 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Galivor  lv2
+2026-04-19 21:47:23 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Mythos enemy=Galivor Lv2
+2026-04-19 21:47:23 [INFO    ] battle_engine                  — Battle start: Thryxa Lv5 (HP 36) vs Galivor Lv2 (HP 10)
+2026-04-19 21:49:01 [DEBUG   ] battle_engine                  — Thryxa → Galivor | Static Tap | dmg=8 | type=×1.0 | Galivor HP: 2/10
+2026-04-19 21:49:01 [DEBUG   ] battle_engine                  — Galivor → Thryxa | Legend Whisper | dmg=2 | type=×1.0 | Thryxa HP: 34/36
+2026-04-19 21:49:02 [DEBUG   ] battle_engine                  — Thryxa → Galivor | Static Tap | dmg=2 | type=×1.0 | Galivor HP: 0/10
+2026-04-19 21:49:02 [INFO    ] battle_engine                  — Battle end: winner=Thryxa after 2 turns | Thryxa HP 34/36 | Galivor HP 0/10
+2026-04-19 21:49:03 [INFO    ] wilderness.run_manager         — Normal battle won in 2 turns | perm_coins +1 | party HP: ['34/36']
+2026-04-19 21:49:03 [INFO    ] wilderness.run_manager         — Level-up: Thryxa → Lv6 (max HP 43)
+2026-04-19 21:49:19 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-19 21:49:19 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['41/43']
+2026-04-19 21:49:19 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:49:19 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:49:19 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Mythos id=2
+2026-04-19 21:49:19 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=1, level_range=[2, 4], pool=4 champions
+2026-04-19 21:49:19 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Eldrune  lv3
+2026-04-19 21:49:19 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Mythos enemy=Eldrune Lv3
+2026-04-19 21:49:19 [INFO    ] battle_engine                  — Battle start: Thryxa Lv6 (HP 41) vs Eldrune Lv3 (HP 30)
+2026-04-19 21:49:20 [DEBUG   ] battle_engine                  — Thryxa → Eldrune | Static Tap | dmg=13 | type=×1.0 | Eldrune HP: 17/30
+2026-04-19 21:49:20 [DEBUG   ] battle_engine                  — Eldrune → Thryxa | Rune Tap | dmg=2 | type=×1.0 | Thryxa HP: 39/43
+2026-04-19 21:49:21 [DEBUG   ] battle_engine                  — Thryxa → Eldrune | Static Tap | dmg=13 | type=×1.0 | Eldrune HP: 4/30
+2026-04-19 21:49:21 [DEBUG   ] battle_engine                  — Eldrune → Thryxa | Rune Tap | dmg=2 | type=×1.0 | Thryxa HP: 37/43
+2026-04-19 21:49:21 [DEBUG   ] battle_engine                  — Thryxa → Eldrune | Static Tap | dmg=4 | type=×1.0 | Eldrune HP: 0/30
+2026-04-19 21:49:21 [INFO    ] battle_engine                  — Battle end: winner=Thryxa after 3 turns | Thryxa HP 37/43 | Eldrune HP 0/30
+2026-04-19 21:49:24 [INFO    ] wilderness.run_manager         — Normal battle won in 3 turns | perm_coins +1 | party HP: ['37/43']
+2026-04-19 21:49:24 [INFO    ] wilderness.run_manager         — Level-up: Thryxa → Lv7 (max HP 50)
+2026-04-19 21:49:26 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-19 21:49:26 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['43/50']
+2026-04-19 21:49:26 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:49:26 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:49:26 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Mythos id=3
+2026-04-19 21:49:26 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=1, level_range=[3, 5], pool=4 champions
+2026-04-19 21:49:26 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Rokhara  lv3
+2026-04-19 21:49:26 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Mythos enemy=Rokhara Lv3
+2026-04-19 21:49:26 [INFO    ] battle_engine                  — Battle start: Thryxa Lv7 (HP 43) vs Rokhara Lv3 (HP 30)
+2026-04-19 21:49:27 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=4 | type=×2.0 | Thryxa HP: 39/50
+2026-04-19 21:49:32 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=5 | type=×2.0 | Thryxa HP: 34/50
+2026-04-19 21:49:32 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=5 | type=×2.0 | Thryxa HP: 29/50
+2026-04-19 21:49:32 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=5 | type=×2.0 | Thryxa HP: 24/50
+2026-04-19 21:49:32 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=5 | type=×2.0 | Thryxa HP: 19/50
+2026-04-19 21:49:33 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=5 | type=×2.0 | Thryxa HP: 14/50
+2026-04-19 21:49:33 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=4 | type=×2.0 | Thryxa HP: 10/50
+2026-04-19 21:49:35 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=5 | type=×2.0 | Thryxa HP: 5/50
+2026-04-19 21:49:36 [DEBUG   ] battle_engine                  — Rokhara → Thryxa | Gravel Toss | dmg=5 | type=×2.0 | Thryxa HP: 0/50
+2026-04-19 21:49:36 [INFO    ] battle_engine                  — Battle end: winner=Rokhara after 9 turns | Thryxa HP 0/50 | Rokhara HP 30/30
+2026-04-19 21:49:37 [INFO    ] wilderness.run_manager         — Normal battle lost | party HP: ['0/50']
+2026-04-19 21:49:37 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-19 21:49:37 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['0/50']
+2026-04-19 21:49:37 [INFO    ] wilderness.run_manager         — Run ended: stages_won=0 defeated=True currency=35 party=[Thryxa Lv7 0/50HP]
+2026-04-19 21:49:37 [INFO    ] wilderness.run_manager         — Perm currency awarded: +2 → total 9
+2026-04-19 21:49:37 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:49:37 [ERROR   ] __main__                       — Unhandled error in wilderness_mode — aborting
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness_mode.py", line 520, in main
+    cmd_run(dev_mode=False)
+    ~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness_mode.py", line 399, in cmd_run
+    run_wilderness(
+    ~~~~~~~~~~~~~~^
+        starting_champion_name = starting_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        dev_mode  = dev_mode,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 728, in run_wilderness
+    clear_active_run(account, save_dir)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 324, in clear_active_run
+    save_account(profile, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'

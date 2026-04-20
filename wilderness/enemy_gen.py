@@ -29,7 +29,7 @@ log = logging.getLogger(__name__)
 # Allow importing from parent directory
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from battle_engine import Champion, BattleChampion
+from battle_engine import Champion, BattleChampion, auto_moveset
 from .config import (
     ENEMY_LEVEL_OFFSET_MIN, ENEMY_LEVEL_OFFSET_MAX,
     ELITE_BASE_ENEMY_COUNT,
@@ -106,6 +106,8 @@ def generate_enemy_team(
         champ   = deepcopy(random.choice(pool))
         level   = _sample_level(lo, hi)
         scaled  = scale_champion(champ, level)
+        # Assign level-appropriate moves (enemies at Lv30+ should use Tier 2/3 moves)
+        scaled.moves = auto_moveset(scaled, level)
         bc      = BattleChampion(scaled)
         bc.level = level  # for display in battle UI
         enemies.append(bc)
@@ -168,6 +170,8 @@ def generate_recruit_candidate(
     pool     = champions_for_realm(all_champions, realm)
     champ    = deepcopy(random.choice(pool))
     level    = _sample_level(lo, hi)
+    # Set level-appropriate moves so the player sees what they're recruiting
+    champ.moves = auto_moveset(champ, level)
     is_shiny = random.random() < shiny_chance
     log.debug(
         "Recruit candidate: %s  lv%d  shiny=%s  (realm=%s)",

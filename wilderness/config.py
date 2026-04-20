@@ -66,21 +66,42 @@ SHOP_HEAL_STATUS_COST    = 25    # Purifying Dust  — cleanse status
 SHOP_MP_RESTORE_COST     = 35    # Stamina Crystal — 100% MP
 SHOP_REVIVE_COST         = 90    # Revival Spark   — revive at 50% HP
 
-# ── Move Tutor / Wandering Sage (permanent meta-currency) ────────
-# Permanent currency earned per monster defeated = stage_number × 1.
-# (multiplier is the current stage number; each new stage doubles the rate)
-PERM_CURRENCY_PER_MONSTER = 1    # base coins per monster; multiplied by stage
+# ── Permanent currency (𝕮) ──────────────────────────────────────
+# Earned per monster defeated: stage_number × PERM_CURRENCY_PER_MONSTER
+PERM_CURRENCY_PER_MONSTER = 1    # base; multiplied by current stage number
 
-# cost = max(TUTOR_MIN_COST, learn_level × TUTOR_COST_PER_LEVEL)
-# ⚠ Tune these values once move balance is set — marked as PLACEHOLDER
-TUTOR_COST_PER_LEVEL     = 2     # PLACEHOLDER: coins per learn_level point
-TUTOR_MIN_COST           = 10    # PLACEHOLDER: floor cost for any tutor move
-NUM_TUTOR_MOVES          = 12    # number of moves in each champion's learn list
+# ── Sanctum — meta-progression screen (main menu) ───────────────
+# Spend perm_currency here to permanently UNLOCK moves for a champion.
+# Unlock cost = SANCTUM_BASE_COST × tier
+#   Tier 1: 5 𝕮   Tier 2: 15 𝕮   Tier 3: 30 𝕮   Tier 4: 60 𝕮
+SANCTUM_BASE_COST        = 5     # multiplied by move tier
+# Min champion level required to unlock a move at a given tier:
+#   Tier 1: any level   Tier 2: Lv 16   Tier 3: Lv 36   Tier 4: Lv 61
+SANCTUM_TIER_LEVEL_REQ   = {1: 1, 2: 16, 3: 36, 4: 61}
+# Max moves shown per champion in the Sanctum learn list
+SANCTUM_MAX_LEARN_LIST   = 12
 
-# Learn level thresholds assigned to tutor moves in ascending order.
-# The i-th move in a champion's learn list (sorted by base power) gets
-# TUTOR_LEARN_LEVELS[i].  Extend the list for longer learn lists.
-TUTOR_LEARN_LEVELS = [10, 15, 20, 25, 30, 35, 40, 45, 55, 65, 75, 90]
+# ── Wandering Sage — in-run move equip (costs gold) ─────────────
+# The Sage lets players EQUIP already-unlocked moves during a run.
+# Cost to swap a move slot = SAGE_EQUIP_COST × move tier
+#   Tier 1: 10 💰   Tier 2: 25 💰   Tier 3: 50 💰   Tier 4: 100 💰
+SAGE_EQUIP_BASE_COST     = 10    # gold multiplied by move tier
+# Level required to equip a move during a run (same as Sanctum thresholds)
+SAGE_TIER_LEVEL_REQ      = {1: 1, 2: 16, 3: 36, 4: 61}
+
+# ── Fate Seal — premium gacha tier in the Sanctum ──────────────────────────
+# Each draw randomly pulls from a champion's FATE_SEAL_POOL (battle_engine.py).
+# Pity: every FATE_SEAL_PITY_THRESHOLD draws guarantees a move not yet obtained.
+# Duplicate draw: refunds FATE_SEAL_DUPE_REFUND 𝕮 instead of re-adding.
+FATE_SEAL_COST            = 60   # base cost per draw in 𝕮
+FATE_SEAL_PITY_THRESHOLD  = 3    # guaranteed new move every N draws
+FATE_SEAL_DUPE_REFUND     = 15   # 𝕮 refunded on a duplicate pull
+
+# ── Legacy tutor constants (kept for back-compat, not used by new system) ──
+TUTOR_COST_PER_LEVEL     = 2
+TUTOR_MIN_COST           = 10
+NUM_TUTOR_MOVES          = 12
+TUTOR_LEARN_LEVELS       = [10, 15, 20, 25, 30, 35, 40, 45, 55, 65, 75, 90]
 
 # ── Realms ───────────────────────────────────────────────────────
 ESSENCES = [

@@ -1,0 +1,21 @@
+2026-04-20 13:29:48 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260420_132948.log
+2026-04-20 13:29:48 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-20 13:29:48 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=2 best_stage=1 active_run=False)
+2026-04-20 13:29:55 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=2 best_stage=1 active_run=False)
+2026-04-20 13:32:18 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=2)
+2026-04-20 13:32:18 [INFO    ] wilderness.town                — Sanctum unlock: Zerine → Blizzard Beam  (cost 10, remaining 7)
+2026-04-20 13:32:47 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=2 best_stage=1 active_run=False)
+2026-04-20 13:32:49 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=2 best_stage=1 active_run=False)
+2026-04-20 13:32:51 [INFO    ] wilderness.run_manager         — Run started: starter=Zerine Lv5 dev_mode=False
+2026-04-20 13:32:51 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=2)
+2026-04-20 13:32:51 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['42/42']
+2026-04-20 13:32:51 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Bless id=1
+2026-04-20 13:32:51 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Bless, team_size=1, level_range=[1, 3], pool=7 champions
+2026-04-20 13:32:51 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Caelira  lv1
+2026-04-20 13:32:51 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Bless enemy=Caelira Lv1
+2026-04-20 13:32:51 [INFO    ] battle_engine                  — Battle start: Zerine Lv5 (HP 42) vs Caelira Lv1 (HP 10)
+2026-04-20 13:33:02 [DEBUG   ] battle_engine                  — Caelira → Zerine | Holy Tap | dmg=1 | type=×0.2 | Zerine HP: 41/42
+2026-04-20 13:33:12 [DEBUG   ] battle_engine                  — Zerine → Caelira | Static Tap | dmg=10 | type=×2.0 | Caelira HP: 0/10
+2026-04-20 13:33:12 [INFO    ] battle_engine                  — Battle end: winner=Zerine after 2 turns | Zerine HP 41/42 | Caelira HP 0/10
+2026-04-20 13:33:12 [INFO    ] wilderness.run_manager         — Normal battle won in 2 turns | perm_coins +1 | party HP: ['41/42']
+2026-04-20 13:33:12 [INFO    ] wilderness.run_manager         — Level-up: Zerine → Lv6 (max HP 50)

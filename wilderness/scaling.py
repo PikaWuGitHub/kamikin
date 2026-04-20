@@ -3,16 +3,19 @@ wilderness/scaling.py
 =====================
 Level-scaling utilities.
 
-Formula
--------
-  scaledStat = round(maxStat * level / MAX_LEVEL)
+Formula (standard stats)
+------------------------
+  scaledStat = round((maxStat + resonance) * level / MAX_LEVEL)
 
-where maxStat is the full engine stat at level 100 (base_* × STAT_MULT).
-At level 100 a monster has its full battle-engine stats.
-At level 5 it has 5% of those stats.
+where maxStat = base_stat × STAT_MULT.
+  • At Lv100 with resonance=0: stat = base_stat × STAT_MULT  (unchanged)
+  • At Lv100 with resonance=100: stat = base_stat × STAT_MULT + 100
+  • At Lv50  with resonance=100: stat = (base_stat × STAT_MULT + 100) × 0.5
 
-MP is intentionally NOT scaled — monsters keep full MP at all levels.
-This is temporary until move progression (level-gated move kits) is designed.
+Resonance keys: "vit", "sta", "mgt", "mag", "grd", "wil", "swf" (each 1–100).
+STA (MP) resonance is added FLAT (not prorated) because MP is full at all levels.
+
+MP intentionally NOT level-scaled — monsters keep full MP at all levels.
 """
 
 from __future__ import annotations
@@ -31,17 +34,22 @@ from .config import MAX_LEVEL
 
 # ── Core formula ─────────────────────────────────────────────────
 
-def scaled_stat(base_stat: int, level: int) -> int:
+def scaled_stat(base_stat: int, level: int, resonance: int = 0) -> int:
     """
-    scaledStat = round(maxStat * level / MAX_LEVEL)
+    scaledStat = round((maxStat + resonance) * level / MAX_LEVEL)
     where maxStat = base_stat × STAT_MULT.
 
-    Examples (STAT_MULT=10, MAX_LEVEL=100):
-      base_vit=100, level=100 → max_hp = 1000
-      base_vit=100, level=5   → max_hp = 50
+    Examples (STAT_MULT=10, MAX_LEVEL=100, resonance=0):
+      base_vit=100, level=100 → 1000
+      base_vit=100, level=5   → 50
+
+    With resonance=50, level=100:
+      base_vit=100 → 1050  (+50 bonus at max level)
+    With resonance=50, level=50:
+      base_vit=100 → 525   (both base and resonance prorated equally)
     """
     max_stat = base_stat * STAT_MULT
-    return max(1, round(max_stat * level / MAX_LEVEL))
+    return max(1, round((max_stat + resonance) * level / MAX_LEVEL))
 
 
 # ── Champion scaling ──────────────────────────────────────────────
@@ -74,22 +82,29 @@ def scale_champion(champion: "Champion", level: int) -> "Champion":
 
 # ── Convenience helpers ───────────────────────────────────────────
 
-def party_member_scaled_stats(champion: "Champion", level: int) -> dict:
+def party_member_scaled_stats(champion: "Champion", level: int,
+                              resonance: dict = None) -> dict:
     """
     Return a dict of actual stat values for a champion at `level`.
     Used when creating PartyMember instances and for level-up recalculation.
 
-    max_mp uses the full unscaled value (temporary design decision).
+    resonance   — optional dict keyed by stat name ("vit", "sta", "mgt", …),
+                  values 1–100.  Each stat's resonance is folded into the
+                  level-scaling formula.  STA (MP) resonance is added flat
+                  because MP is not level-scaled.
+
+    max_mp uses the full unscaled value (not prorated by level).
     """
+    res = resonance or {}
     return {
-        "max_hp": scaled_stat(champion.base_vit, level),
-        # MP full at all levels:
-        "max_mp": champion.base_sta * STAT_MULT,
-        "mgt":    scaled_stat(champion.base_mgt, level),
-        "mag":    scaled_stat(champion.base_mag, level),
-        "grd":    scaled_stat(champion.base_grd, level),
-        "wil":    scaled_stat(champion.base_wil, level),
-        "swf":    scaled_stat(champion.base_swf, level),
+        "max_hp": scaled_stat(champion.base_vit, level, res.get("vit", 0)),
+        # MP full at all levels; STA resonance added flat (not prorated):
+        "max_mp": champion.base_sta * STAT_MULT + res.get("sta", 0),
+        "mgt":    scaled_stat(champion.base_mgt, level, res.get("mgt", 0)),
+        "mag":    scaled_stat(champion.base_mag, level, res.get("mag", 0)),
+        "grd":    scaled_stat(champion.base_grd, level, res.get("grd", 0)),
+        "wil":    scaled_stat(champion.base_wil, level, res.get("wil", 0)),
+        "swf":    scaled_stat(champion.base_swf, level, res.get("swf", 0)),
     }
 
 
@@ -115,6 +130,10 @@ def apply_level_up(member, champion: "Champion") -> str:
     HP is adjusted proportionally (not healed) so leveling up doesn't
     grant free HP. MP stays at max.
 
+    Resonance is preserved — the member's current resonance dict is passed
+    into party_member_scaled_stats so the bonus correctly re-prorates at
+    the new level.
+
     Returns a human-readable level-up message.
 
     PLACEHOLDER: a real EXP curve can replace the +1 logic in run_manager.
@@ -122,7 +141,8 @@ def apply_level_up(member, champion: "Champion") -> str:
     """
     old_max_hp  = member.max_hp
     member.level = min(member.level + 1, MAX_LEVEL)
-    new_stats   = party_member_scaled_stats(champion, member.level)
+    resonance   = getattr(member, "resonance", None) or {}
+    new_stats   = party_member_scaled_stats(champion, member.level, resonance)
 
     # Proportional HP carry-over
     if old_max_hp > 0 and not member.is_fainted:

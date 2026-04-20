@@ -1,0 +1,335 @@
+2026-04-20 13:07:53 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260420_130753.log
+2026-04-20 13:07:53 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-20 13:07:53 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-20 13:08:29 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-20 13:08:29 [INFO    ] wilderness.save_manager        — New account created (no initial unlocks — awaiting starter ceremony)
+2026-04-20 13:09:36 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=0)
+2026-04-20 13:09:48 [INFO    ] wilderness.run_manager         — Run started: starter=Kyntra Lv5 dev_mode=False
+2026-04-20 13:09:48 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:09:48 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['59/59']
+2026-04-20 13:09:48 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Frost id=1
+2026-04-20 13:09:48 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Frost, team_size=1, level_range=[1, 3], pool=6 champions
+2026-04-20 13:09:48 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Narviu  lv1
+2026-04-20 13:09:48 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Frost enemy=Narviu Lv1
+2026-04-20 13:09:48 [INFO    ] battle_engine                  — Battle start: Kyntra Lv5 (HP 59) vs Narviu Lv1 (HP 10)
+2026-04-20 13:10:02 [DEBUG   ] battle_engine                  — Kyntra → Narviu | Pixel Punch | dmg=6 | type=×0.5 | Narviu HP: 4/10
+2026-04-20 13:10:02 [DEBUG   ] battle_engine                  — Narviu → Kyntra | Splash Strike | dmg=1 | type=×2.0 | Kyntra HP: 58/59
+2026-04-20 13:10:07 [DEBUG   ] battle_engine                  — Kyntra → Narviu | Pixel Punch | dmg=4 | type=×0.5 | Narviu HP: 0/10
+2026-04-20 13:10:07 [INFO    ] battle_engine                  — Battle end: winner=Kyntra after 2 turns | Kyntra HP 58/59 | Narviu HP 0/10
+2026-04-20 13:10:08 [INFO    ] wilderness.run_manager         — Normal battle won in 2 turns | perm_coins +1 | party HP: ['58/59']
+2026-04-20 13:10:08 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv6 (max HP 71)
+2026-04-20 13:10:12 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:10:12 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['70/71']
+2026-04-20 13:10:12 [WARNING ] wilderness.save_manager        — save_account: os.replace() denied (attempt 1/5) — file may be locked by OneDrive or antivirus. Retrying in 150ms…
+2026-04-20 13:10:12 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:10:12 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['70/71']
+2026-04-20 13:10:12 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Frost id=2
+2026-04-20 13:10:12 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Frost, team_size=1, level_range=[2, 4], pool=6 champions
+2026-04-20 13:10:12 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Narviu  lv2
+2026-04-20 13:10:12 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Frost enemy=Narviu Lv2
+2026-04-20 13:10:12 [INFO    ] battle_engine                  — Battle start: Kyntra Lv6 (HP 70) vs Narviu Lv2 (HP 20)
+2026-04-20 13:10:15 [DEBUG   ] battle_engine                  — Narviu → Kyntra | Splash Strike | dmg=1 | type=×2.0 | Kyntra HP: 69/71
+2026-04-20 13:10:22 [DEBUG   ] battle_engine                  — Kyntra → Narviu | Pixel Punch | dmg=6 | type=×0.5 | Narviu HP: 14/20
+2026-04-20 13:10:22 [DEBUG   ] battle_engine                  — Narviu → Kyntra | Splash Strike | dmg=1 | type=×2.0 | Kyntra HP: 68/71
+2026-04-20 13:10:23 [DEBUG   ] battle_engine                  — Kyntra → Narviu | Pixel Punch | dmg=7 | type=×0.5 | Narviu HP: 7/20
+2026-04-20 13:10:23 [DEBUG   ] battle_engine                  — Narviu → Kyntra | Splash Strike | dmg=1 | type=×2.0 | Kyntra HP: 67/71
+2026-04-20 13:10:25 [DEBUG   ] battle_engine                  — Kyntra → Narviu | Pixel Punch | dmg=6 | type=×0.5 | Narviu HP: 1/20
+2026-04-20 13:10:25 [DEBUG   ] battle_engine                  — Narviu → Kyntra | Splash Strike | dmg=1 | type=×2.0 | Kyntra HP: 66/71
+2026-04-20 13:10:25 [DEBUG   ] battle_engine                  — Kyntra → Narviu | Pixel Punch | dmg=1 | type=×0.5 | Narviu HP: 0/20
+2026-04-20 13:10:25 [INFO    ] battle_engine                  — Battle end: winner=Kyntra after 5 turns | Kyntra HP 66/71 | Narviu HP 0/20
+2026-04-20 13:10:26 [INFO    ] wilderness.run_manager         — Normal battle won in 5 turns | perm_coins +1 | party HP: ['66/71']
+2026-04-20 13:10:26 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv7 (max HP 82)
+2026-04-20 13:10:29 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:10:29 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['76/82']
+2026-04-20 13:10:29 [WARNING ] wilderness.save_manager        — save_account: os.replace() denied (attempt 1/5) — file may be locked by OneDrive or antivirus. Retrying in 150ms…
+2026-04-20 13:10:29 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:10:29 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['76/82']
+2026-04-20 13:10:29 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Frost id=3
+2026-04-20 13:10:29 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Frost, team_size=1, level_range=[3, 5], pool=6 champions
+2026-04-20 13:10:29 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Zerine  lv5
+2026-04-20 13:10:29 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Frost enemy=Zerine Lv5
+2026-04-20 13:10:29 [INFO    ] battle_engine                  — Battle start: Kyntra Lv7 (HP 76) vs Zerine Lv5 (HP 40)
+2026-04-20 13:10:44 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Pixel Punch | dmg=12 | type=×1.0 | Zerine HP: 28/40
+2026-04-20 13:10:44 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=4 | type=×2.0 | Kyntra HP: 72/83
+2026-04-20 13:10:45 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Pixel Punch | dmg=12 | type=×1.0 | Zerine HP: 16/40
+2026-04-20 13:10:45 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=5 | type=×2.0 | Kyntra HP: 67/83
+2026-04-20 13:10:46 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Pixel Punch | dmg=11 | type=×1.0 | Zerine HP: 5/40
+2026-04-20 13:10:46 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=5 | type=×2.0 | Kyntra HP: 62/83
+2026-04-20 13:10:48 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Pixel Punch | dmg=5 | type=×1.0 | Zerine HP: 0/40
+2026-04-20 13:10:48 [INFO    ] battle_engine                  — Battle end: winner=Kyntra after 4 turns | Kyntra HP 62/83 | Zerine HP 0/40
+2026-04-20 13:10:48 [INFO    ] wilderness.run_manager         — Normal battle won in 4 turns | perm_coins +1 | party HP: ['62/82']
+2026-04-20 13:10:48 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv8 (max HP 94)
+2026-04-20 13:10:58 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:10:58 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['71/94']
+2026-04-20 13:10:58 [WARNING ] wilderness.save_manager        — save_account: os.replace() denied (attempt 1/5) — file may be locked by OneDrive or antivirus. Retrying in 150ms…
+2026-04-20 13:10:59 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:10:59 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=4 hp=['71/94']
+2026-04-20 13:10:59 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Frost id=4
+2026-04-20 13:10:59 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Frost, team_size=1, level_range=[4, 6], pool=6 champions
+2026-04-20 13:10:59 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Zerine  lv5
+2026-04-20 13:10:59 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Frost enemy=Zerine Lv5
+2026-04-20 13:10:59 [INFO    ] battle_engine                  — Battle start: Kyntra Lv8 (HP 71) vs Zerine Lv5 (HP 40)
+2026-04-20 13:11:04 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Pixel Punch | dmg=12 | type=×1.0 | Zerine HP: 28/40
+2026-04-20 13:11:04 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=4 | type=×2.0 | Kyntra HP: 67/94
+2026-04-20 13:11:06 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Signal Burst | dmg=16 | type=×1.0 | Zerine HP: 12/40
+2026-04-20 13:11:06 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=4 | type=×2.0 | Kyntra HP: 63/94
+2026-04-20 13:11:07 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Signal Burst | dmg=12 | type=×1.0 | Zerine HP: 0/40
+2026-04-20 13:11:07 [INFO    ] battle_engine                  — Battle end: winner=Kyntra after 3 turns | Kyntra HP 63/94 | Zerine HP 0/40
+2026-04-20 13:11:08 [INFO    ] wilderness.run_manager         — Normal battle won in 3 turns | perm_coins +1 | party HP: ['63/94']
+2026-04-20 13:11:08 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv9 (max HP 106)
+2026-04-20 13:11:17 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:11:17 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=4 hp=['71/106']
+2026-04-20 13:11:17 [WARNING ] wilderness.save_manager        — save_account: os.replace() denied (attempt 1/5) — file may be locked by OneDrive or antivirus. Retrying in 150ms…
+2026-04-20 13:11:17 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:11:17 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=5 hp=['71/106']
+2026-04-20 13:11:17 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Frost id=5
+2026-04-20 13:11:17 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Frost, team_size=1, level_range=[5, 7], pool=6 champions
+2026-04-20 13:11:17 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Frisela  lv6
+2026-04-20 13:11:17 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Frost enemy=Frisela Lv6
+2026-04-20 13:11:17 [INFO    ] battle_engine                  — Battle start: Kyntra Lv9 (HP 71) vs Frisela Lv6 (HP 60)
+2026-04-20 13:11:18 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Pixel Punch | dmg=7 | type=×0.5 | Frisela HP: 53/60
+2026-04-20 13:11:18 [DEBUG   ] battle_engine                  — Frisela → Kyntra | Cold Snap | dmg=6 | type=×2.0 | Kyntra HP: 65/106
+2026-04-20 13:11:22 [DEBUG   ] battle_engine                  — Frisela → Kyntra | Cold Snap | dmg=10 | type=×2.0  CRIT | Kyntra HP: 55/106
+2026-04-20 13:11:25 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Signal Burst | dmg=5 | type=×0.5 | Frisela HP: 48/60
+2026-04-20 13:11:36 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Pixel Punch | dmg=8 | type=×0.5 | Frisela HP: 40/60
+2026-04-20 13:11:36 [DEBUG   ] battle_engine                  — Frisela → Kyntra | Cold Snap | dmg=6 | type=×2.0 | Kyntra HP: 49/106
+2026-04-20 13:11:36 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Pixel Punch | dmg=7 | type=×0.5 | Frisela HP: 33/60
+2026-04-20 13:11:36 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Pixel Punch | dmg=8 | type=×0.5 | Frisela HP: 25/60
+2026-04-20 13:11:38 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Pixel Punch | dmg=7 | type=×0.5 | Frisela HP: 18/60
+2026-04-20 13:11:38 [DEBUG   ] battle_engine                  — Frisela → Kyntra | Cold Snap | dmg=7 | type=×2.0 | Kyntra HP: 42/106
+2026-04-20 13:11:38 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Pixel Punch | dmg=7 | type=×0.5 | Frisela HP: 11/60
+2026-04-20 13:11:38 [DEBUG   ] battle_engine                  — Kyntra → Frisela | Pixel Punch | dmg=11 | type=×0.5  CRIT | Frisela HP: 0/60
+2026-04-20 13:11:38 [INFO    ] battle_engine                  — Battle end: winner=Kyntra after 9 turns | Kyntra HP 42/106 | Frisela HP 0/60
+2026-04-20 13:11:40 [INFO    ] wilderness.run_manager         — Normal battle won in 9 turns | perm_coins +1 | party HP: ['42/106']
+2026-04-20 13:11:40 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv10 (max HP 118)
+2026-04-20 13:11:47 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:11:47 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=5 hp=['94/118']
+2026-04-20 13:11:47 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:11:47 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=6 hp=['94/118']
+2026-04-20 13:11:47 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=elite realm=Frost id=6
+2026-04-20 13:11:47 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Frost, team_size=2, level_range=[7, 9], pool=6 champions
+2026-04-20 13:11:47 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Zerine  lv8
+2026-04-20 13:11:47 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Friselle  lv7
+2026-04-20 13:11:47 [INFO    ] wilderness.run_manager         — Elite battle: stage=1 realm=Frost enemies=[Zerine Lv8, Friselle Lv7]
+2026-04-20 13:11:47 [INFO    ] battle_engine                  — Team battle start: player[Kyntra Lv10] vs ai[Zerine Lv8, Friselle Lv7]
+2026-04-20 13:11:51 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Signal Burst | dmg=16 | type=×1.0 | Zerine HP: 44/60
+2026-04-20 13:11:51 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=10 | type=×2.0 | Kyntra HP: 84/118
+2026-04-20 13:11:52 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Signal Burst | dmg=17 | type=×1.0 | Zerine HP: 27/60
+2026-04-20 13:11:52 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=9 | type=×2.0 | Kyntra HP: 75/118
+2026-04-20 13:11:53 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Signal Burst | dmg=15 | type=×1.0 | Zerine HP: 12/60
+2026-04-20 13:11:53 [DEBUG   ] battle_engine                  — Zerine → Kyntra | Cold Snap | dmg=9 | type=×2.0 | Kyntra HP: 66/118
+2026-04-20 13:11:53 [DEBUG   ] battle_engine                  — Kyntra → Zerine | Signal Burst | dmg=12 | type=×1.0 | Zerine HP: 0/60
+2026-04-20 13:11:56 [DEBUG   ] battle_engine                  — Kyntra → Friselle | Pixel Punch | dmg=22 | type=×1.0  CRIT | Friselle HP: 38/60
+2026-04-20 13:11:56 [DEBUG   ] battle_engine                  — Friselle → Kyntra | Frost Mote | dmg=17 | type=×2.0 | Kyntra HP: 49/118
+2026-04-20 13:11:57 [DEBUG   ] battle_engine                  — Kyntra → Friselle | Pixel Punch | dmg=15 | type=×1.0 | Friselle HP: 23/60
+2026-04-20 13:11:57 [DEBUG   ] battle_engine                  — Friselle → Kyntra | Frost Mote | dmg=19 | type=×2.0 | Kyntra HP: 30/118
+2026-04-20 13:12:04 [DEBUG   ] battle_engine                  — Kyntra → Friselle | Pixel Punch | dmg=15 | type=×1.0 | Friselle HP: 8/60
+2026-04-20 13:12:04 [DEBUG   ] battle_engine                  — Friselle → Kyntra | Frost Mote | dmg=18 | type=×2.0 | Kyntra HP: 12/118
+2026-04-20 13:12:08 [DEBUG   ] battle_engine                  — Kyntra → Friselle | Pixel Punch | dmg=8 | type=×1.0  CRIT | Friselle HP: 0/60
+2026-04-20 13:12:08 [INFO    ] battle_engine                  — Team battle end: winner=Player | player 1 alive | opponent 0 alive | turns=8
+2026-04-20 13:12:10 [INFO    ] wilderness.run_manager         — Elite battle won in 8 turns | perm_coins +2 | party HP: ['12/118']
+2026-04-20 13:12:10 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv11 (max HP 130)
+2026-04-20 13:14:02 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:14:02 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=6 hp=['67/67', '13/130']
+2026-04-20 13:14:12 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:14:12 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=19 hp=['67/67', '13/130']
+2026-04-20 13:14:12 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Mind/Spirit id=19
+2026-04-20 13:14:12 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mind/Spirit, team_size=1, level_range=[7, 9], pool=9 champions
+2026-04-20 13:14:12 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Synkra  lv7
+2026-04-20 13:14:12 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Mind/Spirit enemy=Synkra Lv7
+2026-04-20 13:14:12 [INFO    ] battle_engine                  — Team battle start: player[Zerine Lv8, Kyntra Lv11] vs ai[Synkra Lv7]
+2026-04-20 13:14:26 [DEBUG   ] battle_engine                  — Zerine → Synkra | Cold Snap | dmg=4 | type=×0.5 | Synkra HP: 56/60
+2026-04-20 13:14:26 [DEBUG   ] battle_engine                  — Synkra → Zerine | Thought Nudge | dmg=25 | type=×2.0 | Zerine HP: 41/66
+2026-04-20 13:14:43 [DEBUG   ] battle_engine                  — Synkra → Zerine | Thought Nudge | dmg=25 | type=×2.0 | Zerine HP: 16/66
+2026-04-20 13:14:52 [DEBUG   ] battle_engine                  — Synkra → Kyntra | Thought Nudge | dmg=4 | type=×0.5 | Kyntra HP: 73/129
+2026-04-20 13:14:54 [DEBUG   ] battle_engine                  — Kyntra → Synkra | Pixel Punch | dmg=37 | type=×2.0 | Synkra HP: 19/60
+2026-04-20 13:14:54 [DEBUG   ] battle_engine                  — Synkra → Kyntra | Static Tap | dmg=10 | type=×2.0 | Kyntra HP: 63/129
+2026-04-20 13:14:55 [DEBUG   ] battle_engine                  — Kyntra → Synkra | Pixel Punch | dmg=19 | type=×2.0 | Synkra HP: 0/60
+2026-04-20 13:14:55 [INFO    ] battle_engine                  — Team battle end: winner=Player | player 2 alive | opponent 0 alive | turns=5
+2026-04-20 13:14:56 [INFO    ] wilderness.run_manager         — Normal battle won in 5 turns | perm_coins +2 | party HP: ['16/67', '63/130']
+2026-04-20 13:14:56 [INFO    ] wilderness.run_manager         — Level-up: Zerine → Lv9 (max HP 75)
+2026-04-20 13:14:56 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv12 (max HP 141)
+2026-04-20 13:15:17 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:15:17 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=19 hp=['138/141', '18/75']
+2026-04-20 13:15:17 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:15:17 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=20 hp=['138/141', '18/75']
+2026-04-20 13:15:17 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Mind/Spirit id=20
+2026-04-20 13:15:17 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mind/Spirit, team_size=1, level_range=[8, 10], pool=9 champions
+2026-04-20 13:15:17 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Myrabyte  lv10
+2026-04-20 13:15:17 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Mind/Spirit enemy=Myrabyte Lv10
+2026-04-20 13:15:17 [INFO    ] battle_engine                  — Team battle start: player[Kyntra Lv12, Zerine Lv9] vs ai[Myrabyte Lv10]
+2026-04-20 13:15:19 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=8 | type=×1.0 | Kyntra HP: 130/141
+2026-04-20 13:15:25 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=8 | type=×1.0 | Kyntra HP: 122/141
+2026-04-20 13:15:26 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=11 | type=×0.5  CRIT | Myrabyte HP: 79/90
+2026-04-20 13:15:26 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 115/141
+2026-04-20 13:15:26 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=7 | type=×0.5 | Myrabyte HP: 72/90
+2026-04-20 13:15:26 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=8 | type=×1.0 | Kyntra HP: 107/141
+2026-04-20 13:15:26 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=8 | type=×0.5 | Myrabyte HP: 64/90
+2026-04-20 13:15:26 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 100/141
+2026-04-20 13:15:27 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=7 | type=×0.5 | Myrabyte HP: 57/90
+2026-04-20 13:15:27 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=8 | type=×1.0 | Kyntra HP: 92/141
+2026-04-20 13:15:27 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=7 | type=×0.5 | Myrabyte HP: 50/90
+2026-04-20 13:15:27 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 85/141
+2026-04-20 13:15:28 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=8 | type=×0.5 | Myrabyte HP: 42/90
+2026-04-20 13:15:28 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=8 | type=×1.0 | Kyntra HP: 77/141
+2026-04-20 13:15:28 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=8 | type=×0.5 | Myrabyte HP: 34/90
+2026-04-20 13:15:28 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 70/141
+2026-04-20 13:15:29 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=7 | type=×0.5 | Myrabyte HP: 27/90
+2026-04-20 13:15:29 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 63/141
+2026-04-20 13:15:29 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=8 | type=×0.5 | Myrabyte HP: 19/90
+2026-04-20 13:15:29 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 56/141
+2026-04-20 13:15:31 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=2 | type=×1.0 | Kyntra HP: 54/141
+2026-04-20 13:15:32 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=7 | type=×0.5 | Myrabyte HP: 12/90
+2026-04-20 13:15:32 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=8 | type=×1.0 | Kyntra HP: 46/141
+2026-04-20 13:15:32 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=7 | type=×0.5 | Myrabyte HP: 5/90
+2026-04-20 13:15:32 [DEBUG   ] battle_engine                  — Myrabyte → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 39/141
+2026-04-20 13:15:33 [DEBUG   ] battle_engine                  — Kyntra → Myrabyte | Pixel Punch | dmg=5 | type=×0.5 | Myrabyte HP: 0/90
+2026-04-20 13:15:33 [INFO    ] battle_engine                  — Team battle end: winner=Player | player 2 alive | opponent 0 alive | turns=15
+2026-04-20 13:15:34 [INFO    ] wilderness.run_manager         — Normal battle won in 15 turns | perm_coins +2 | party HP: ['39/141', '18/75']
+2026-04-20 13:15:34 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv13 (max HP 153)
+2026-04-20 13:15:34 [INFO    ] wilderness.run_manager         — Level-up: Zerine → Lv10 (max HP 83)
+2026-04-20 13:16:05 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:16:05 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=20 hp=['80/153', '53/83']
+2026-04-20 13:16:05 [WARNING ] wilderness.save_manager        — save_account: os.replace() denied (attempt 1/5) — file may be locked by OneDrive or antivirus. Retrying in 150ms…
+2026-04-20 13:16:05 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:16:05 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=21 hp=['80/153', '53/83']
+2026-04-20 13:16:05 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Mind/Spirit id=21
+2026-04-20 13:16:05 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mind/Spirit, team_size=1, level_range=[9, 11], pool=9 champions
+2026-04-20 13:16:05 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Noema  lv9
+2026-04-20 13:16:05 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Mind/Spirit enemy=Noema Lv9
+2026-04-20 13:16:05 [INFO    ] battle_engine                  — Team battle start: player[Kyntra Lv13, Zerine Lv10] vs ai[Noema Lv9]
+2026-04-20 13:16:07 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=42 | type=×2.0 | Noema HP: 28/70
+2026-04-20 13:16:07 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=4 | type=×0.5 | Kyntra HP: 69/153
+2026-04-20 13:16:12 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=4 | type=×0.5 | Kyntra HP: 65/153
+2026-04-20 13:16:13 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=4 | type=×0.5 | Kyntra HP: 61/153
+2026-04-20 13:16:14 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=4 | type=×0.5 | Kyntra HP: 57/153
+2026-04-20 13:16:14 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=28 | type=×2.0 | Noema HP: 0/70
+2026-04-20 13:16:14 [INFO    ] battle_engine                  — Team battle end: winner=Player | player 2 alive | opponent 0 alive | turns=6
+2026-04-20 13:16:24 [INFO    ] wilderness.run_manager         — Normal battle won in 6 turns | perm_coins +2 | party HP: ['57/153', '53/83']
+2026-04-20 13:16:24 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv14 (max HP 165)
+2026-04-20 13:16:24 [INFO    ] wilderness.run_manager         — Level-up: Zerine → Lv11 (max HP 92)
+2026-04-20 13:16:38 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:16:38 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=21 hp=['127/165', '59/92']
+2026-04-20 13:16:38 [WARNING ] wilderness.save_manager        — save_account: os.replace() denied (attempt 1/5) — file may be locked by OneDrive or antivirus. Retrying in 150ms…
+2026-04-20 13:16:38 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:16:38 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=22 hp=['127/165', '59/92']
+2026-04-20 13:16:38 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Mind/Spirit id=22
+2026-04-20 13:16:38 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mind/Spirit, team_size=1, level_range=[10, 12], pool=9 champions
+2026-04-20 13:16:38 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Eurgeist  lv10
+2026-04-20 13:16:38 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Mind/Spirit enemy=Eurgeist Lv10
+2026-04-20 13:16:38 [INFO    ] battle_engine                  — Team battle start: player[Kyntra Lv14, Zerine Lv11] vs ai[Eurgeist Lv10]
+2026-04-20 13:16:42 [DEBUG   ] battle_engine                  — Eurgeist → Kyntra | Splash Strike | dmg=14 | type=×2.0 | Kyntra HP: 113/165
+2026-04-20 13:16:46 [DEBUG   ] battle_engine                  — Kyntra → Eurgeist | Pixel Punch | dmg=9 | type=×0.5 | Eurgeist HP: 91/100
+2026-04-20 13:16:46 [DEBUG   ] battle_engine                  — Eurgeist → Kyntra | Splash Strike | dmg=14 | type=×2.0 | Kyntra HP: 99/165
+2026-04-20 13:16:46 [DEBUG   ] battle_engine                  — Kyntra → Eurgeist | Pixel Punch | dmg=8 | type=×0.5 | Eurgeist HP: 83/100
+2026-04-20 13:16:46 [DEBUG   ] battle_engine                  — Eurgeist → Kyntra | Splash Strike | dmg=22 | type=×2.0  CRIT | Kyntra HP: 77/165
+2026-04-20 13:16:51 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 54/91
+2026-04-20 13:16:54 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 78/100
+2026-04-20 13:16:54 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 49/91
+2026-04-20 13:16:54 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=7 | type=×0.5  CRIT | Eurgeist HP: 71/100
+2026-04-20 13:16:54 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 44/91
+2026-04-20 13:16:55 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=4 | type=×0.5 | Eurgeist HP: 67/100
+2026-04-20 13:16:55 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 39/91
+2026-04-20 13:16:56 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 62/100
+2026-04-20 13:16:57 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 57/100
+2026-04-20 13:16:57 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 52/100
+2026-04-20 13:16:57 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 34/91
+2026-04-20 13:16:58 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 47/100
+2026-04-20 13:16:58 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 29/91
+2026-04-20 13:16:58 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 42/100
+2026-04-20 13:16:58 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 24/91
+2026-04-20 13:16:58 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 37/100
+2026-04-20 13:16:58 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=8 | type=×0.5  CRIT | Zerine HP: 16/91
+2026-04-20 13:17:01 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 32/100
+2026-04-20 13:17:01 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=5 | type=×0.5 | Zerine HP: 11/91
+2026-04-20 13:17:01 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 27/100
+2026-04-20 13:17:01 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=8 | type=×0.5  CRIT | Zerine HP: 3/91
+2026-04-20 13:17:02 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 22/100
+2026-04-20 13:17:02 [DEBUG   ] battle_engine                  — Zerine → Eurgeist | Cold Snap | dmg=5 | type=×0.5 | Eurgeist HP: 17/100
+2026-04-20 13:17:02 [DEBUG   ] battle_engine                  — Eurgeist → Zerine | Splash Strike | dmg=3 | type=×0.5 | Zerine HP: 0/91
+2026-04-20 13:17:05 [DEBUG   ] battle_engine                  — Kyntra → Eurgeist | Pixel Punch | dmg=9 | type=×0.5 | Eurgeist HP: 8/100
+2026-04-20 13:17:06 [DEBUG   ] battle_engine                  — Kyntra → Eurgeist | Pixel Punch | dmg=8 | type=×0.5 | Eurgeist HP: 0/100
+2026-04-20 13:17:06 [INFO    ] battle_engine                  — Team battle end: winner=Player | player 1 alive | opponent 0 alive | turns=19
+2026-04-20 13:17:07 [INFO    ] wilderness.run_manager         — Normal battle won in 19 turns | perm_coins +2 | party HP: ['77/165', '0/92']
+2026-04-20 13:17:07 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv15 (max HP 177)
+2026-04-20 13:17:13 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:17:13 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=22 hp=['153/177', '0/92']
+2026-04-20 13:17:13 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:17:13 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=23 hp=['153/177', '0/92']
+2026-04-20 13:17:13 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Mind/Spirit id=23
+2026-04-20 13:17:13 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mind/Spirit, team_size=1, level_range=[11, 13], pool=9 champions
+2026-04-20 13:17:13 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Mourin  lv11
+2026-04-20 13:17:13 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Mind/Spirit enemy=Mourin Lv11
+2026-04-20 13:17:13 [INFO    ] battle_engine                  — Battle start: Kyntra Lv15 (HP 153) vs Mourin Lv11 (HP 110)
+2026-04-20 13:17:18 [DEBUG   ] battle_engine                  — Kyntra → Mourin | Pixel Punch | dmg=25 | type=×1.0 | Mourin HP: 85/110
+2026-04-20 13:17:18 [DEBUG   ] battle_engine                  — Mourin → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 146/176
+2026-04-20 13:17:19 [DEBUG   ] battle_engine                  — Kyntra → Mourin | Pixel Punch | dmg=33 | type=×1.0  CRIT | Mourin HP: 52/110
+2026-04-20 13:17:19 [DEBUG   ] battle_engine                  — Mourin → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 139/176
+2026-04-20 13:17:19 [DEBUG   ] battle_engine                  — Kyntra → Mourin | Pixel Punch | dmg=26 | type=×1.0 | Mourin HP: 26/110
+2026-04-20 13:17:19 [DEBUG   ] battle_engine                  — Mourin → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 132/176
+2026-04-20 13:17:20 [DEBUG   ] battle_engine                  — Kyntra → Mourin | Pixel Punch | dmg=24 | type=×1.0 | Mourin HP: 2/110
+2026-04-20 13:17:20 [DEBUG   ] battle_engine                  — Mourin → Kyntra | Wisp Touch | dmg=7 | type=×1.0 | Kyntra HP: 125/176
+2026-04-20 13:17:20 [DEBUG   ] battle_engine                  — Kyntra → Mourin | Pixel Punch | dmg=2 | type=×1.0 | Mourin HP: 0/110
+2026-04-20 13:17:20 [INFO    ] battle_engine                  — Battle end: winner=Kyntra after 5 turns | Kyntra HP 125/176 | Mourin HP 0/110
+2026-04-20 13:17:22 [INFO    ] wilderness.run_manager         — Normal battle won in 5 turns | perm_coins +2 | party HP: ['125/177', '0/92']
+2026-04-20 13:17:22 [INFO    ] wilderness.run_manager         — Level-up: Kyntra → Lv16 (max HP 188)
+2026-04-20 13:17:37 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:17:37 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=23 hp=['133/188', '0/92']
+2026-04-20 13:17:37 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:17:37 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=24 hp=['133/188', '0/92']
+2026-04-20 13:17:37 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=elite realm=Mind/Spirit id=24
+2026-04-20 13:17:37 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mind/Spirit, team_size=3, level_range=[13, 15], pool=9 champions
+2026-04-20 13:17:37 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Noema  lv14
+2026-04-20 13:17:37 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Noema  lv15
+2026-04-20 13:17:37 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Myrabyte  lv15
+2026-04-20 13:17:37 [INFO    ] wilderness.run_manager         — Elite battle: stage=2 realm=Mind/Spirit enemies=[Noema Lv14, Noema Lv15, Myrabyte Lv15]
+2026-04-20 13:17:37 [INFO    ] battle_engine                  — Team battle start: player[Kyntra Lv16, Zerine Lv11] vs ai[Noema Lv14, Noema Lv15, Myrabyte Lv15]
+2026-04-20 13:17:41 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=46 | type=×2.0 | Noema HP: 64/110
+2026-04-20 13:17:41 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=41 | type=×2.0 | Noema HP: 23/110
+2026-04-20 13:17:42 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=23 | type=×2.0 | Noema HP: 0/110
+2026-04-20 13:17:43 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=37 | type=×2.0 | Noema HP: 83/120
+2026-04-20 13:17:44 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=10 | type=×0.5 | Kyntra HP: 114/189
+2026-04-20 13:17:44 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=41 | type=×2.0 | Noema HP: 42/120
+2026-04-20 13:17:44 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=11 | type=×0.5 | Kyntra HP: 103/189
+2026-04-20 13:17:45 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=10 | type=×0.5 | Kyntra HP: 93/189
+2026-04-20 13:17:45 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=9 | type=×0.5 | Kyntra HP: 84/189
+2026-04-20 13:17:46 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=10 | type=×0.5 | Kyntra HP: 74/189
+2026-04-20 13:17:47 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=10 | type=×0.5 | Kyntra HP: 56/189
+2026-04-20 13:17:47 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=9 | type=×0.5 | Kyntra HP: 47/189
+2026-04-20 13:17:48 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=10 | type=×0.5 | Kyntra HP: 37/189
+2026-04-20 13:17:55 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=10 | type=×0.5 | Kyntra HP: 19/189
+2026-04-20 13:18:00 [DEBUG   ] battle_engine                  — Kyntra → Noema | Pixel Punch | dmg=40 | type=×2.0 | Noema HP: 2/120
+2026-04-20 13:18:00 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=10 | type=×0.5 | Kyntra HP: 9/189
+2026-04-20 13:18:04 [DEBUG   ] battle_engine                  — Noema → Kyntra | Thought Nudge | dmg=1 | type=×0.5 | Kyntra HP: 0/189
+2026-04-20 13:18:08 [DEBUG   ] battle_engine                  — Noema → Zerine | Thought Nudge | dmg=45 | type=×2.0 | Zerine HP: 0/91
+2026-04-20 13:18:08 [INFO    ] battle_engine                  — Team battle end: winner=Opponent | player 0 alive | opponent 2 alive | turns=16
+2026-04-20 13:18:10 [INFO    ] wilderness.run_manager         — Elite battle lost | party HP: ['0/188', '0/92']
+2026-04-20 13:18:10 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-20 13:18:10 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=24 hp=['0/188', '0/92']
+2026-04-20 13:18:10 [INFO    ] wilderness.run_manager         — Run ended: stages_won=1 defeated=True currency=24 party=[Kyntra Lv16 0/188HP, Zerine Lv11 0/92HP]
+2026-04-20 13:18:10 [INFO    ] wilderness.run_manager         — Perm currency awarded: +17 → total 17
+2026-04-20 13:18:10 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=1)
+2026-04-20 13:18:10 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=1 best_stage=1 active_run=False)
+2026-04-20 13:21:35 [INFO    ] wilderness.run_manager         — Run started: starter=Zerine Lv5 dev_mode=False
+2026-04-20 13:21:35 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-20 13:21:35 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['42/42']
+2026-04-20 13:21:35 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Flora id=1
+2026-04-20 13:21:35 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Flora, team_size=1, level_range=[1, 3], pool=7 champions
+2026-04-20 13:21:35 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Trevolt  lv3
+2026-04-20 13:21:35 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Flora enemy=Trevolt Lv3
+2026-04-20 13:21:35 [INFO    ] battle_engine                  — Battle start: Zerine Lv5 (HP 42) vs Trevolt Lv3 (HP 20)
+2026-04-20 13:22:16 [DEBUG   ] battle_engine                  — Trevolt → Zerine | Thorn Poke | dmg=1 | type=×0.5 | Zerine HP: 39/42
+2026-04-20 13:22:16 [DEBUG   ] battle_engine                  — Trevolt → Zerine | Thorn Poke | dmg=1 | type=×0.5 | Zerine HP: 33/42
+2026-04-20 13:22:16 [DEBUG   ] battle_engine                  — Trevolt → Zerine | Thorn Poke | dmg=1 | type=×0.5 | Zerine HP: 25/42
+2026-04-20 13:22:17 [DEBUG   ] battle_engine                  — Trevolt → Zerine | Thorn Poke | dmg=1 | type=×0.5 | Zerine HP: 14/42
+2026-04-20 13:22:17 [DEBUG   ] battle_engine                  — Trevolt → Zerine | Thorn Poke | dmg=1 | type=×0.5 | Zerine HP: 0/42
+2026-04-20 13:22:17 [INFO    ] battle_engine                  — Battle end: winner=Trevolt after 8 turns | Zerine HP 0/42 | Trevolt HP 6/20
+2026-04-20 13:22:17 [INFO    ] wilderness.run_manager         — Normal battle lost | party HP: ['0/42']
+2026-04-20 13:22:17 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-20 13:22:17 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['0/42']
+2026-04-20 13:22:17 [INFO    ] wilderness.run_manager         — Run ended: stages_won=0 defeated=True currency=0 party=[Zerine Lv5 0/42HP]
+2026-04-20 13:22:17 [WARNING ] wilderness.save_manager        — save_account: os.replace() denied (attempt 1/5) — file may be locked by OneDrive or antivirus. Retrying in 150ms…
+2026-04-20 13:22:17 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=2)
+2026-04-20 13:22:17 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=2 best_stage=1 active_run=False)
+2026-04-20 13:29:41 [INFO    ] __main__                       — Session interrupted by player (Ctrl-C)
+2026-04-20 13:29:41 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally

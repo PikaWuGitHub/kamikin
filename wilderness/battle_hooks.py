@@ -22,7 +22,7 @@ from typing import List, Dict, TYPE_CHECKING
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from battle_engine import Champion, BattleChampion, Battle, load_champions
-from battle_engine import StatusEffect as BE_StatusEffect
+from battle_engine import StatusEffect as BE_StatusEffect, MAX_LEVEL, STAT_MULT
 
 from .models import PartyMember, BattleResult, Item, ItemType
 from .scaling import scale_champion, scaled_stat
@@ -78,7 +78,38 @@ def party_member_to_battle_champion(
         bc.is_fainted = True
         bc.current_hp = 0
 
-    bc.level = member.level  # for display in battle UI
+    bc.level = member.level  # for display in battle UI and Resonance proration
+
+    # ── Apply Resonance ───────────────────────────────────────────
+    resonance = getattr(member, "resonance", None) or {}
+    if resonance:
+        # Combat stats (mgt/mag/grd/wil/swf): stored in resonance_bonus;
+        # get_stat() prorates them by level automatically.
+        bc.resonance_bonus = {
+            k: resonance[k]
+            for k in ("mgt", "mag", "grd", "wil", "swf")
+            if resonance.get(k, 0)
+        }
+
+        # VIT (HP): prorated bonus added directly to max_hp
+        vit_res = resonance.get("vit", 0)
+        if vit_res:
+            vit_add = round(vit_res * member.level / MAX_LEVEL)
+            bc.max_hp += vit_add
+            bc.current_hp = min(member.current_hp, bc.max_hp)
+
+        # STA (MP): flat bonus (MP is not level-scaled).
+        # bc.base is a deep copy — we bump base_sta so the engine's MP regen
+        # cap (self.base.max_mp) matches the member's max_mp with resonance.
+        sta_res = resonance.get("sta", 0)
+        if sta_res:
+            # base_sta × STAT_MULT = max_mp, so extra_base = sta_res // STAT_MULT
+            # (integer division loses up to STAT_MULT-1 = 9 MP — acceptable)
+            extra_base = sta_res // STAT_MULT
+            if extra_base:
+                bc.base.base_sta += extra_base
+            # Also cap current_mp to the updated max
+            bc.current_mp = min(member.current_mp, bc.base.max_mp)
 
     # Apply custom move slots if the player used the Move Tutor this run
     if member.custom_moves:

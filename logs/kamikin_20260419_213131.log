@@ -1,0 +1,205 @@
+2026-04-19 21:31:31 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260419_213131.log
+2026-04-19 21:31:31 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-19 21:31:31 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-19 21:31:41 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-19 21:31:43 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-19 21:31:47 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-19 21:31:47 [INFO    ] wilderness.save_manager        — New account created (no initial unlocks — awaiting starter ceremony)
+2026-04-19 21:32:33 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=0)
+2026-04-19 21:32:46 [INFO    ] wilderness.run_manager         — Run started: starter=Kitzen Lv5 dev_mode=False
+2026-04-19 21:32:46 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:32:46 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['32/32']
+2026-04-19 21:32:46 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Volt id=1
+2026-04-19 21:32:46 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Volt, team_size=1, level_range=[1, 3], pool=8 champions
+2026-04-19 21:32:46 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Axerra  lv3
+2026-04-19 21:32:46 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Volt enemy=Axerra Lv3
+2026-04-19 21:32:46 [INFO    ] battle_engine                  — Battle start: Kitzen Lv5 (HP 32) vs Axerra Lv3 (HP 30)
+2026-04-19 21:33:11 [DEBUG   ] battle_engine                  — Kitzen → Axerra | Cinder Jab | dmg=15 | type=×1.0 | Axerra HP: 15/30
+2026-04-19 21:33:11 [DEBUG   ] battle_engine                  — Axerra → Kitzen | Static Tap | dmg=2 | type=×1.0 | Kitzen HP: 30/32
+2026-04-19 21:39:44 [DEBUG   ] battle_engine                  — Kitzen → Axerra | Cinder Jab | dmg=14 | type=×1.0 | Axerra HP: 1/30
+2026-04-19 21:39:44 [DEBUG   ] battle_engine                  — Axerra → Kitzen | Static Tap | dmg=1 | type=×1.0 | Kitzen HP: 29/32
+2026-04-19 21:39:57 [DEBUG   ] battle_engine                  — Kitzen → Axerra | Cinder Jab | dmg=1 | type=×1.0 | Axerra HP: 0/30
+2026-04-19 21:39:57 [INFO    ] battle_engine                  — Battle end: winner=Kitzen after 3 turns | Kitzen HP 29/32 | Axerra HP 0/30
+2026-04-19 21:39:58 [INFO    ] wilderness.run_manager         — Normal battle won in 3 turns | perm_coins +1 | party HP: ['29/32']
+2026-04-19 21:39:58 [INFO    ] wilderness.run_manager         — Level-up: Kitzen → Lv6 (max HP 39)
+2026-04-19 21:40:29 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:40:29 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['35/39']
+2026-04-19 21:40:29 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:40:29 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['35/39']
+2026-04-19 21:40:29 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Volt id=2
+2026-04-19 21:40:29 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Volt, team_size=1, level_range=[2, 4], pool=8 champions
+2026-04-19 21:40:29 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Thryxa  lv4
+2026-04-19 21:40:29 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Volt enemy=Thryxa Lv4
+2026-04-19 21:40:29 [INFO    ] battle_engine                  — Battle start: Kitzen Lv6 (HP 35) vs Thryxa Lv4 (HP 30)
+2026-04-19 21:40:32 [DEBUG   ] battle_engine                  — Kitzen → Thryxa | Cinder Jab | dmg=22 | type=×1.0  CRIT | Thryxa HP: 8/30
+2026-04-19 21:40:32 [DEBUG   ] battle_engine                  — Thryxa → Kitzen | Static Tap | dmg=4 | type=×1.0  CRIT | Kitzen HP: 31/39
+2026-04-19 21:40:37 [DEBUG   ] battle_engine                  — Kitzen → Thryxa | Cinder Jab | dmg=8 | type=×1.0 | Thryxa HP: 0/30
+2026-04-19 21:40:37 [INFO    ] battle_engine                  — Battle end: winner=Kitzen after 2 turns | Kitzen HP 31/39 | Thryxa HP 0/30
+2026-04-19 21:40:47 [INFO    ] wilderness.run_manager         — Normal battle won in 2 turns | perm_coins +1 | party HP: ['31/39']
+2026-04-19 21:40:47 [INFO    ] wilderness.run_manager         — Level-up: Kitzen → Lv7 (max HP 46)
+2026-04-19 21:41:03 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:41:03 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['37/46']
+2026-04-19 21:41:03 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:41:03 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['37/46']
+2026-04-19 21:41:03 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Volt id=3
+2026-04-19 21:41:03 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Volt, team_size=1, level_range=[3, 5], pool=8 champions
+2026-04-19 21:41:03 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Thryxa  lv4
+2026-04-19 21:41:03 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Volt enemy=Thryxa Lv4
+2026-04-19 21:41:03 [INFO    ] battle_engine                  — Battle start: Kitzen Lv7 (HP 37) vs Thryxa Lv4 (HP 30)
+2026-04-19 21:41:10 [DEBUG   ] battle_engine                  — Thryxa → Kitzen | Static Tap | dmg=3 | type=×1.0 | Kitzen HP: 34/46
+2026-04-19 21:41:50 [DEBUG   ] battle_engine                  — Kitzen → Thryxa | Cinder Jab | dmg=18 | type=×1.0 | Thryxa HP: 12/30
+2026-04-19 21:41:50 [DEBUG   ] battle_engine                  — Thryxa → Kitzen | Static Tap | dmg=3 | type=×1.0 | Kitzen HP: 31/46
+2026-04-19 21:41:54 [DEBUG   ] battle_engine                  — Kitzen → Thryxa | Cinder Jab | dmg=12 | type=×1.0 | Thryxa HP: 0/30
+2026-04-19 21:41:54 [INFO    ] battle_engine                  — Battle end: winner=Kitzen after 3 turns | Kitzen HP 31/46 | Thryxa HP 0/30
+2026-04-19 21:41:55 [INFO    ] wilderness.run_manager         — Normal battle won in 3 turns | perm_coins +1 | party HP: ['31/46']
+2026-04-19 21:41:55 [INFO    ] wilderness.run_manager         — Level-up: Kitzen → Lv8 (max HP 52)
+2026-04-19 21:42:03 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:42:03 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['52/52']
+2026-04-19 21:42:03 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:42:03 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:42:03 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Volt id=4
+2026-04-19 21:42:03 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Volt, team_size=1, level_range=[4, 6], pool=8 champions
+2026-04-19 21:42:03 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Zintrel  lv5
+2026-04-19 21:42:03 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Volt enemy=Zintrel Lv5
+2026-04-19 21:42:03 [INFO    ] battle_engine                  — Battle start: Kitzen Lv8 (HP 52) vs Zintrel Lv5 (HP 30)
+2026-04-19 21:42:06 [DEBUG   ] battle_engine                  — Kitzen → Zintrel | Cinder Jab | dmg=30 | type=×1.0  CRIT | Zintrel HP: 0/30
+2026-04-19 21:42:06 [INFO    ] battle_engine                  — Battle end: winner=Kitzen after 1 turns | Kitzen HP 52/52 | Zintrel HP 0/30
+2026-04-19 21:42:08 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | perm_coins +1 | party HP: ['52/52']
+2026-04-19 21:42:08 [INFO    ] wilderness.run_manager         — Level-up: Kitzen → Lv9 (max HP 58)
+2026-04-19 21:42:19 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:42:19 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=4 hp=['58/58']
+2026-04-19 21:42:19 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:42:19 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:42:19 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Volt id=5
+2026-04-19 21:42:19 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Volt, team_size=1, level_range=[5, 7], pool=8 champions
+2026-04-19 21:42:19 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Thryxa  lv6
+2026-04-19 21:42:19 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Volt enemy=Thryxa Lv6
+2026-04-19 21:42:19 [INFO    ] battle_engine                  — Battle start: Kitzen Lv9 (HP 58) vs Thryxa Lv6 (HP 40)
+2026-04-19 21:42:25 [DEBUG   ] battle_engine                  — Kitzen → Thryxa | Cinder Jab | dmg=25 | type=×1.0 | Thryxa HP: 15/40
+2026-04-19 21:42:25 [DEBUG   ] battle_engine                  — Thryxa → Kitzen | Static Tap | dmg=5 | type=×1.0 | Kitzen HP: 53/58
+2026-04-19 21:42:27 [DEBUG   ] battle_engine                  — Kitzen → Thryxa | Cinder Jab | dmg=15 | type=×1.0 | Thryxa HP: 0/40
+2026-04-19 21:42:27 [INFO    ] battle_engine                  — Battle end: winner=Kitzen after 2 turns | Kitzen HP 53/58 | Thryxa HP 0/40
+2026-04-19 21:42:28 [INFO    ] wilderness.run_manager         — Normal battle won in 2 turns | perm_coins +1 | party HP: ['53/58']
+2026-04-19 21:42:28 [INFO    ] wilderness.run_manager         — Level-up: Kitzen → Lv10 (max HP 65)
+2026-04-19 21:42:32 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:42:32 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=5 hp=['59/65']
+2026-04-19 21:42:32 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:42:32 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:42:32 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=elite realm=Volt id=6
+2026-04-19 21:42:32 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Volt, team_size=2, level_range=[7, 9], pool=8 champions
+2026-04-19 21:42:32 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Soltren  lv7
+2026-04-19 21:42:32 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Zintrel  lv7
+2026-04-19 21:42:32 [INFO    ] wilderness.run_manager         — Elite battle: stage=1 realm=Volt enemies=[Soltren Lv7, Zintrel Lv7]
+2026-04-19 21:42:32 [INFO    ] battle_engine                  — Team battle start: player[Kitzen Lv10] vs ai[Soltren Lv7, Zintrel Lv7]
+2026-04-19 21:42:35 [DEBUG   ] battle_engine                  — Kitzen → Soltren | Cinder Jab | dmg=11 | type=×0.5 | Soltren HP: 49/60
+2026-04-19 21:42:35 [DEBUG   ] battle_engine                  — Soltren → Kitzen | Static Tap | dmg=5 | type=×1.0 | Kitzen HP: 54/65
+2026-04-19 21:42:38 [DEBUG   ] battle_engine                  — Kitzen → Soltren | Cinder Jab | dmg=18 | type=×0.5  CRIT | Soltren HP: 31/60
+2026-04-19 21:42:38 [DEBUG   ] battle_engine                  — Soltren → Kitzen | Static Tap | dmg=5 | type=×1.0 | Kitzen HP: 49/65
+2026-04-19 21:42:38 [DEBUG   ] battle_engine                  — Kitzen → Soltren | Cinder Jab | dmg=12 | type=×0.5 | Soltren HP: 19/60
+2026-04-19 21:42:38 [DEBUG   ] battle_engine                  — Soltren → Kitzen | Static Tap | dmg=5 | type=×1.0 | Kitzen HP: 44/65
+2026-04-19 21:42:39 [DEBUG   ] battle_engine                  — Kitzen → Soltren | Cinder Jab | dmg=13 | type=×0.5 | Soltren HP: 6/60
+2026-04-19 21:42:39 [DEBUG   ] battle_engine                  — Soltren → Kitzen | Static Tap | dmg=5 | type=×1.0 | Kitzen HP: 39/65
+2026-04-19 21:42:43 [DEBUG   ] battle_engine                  — Kitzen → Soltren | Cinder Jab | dmg=6 | type=×0.5 | Soltren HP: 0/60
+2026-04-19 21:42:45 [DEBUG   ] battle_engine                  — Kitzen → Zintrel | Cinder Jab | dmg=25 | type=×1.0 | Zintrel HP: 25/50
+2026-04-19 21:42:45 [DEBUG   ] battle_engine                  — Zintrel → Kitzen | Static Tap | dmg=7 | type=×1.0 | Kitzen HP: 32/65
+2026-04-19 21:42:46 [DEBUG   ] battle_engine                  — Kitzen → Zintrel | Cinder Jab | dmg=23 | type=×1.0 | Zintrel HP: 2/50
+2026-04-19 21:42:46 [DEBUG   ] battle_engine                  — Zintrel → Kitzen | Static Tap | dmg=8 | type=×1.0 | Kitzen HP: 24/65
+2026-04-19 21:42:47 [DEBUG   ] battle_engine                  — Kitzen → Zintrel | Cinder Jab | dmg=2 | type=×1.0 | Zintrel HP: 0/50
+2026-04-19 21:42:47 [INFO    ] battle_engine                  — Team battle end: winner=Player | player 1 alive | opponent 0 alive | turns=8
+2026-04-19 21:42:52 [INFO    ] wilderness.run_manager         — Elite battle won in 8 turns | perm_coins +2 | party HP: ['24/65']
+2026-04-19 21:42:52 [INFO    ] wilderness.run_manager         — Level-up: Kitzen → Lv11 (max HP 72)
+2026-04-19 21:43:01 [DEBUG   ] wilderness.enemy_gen           — Recruit candidate: Thryxa  lv7  shiny=False  (realm=Volt)
+2026-04-19 21:44:17 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:44:17 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=6 hp=['27/72', '50/50']
+2026-04-19 21:44:23 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:44:23 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=19 hp=['27/72', '50/50']
+2026-04-19 21:44:23 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Wind/Cosmic id=19
+2026-04-19 21:44:23 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Wind/Cosmic, team_size=1, level_range=[7, 9], pool=11 champions
+2026-04-19 21:44:23 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Gravyrn  lv7
+2026-04-19 21:44:23 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Wind/Cosmic enemy=Gravyrn Lv7
+2026-04-19 21:44:23 [INFO    ] battle_engine                  — Team battle start: player[Kitzen Lv11, Thryxa Lv7] vs ai[Gravyrn Lv7]
+2026-04-19 21:44:32 [DEBUG   ] battle_engine                  — Kitzen → Gravyrn | Cinder Jab | dmg=19 | type=×1.0 | Gravyrn HP: 41/60
+2026-04-19 21:44:32 [DEBUG   ] battle_engine                  — Gravyrn → Kitzen | Gust Clip | dmg=11 | type=×2.0 | Kitzen HP: 16/72
+2026-04-19 21:44:35 [DEBUG   ] battle_engine                  — Kitzen → Gravyrn | Cinder Jab | dmg=21 | type=×1.0 | Gravyrn HP: 20/60
+2026-04-19 21:44:35 [DEBUG   ] battle_engine                  — Gravyrn → Kitzen | Gust Clip | dmg=12 | type=×2.0 | Kitzen HP: 4/72
+2026-04-19 21:44:46 [DEBUG   ] battle_engine                  — Gravyrn → Thryxa | Gust Clip | dmg=8 | type=×1.0 | Thryxa HP: 42/50
+2026-04-19 21:45:00 [DEBUG   ] battle_engine                  — Gravyrn → Kitzen | Gravel Toss | dmg=4 | type=×2.0 | Kitzen HP: 0/72
+2026-04-19 21:45:22 [DEBUG   ] battle_engine                  — Gravyrn → Thryxa | Gravel Toss | dmg=17 | type=×2.0 | Thryxa HP: 25/50
+2026-04-19 21:45:23 [DEBUG   ] battle_engine                  — Gravyrn → Thryxa | Gravel Toss | dmg=17 | type=×2.0 | Thryxa HP: 8/50
+2026-04-19 21:45:23 [DEBUG   ] battle_engine                  — Gravyrn → Thryxa | Gravel Toss | dmg=8 | type=×2.0 | Thryxa HP: 0/50
+2026-04-19 21:45:23 [INFO    ] battle_engine                  — Team battle end: winner=Opponent | player 0 alive | opponent 1 alive | turns=7
+2026-04-19 21:45:25 [INFO    ] wilderness.run_manager         — Normal battle lost | party HP: ['0/72', '0/50']
+2026-04-19 21:45:25 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-19 21:45:25 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=19 hp=['0/72', '0/50']
+2026-04-19 21:45:25 [INFO    ] wilderness.run_manager         — Run ended: stages_won=1 defeated=True currency=149 party=[Kitzen Lv11 0/72HP, Thryxa Lv7 0/50HP]
+2026-04-19 21:45:25 [INFO    ] wilderness.run_manager         — Perm currency awarded: +7 → total 7
+2026-04-19 21:45:25 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-19 21:45:25 [ERROR   ] __main__                       — Unhandled error in wilderness_mode — aborting
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness_mode.py", line 520, in main
+    cmd_run(dev_mode=False)
+    ~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness_mode.py", line 399, in cmd_run
+    run_wilderness(
+    ~~~~~~~~~~~~~~^
+        starting_champion_name = starting_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        dev_mode  = dev_mode,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 728, in run_wilderness
+    clear_active_run(account, save_dir)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 324, in clear_active_run
+    save_account(profile, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 271, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
