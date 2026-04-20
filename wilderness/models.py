@@ -33,11 +33,17 @@ class RewardType(Enum):
 
 
 class ItemType(Enum):
-    HEAL_SMALL   = "heal_small"    # restore % HP to one mon
-    HEAL_FULL    = "heal_full"     # full HP + cleanse status
-    MP_RESTORE   = "mp_restore"    # restore MP to one mon
+    HEAL_LOW     = "heal_low"      # restore 25% HP to one mon
+    HEAL_MED     = "heal_med"      # restore 50% HP to one mon
+    HEAL_HIGH    = "heal_high"     # restore 75% HP to one mon
+    HEAL_MAX     = "heal_max"      # restore 100% HP + cleanse status
+    HEAL_STATUS  = "heal_status"   # cleanse status only
+    MP_RESTORE   = "mp_restore"    # restore 100% MP to one mon
     REVIVE       = "revive"        # revive a fainted mon with 50% HP
     RARE_EQUIP   = "rare_equip"    # placeholder for equipment system
+    # Legacy aliases kept for save-file forward-compat (not used in new code)
+    HEAL_SMALL   = "heal_small"
+    HEAL_FULL    = "heal_full"
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -116,6 +122,9 @@ class PartyMember:
     is_shiny:      bool = False
     # Status effects reset between battles for simplicity; extend if desired
     held_item:     Optional[str] = None  # ItemType.value placeholder
+    # Custom move slots: list of move names replacing the champion's default moves.
+    # Empty list = use the champion's default moveset from the CSV.
+    custom_moves:  List[str] = field(default_factory=list)
 
     @property
     def hp_pct(self) -> float:
@@ -194,6 +203,8 @@ class RunState:
     run_map:     Optional[RunMap] = None
     run_over:    bool = False
     stages_won:  int = 0   # how many stages cleared (for end-of-run summary)
+    # Permanent currency earned this run (added to meta.perm_currency at run end)
+    perm_currency_earned: int = 0
 
     # ── Convenience ──────────────────────────────────────────────
     @property
@@ -235,11 +246,15 @@ class MetaState:
     pc_bonuses         — champion_name → count of duplicate deposits (IV system placeholder)
     total_runs         — lifetime run counter
     best_stage         — furthest stage ever reached
+    perm_currency      — persistent currency for the Move Tutor (earned per run)
+    unlocked_moves     — champion_name → set of unlocked move names (Move Tutor)
     """
-    unlocked_champions: Set[str]          = field(default_factory=set)
-    pc_bonuses:         Dict[str, int]    = field(default_factory=dict)
-    total_runs:         int               = 0
-    best_stage:         int               = 0
+    unlocked_champions: Set[str]               = field(default_factory=set)
+    pc_bonuses:         Dict[str, int]         = field(default_factory=dict)
+    total_runs:         int                    = 0
+    best_stage:         int                    = 0
+    perm_currency:      int                    = 0
+    unlocked_moves:     Dict[str, Set[str]]    = field(default_factory=dict)
 
     def deposit_to_pc(self, champion_name: str) -> str:
         """

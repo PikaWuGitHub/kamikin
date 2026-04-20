@@ -1,0 +1,25 @@
+2026-04-16 13:56:04 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260416_135604.log
+2026-04-16 13:56:04 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-16 13:56:04 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=1 best_stage=0 active_run=True)
+2026-04-16 13:56:18 [INFO    ] wilderness.run_manager         — Run resumed: stage=2 node=battle party=[Solaire Lv12, Eldrune Lv9]
+2026-04-16 13:56:18 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Aqua/Frost id=7
+2026-04-16 13:56:18 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=1, level_range=[8, 10], pool=9 champions
+2026-04-16 13:56:18 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Finyu  lv8
+2026-04-16 13:56:18 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Aqua/Frost enemy=Finyu Lv8
+2026-04-16 13:56:28 [INFO    ] battle_engine                  — Team battle start: player[Solaire Lv12, Eldrune Lv9] vs ai[Finyu Lv8]
+2026-04-16 13:56:29 [DEBUG   ] battle_engine                  — Finyu → Solaire | Hydro Pulse | dmg=8 | type=×2.0 | Solaire HP: 0/82
+2026-04-16 13:56:37 [DEBUG   ] battle_engine                  — Finyu → Eldrune | Hydro Pulse | dmg=16 | type=×1.0 | Eldrune HP: 73/89
+2026-04-16 13:56:37 [DEBUG   ] battle_engine                  — Eldrune → Finyu | Ancient Claw | dmg=21 | type=×1.0 | Finyu HP: 49/70
+2026-04-16 13:56:38 [DEBUG   ] battle_engine                  — Finyu → Eldrune | Hydro Pulse | dmg=18 | type=×1.0 | Eldrune HP: 55/89
+2026-04-16 13:56:38 [DEBUG   ] battle_engine                  — Eldrune → Finyu | Ancient Claw | dmg=19 | type=×1.0 | Finyu HP: 30/70
+2026-04-16 13:56:38 [DEBUG   ] battle_engine                  — Finyu → Eldrune | Hydro Pulse | dmg=18 | type=×1.0 | Eldrune HP: 37/89
+2026-04-16 13:56:38 [DEBUG   ] battle_engine                  — Eldrune → Finyu | Ancient Claw | dmg=7 | type=×1.0 | Finyu HP: 23/70
+2026-04-16 13:56:50 [DEBUG   ] battle_engine                  — Finyu → Eldrune | Hydro Pulse | dmg=5 | type=×1.0 | Eldrune HP: 10/89
+2026-04-16 13:56:52 [DEBUG   ] battle_engine                  — Finyu → Eldrune | Hydro Pulse | dmg=10 | type=×1.0 | Eldrune HP: 0/89
+2026-04-16 13:56:52 [INFO    ] battle_engine                  — Team battle end: winner=Opponent | player 0 alive | opponent 1 alive | turns=6
+2026-04-16 13:56:55 [INFO    ] wilderness.run_manager         — Normal battle lost | party HP: ['0/82', '0/89']
+2026-04-16 13:56:55 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:56:55 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=7 hp=['0/82', '0/89']
+2026-04-16 13:56:55 [INFO    ] wilderness.run_manager         — Run ended: stages_won=1 defeated=True currency=68 party=[Solaire Lv12 0/82HP, Eldrune Lv9 0/89HP]
+2026-04-16 13:56:55 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=2)
+2026-04-16 13:57:01 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally

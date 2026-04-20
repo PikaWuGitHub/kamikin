@@ -1,0 +1,5 @@
+2026-04-15 22:41:50 [INFO    ] root                           — Logging started → /sessions/zealous-busy-archimedes/mnt/Kamikin (Video Game Project)/logs/kamikin_20260415_224150.log
+2026-04-15 22:41:50 [INFO    ] smoke_test                     — logger OK
+2026-04-15 22:41:50 [INFO    ] smoke_test                     — battle_engine import OK
+2026-04-15 22:41:50 [INFO    ] smoke_test                     — wilderness.save_manager / enemy_gen / run_manager OK
+2026-04-15 22:41:50 [INFO    ] smoke_test                     — wilderness_mode import OK

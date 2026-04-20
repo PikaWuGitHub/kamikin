@@ -1,0 +1,109 @@
+2026-04-16 13:52:08 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260416_135208.log
+2026-04-16 13:52:08 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-16 13:52:08 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=1 best_stage=0 active_run=True)
+2026-04-16 13:52:16 [INFO    ] wilderness.run_manager         — Run resumed: stage=1 node=battle party=[Solaire Lv7]
+2026-04-16 13:52:16 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Mythos id=2
+2026-04-16 13:52:16 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=1, level_range=[3, 5], pool=4 champions
+2026-04-16 13:52:16 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Galivor  lv5
+2026-04-16 13:52:16 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Mythos enemy=Galivor Lv5
+2026-04-16 13:52:16 [INFO    ] battle_engine                  — Battle start: Solaire Lv7 (HP 48) vs Galivor Lv5 (HP 30)
+2026-04-16 13:52:17 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=30 | type=×1.0  CRIT | Galivor HP: 0/30
+2026-04-16 13:52:17 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 1 turns | Solaire HP 48/48 | Galivor HP 0/30
+2026-04-16 13:52:18 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | party HP: ['48/48']
+2026-04-16 13:52:18 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv8 (max HP 54)
+2026-04-16 13:52:19 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:52:19 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['54/54']
+2026-04-16 13:52:19 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:52:19 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['54/54']
+2026-04-16 13:52:19 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Mythos id=3
+2026-04-16 13:52:19 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=1, level_range=[4, 6], pool=4 champions
+2026-04-16 13:52:19 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Galivor  lv5
+2026-04-16 13:52:19 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Mythos enemy=Galivor Lv5
+2026-04-16 13:52:19 [INFO    ] battle_engine                  — Battle start: Solaire Lv8 (HP 54) vs Galivor Lv5 (HP 30)
+2026-04-16 13:52:23 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=30 | type=×1.0 | Galivor HP: 0/30
+2026-04-16 13:52:23 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 1 turns | Solaire HP 54/54 | Galivor HP 0/30
+2026-04-16 13:52:24 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | party HP: ['54/54']
+2026-04-16 13:52:24 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv9 (max HP 61)
+2026-04-16 13:52:25 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:52:25 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['61/61']
+2026-04-16 13:52:25 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:52:25 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=4 hp=['61/61']
+2026-04-16 13:52:25 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Mythos id=4
+2026-04-16 13:52:25 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=1, level_range=[5, 7], pool=4 champions
+2026-04-16 13:52:25 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Galivor  lv6
+2026-04-16 13:52:25 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Mythos enemy=Galivor Lv6
+2026-04-16 13:52:25 [INFO    ] battle_engine                  — Battle start: Solaire Lv9 (HP 61) vs Galivor Lv6 (HP 40)
+2026-04-16 13:52:34 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=40 | type=×1.0 | Galivor HP: 0/40
+2026-04-16 13:52:34 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 1 turns | Solaire HP 61/61 | Galivor HP 0/40
+2026-04-16 13:52:35 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | party HP: ['61/61']
+2026-04-16 13:52:35 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv10 (max HP 68)
+2026-04-16 13:52:37 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:52:37 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=4 hp=['68/68']
+2026-04-16 13:52:37 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 252, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 13:52:37 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 410, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 252, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 13:52:37 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Mythos id=5
+2026-04-16 13:52:37 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=1, level_range=[6, 8], pool=4 champions
+2026-04-16 13:52:37 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Galivor  lv7
+2026-04-16 13:52:37 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Mythos enemy=Galivor Lv7
+2026-04-16 13:52:37 [INFO    ] battle_engine                  — Battle start: Solaire Lv10 (HP 68) vs Galivor Lv7 (HP 40)
+2026-04-16 13:52:42 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=40 | type=×1.0 | Galivor HP: 0/40
+2026-04-16 13:52:42 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 1 turns | Solaire HP 68/68 | Galivor HP 0/40
+2026-04-16 13:52:43 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | party HP: ['68/68']
+2026-04-16 13:52:43 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv11 (max HP 75)
+2026-04-16 13:52:57 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:52:57 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=5 hp=['75/75']
+2026-04-16 13:52:57 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 252, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 13:52:57 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 410, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 252, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 13:52:57 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=elite realm=Mythos id=6
+2026-04-16 13:52:57 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Mythos, team_size=2, level_range=[8, 10], pool=4 champions
+2026-04-16 13:52:57 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Galivor  lv10
+2026-04-16 13:52:57 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Galivor  lv9
+2026-04-16 13:52:57 [INFO    ] wilderness.run_manager         — Elite battle: stage=1 realm=Mythos enemies=[Galivor Lv10, Galivor Lv9]
+2026-04-16 13:52:57 [INFO    ] battle_engine                  — Team battle start: player[Solaire Lv11] vs ai[Galivor Lv10, Galivor Lv9]
+2026-04-16 13:53:07 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=11 | type=×1.0 | Galivor HP: 49/60
+2026-04-16 13:53:16 [DEBUG   ] battle_engine                  — Galivor → Solaire | Legend Pulse | dmg=13 | type=×1.0 | Solaire HP: 44/75
+2026-04-16 13:53:20 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=49 | type=×1.0  CRIT | Galivor HP: 0/60
+2026-04-16 13:53:43 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=44 | type=×1.0 | Galivor HP: 6/50
+2026-04-16 13:53:43 [DEBUG   ] battle_engine                  — Galivor → Solaire | Myth Cannon | dmg=37 | type=×1.0 | Solaire HP: 7/75
+2026-04-16 13:53:45 [DEBUG   ] battle_engine                  — Solaire → Galivor | Ember Blast | dmg=6 | type=×1.0 | Galivor HP: 0/50
+2026-04-16 13:53:45 [INFO    ] battle_engine                  — Team battle end: winner=Player | player 1 alive | opponent 0 alive | turns=5
+2026-04-16 13:53:52 [INFO    ] wilderness.run_manager         — Elite battle won in 5 turns | party HP: ['7/75']
+2026-04-16 13:53:52 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv12 (max HP 82)
+2026-04-16 13:53:55 [DEBUG   ] wilderness.enemy_gen           — Recruit candidate: Eldrune  lv9  shiny=False  (realm=Mythos)
+2026-04-16 13:53:57 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:53:57 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=6 hp=['8/82', '89/89']
+2026-04-16 13:54:00 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=1)
+2026-04-16 13:54:00 [DEBUG   ] wilderness.run_manager         — Autosave: stage=2 node=7 hp=['8/82', '89/89']
+2026-04-16 13:54:00 [DEBUG   ] wilderness.run_manager         — Map node: stage=2 type=battle realm=Aqua/Frost id=7
+2026-04-16 13:54:00 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=1, level_range=[8, 10], pool=9 champions
+2026-04-16 13:54:00 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Frisela  lv10
+2026-04-16 13:54:00 [INFO    ] wilderness.run_manager         — Normal battle: stage=2 realm=Aqua/Frost enemy=Frisela Lv10
+2026-04-16 13:54:04 [INFO    ] battle_engine                  — Team battle start: player[Solaire Lv12, Eldrune Lv9] vs ai[Frisela Lv10]
+2026-04-16 14:32:59 [INFO    ] __main__                       — Session interrupted by player (Ctrl-C)
+2026-04-16 14:32:59 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally

@@ -14,18 +14,25 @@ All IO is print/input for now, matching the existing battle engine's CLI.
 """
 
 from __future__ import annotations
+import logging
 import random
 from typing import Dict, List, Optional, TYPE_CHECKING
 
+log = logging.getLogger(__name__)
+
 from .config import (
     PARTY_MAX_SIZE, STARTING_LEVEL, SHINY_CHANCE,
-    MAP_BRANCH_COUNT,
+    MAP_BRANCH_COUNT, PERM_CURRENCY_PER_MONSTER,
+    SHOP_HEAL_LOW_COST, SHOP_HEAL_MED_COST, SHOP_HEAL_HIGH_COST,
+    SHOP_HEAL_MAX_COST, SHOP_HEAL_STATUS_COST, SHOP_MP_RESTORE_COST,
+    SHOP_REVIVE_COST,
 )
 from .models import (
     RunState, MetaState, PartyMember, NodeType,
-    RewardType, Item,
+    RewardType, Item, ItemType,
 )
-from .items import apply_item, random_item
+from .items import apply_item, random_item, ITEM_FACTORIES
+from .move_tutor import run_move_tutor
 from .rewards import normal_battle_rewards, elite_battle_rewards, apply_reward
 from .enemy_gen import (
     generate_normal_encounter, generate_elite_encounter,
@@ -84,54 +91,189 @@ def _choose_int(prompt: str, lo: int, hi: int) -> int:
 # ITEM USAGE
 # ═══════════════════════════════════════════════════════════════
 
-def offer_item_use(run: RunState):
-    """Allow the player to use items from inventory before a battle."""
+def _use_item_menu(run: RunState):
+    """Let the player use an item from their inventory (out-of-battle)."""
     if not run.inventory:
+        print("  Your bag is empty.")
         return
 
-    print("\n  You have items:")
+    print("\n  Your items:")
     for i, item in enumerate(run.inventory, 1):
         print(f"  [{i}] {item}")
-    print("  [0] Skip")
+    print("  [0] Cancel")
 
     while True:
-        choice = input("  Use an item? > ").strip()
+        choice = input("  Use item > ").strip()
         if choice == "0" or choice == "":
             return
 
         try:
             idx = int(choice) - 1
-            if 0 <= idx < len(run.inventory):
-                item = run.inventory[idx]
-                # Pick target
-                living = [m for m in run.party if not m.is_fainted]
-                if not living:
-                    print("  No living party members to use item on.")
-                    return
+            if not (0 <= idx < len(run.inventory)):
+                raise ValueError
+        except ValueError:
+            print("  Invalid choice.")
+            continue
 
-                # For revives, show fainted too
-                if item.item_type.value == "revive":
-                    targets = [m for m in run.party if m.is_fainted]
-                    if not targets:
-                        print("  No fainted monsters to revive.")
-                        continue
-                else:
-                    targets = living
+        item = run.inventory[idx]
+        living = [m for m in run.party if not m.is_fainted]
 
-                print("  Target:")
-                for j, m in enumerate(targets, 1):
-                    print(f"    [{j}] {m.summary()}")
-                t_idx = _choose_int("Choose target", 1, len(targets)) - 1
-                target = targets[t_idx]
+        if item.item_type == ItemType.REVIVE:
+            targets = [m for m in run.party if m.is_fainted]
+            if not targets:
+                print("  No fainted monsters to revive.")
+                continue
+        else:
+            targets = living
+            if not targets:
+                print("  No living party members.")
+                return
 
-                msg = apply_item(item, target)
-                print(f"  {msg}")
-                run.inventory.pop(idx)
+        if len(targets) == 1:
+            target = targets[0]
+        else:
+            print("  Target:")
+            for j, m in enumerate(targets, 1):
+                print(f"    [{j}] {m.summary()}")
+            t_idx = _choose_int("Choose target", 1, len(targets)) - 1
+            target = targets[t_idx]
+
+        msg = apply_item(item, target)
+        print(f"  {msg}")
+        run.inventory.pop(idx)
+        return
+
+
+# ═══════════════════════════════════════════════════════════════
+# SHOP
+# ═══════════════════════════════════════════════════════════════
+
+# Price list for the between-battle shop (in-run currency)
+_SHOP_ITEMS: list = [
+    (ItemType.HEAL_LOW,    SHOP_HEAL_LOW_COST),
+    (ItemType.HEAL_MED,    SHOP_HEAL_MED_COST),
+    (ItemType.HEAL_HIGH,   SHOP_HEAL_HIGH_COST),
+    (ItemType.HEAL_MAX,    SHOP_HEAL_MAX_COST),
+    (ItemType.HEAL_STATUS, SHOP_HEAL_STATUS_COST),
+    (ItemType.MP_RESTORE,  SHOP_MP_RESTORE_COST),
+    (ItemType.REVIVE,      SHOP_REVIVE_COST),
+]
+
+
+def _run_shop(run: RunState):
+    """Simple item shop — spend currency to stock up between battles."""
+    _section("Shop")
+    while True:
+        print(f"  Currency: {run.currency} 💰")
+        print()
+        for i, (itype, price) in enumerate(_SHOP_ITEMS, 1):
+            item   = ITEM_FACTORIES[itype]()
+            afford = "✓" if run.currency >= price else "✗"
+            print(f"  [{i}] {item.name}  —  {price} 💰  {afford}")
+            print(f"       {item.description}")
+        print("  [0] Leave shop")
+        print()
+
+        choice = input("  Buy > ").strip()
+        if choice == "0" or choice == "":
+            return
+        try:
+            idx = int(choice) - 1
+            if not (0 <= idx < len(_SHOP_ITEMS)):
+                raise ValueError
+        except ValueError:
+            print("  Invalid choice.")
+            continue
+
+        itype, price = _SHOP_ITEMS[idx]
+        if run.currency < price:
+            print(f"  Not enough currency (need {price}, have {run.currency}).")
+            continue
+
+        item = ITEM_FACTORIES[itype]()
+        run.inventory.append(item)
+        run.currency -= price
+        print(f"  Bought {item.name}! ({run.currency} 💰 remaining)")
+
+
+# ═══════════════════════════════════════════════════════════════
+# SWITCH LEAD
+# ═══════════════════════════════════════════════════════════════
+
+def _switch_lead(run: RunState):
+    """Reorder the party — move a living bench member to the front slot."""
+    living = [(i, m) for i, m in enumerate(run.party) if not m.is_fainted]
+    if len(living) <= 1:
+        print("  Only one living party member — nothing to switch.")
+        return
+
+    lead = run.party[0]
+    print(f"\n  Current lead: {lead.champion_name} Lv{lead.level} "
+          f"({lead.current_hp}/{lead.max_hp} HP)")
+    print("  Switch to:")
+    bench_living = [(i, m) for i, m in living if i != 0]
+    for j, (_, m) in enumerate(bench_living, 1):
+        print(f"  [{j}] {m.champion_name} Lv{m.level}  "
+              f"({m.current_hp}/{m.max_hp} HP)")
+    print("  [0] Cancel")
+
+    while True:
+        raw = input("  Switch > ").strip()
+        if raw == "0" or raw == "":
+            return
+        try:
+            idx = int(raw) - 1
+            if 0 <= idx < len(bench_living):
+                slot, _ = bench_living[idx]
+                # Swap with party[0]
+                run.party[0], run.party[slot] = run.party[slot], run.party[0]
+                new_lead = run.party[0]
+                print(f"  {new_lead.champion_name} is now the lead!")
                 return
         except ValueError:
             pass
-
         print("  Invalid choice.")
+
+
+# ═══════════════════════════════════════════════════════════════
+# BETWEEN-BATTLE MENU
+# ═══════════════════════════════════════════════════════════════
+
+def between_battle_menu(run: RunState, meta: MetaState = None, all_champions: Dict = None):
+    """
+    Optional actions between battles: shop, use item, switch lead, Move Tutor.
+    Loops until the player chooses to continue.
+    """
+    has_living_bench = sum(1 for m in run.party if not m.is_fainted) > 1
+    has_tutor = meta is not None and all_champions is not None
+
+    while True:
+        _section("Between Battles")
+        _print_party(run)
+        print()
+        print("  [1] Continue to next battle")
+        print("  [2] Enter shop  💰")
+        if run.inventory:
+            print("  [3] Use an item")
+        if has_living_bench:
+            print("  [4] Switch lead champion")
+        if has_tutor:
+            print(f"  [5] Visit the Wandering Sage (Move Tutor)  [{meta.perm_currency} 𝕮]")
+        print()
+
+        choice = input("  > ").strip()
+        if choice == "1" or choice == "":
+            return
+        elif choice == "2":
+            _run_shop(run)
+        elif choice == "3" and run.inventory:
+            _use_item_menu(run)
+        elif choice == "4" and has_living_bench:
+            _switch_lead(run)
+        elif choice == "5" and has_tutor:
+            run_move_tutor(run, meta, all_champions)
+        else:
+            print("  Invalid choice.")
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -185,6 +327,7 @@ def award_exp(run: RunState, all_champions: Dict) -> None:
         if champion is None:
             continue
         msg = apply_level_up(member, champion)
+        log.info("Level-up: %s → Lv%d (max HP %d)", member.champion_name, member.level, member.max_hp)
         print(msg)
 
 
@@ -200,63 +343,76 @@ def handle_recruitment(
     """
     Handle post-elite monster recruitment.
 
-    Party < 6  → add directly
-    Party = 6  → player chooses: replace a member or send to PC
+    Party has space  → offer Add or Release
+    Party is full    → offer Replace, Send to PC, or Release
+
+    Adding to the party also permanently unlocks the champion in meta
+    so they're available as a starter in future runs.
     """
     shiny_tag = " ✨ SHINY" if is_shiny else ""
     type_str  = champion.type1 + (f"/{champion.type2}" if champion.type2 else "")
-    _section(f"Recruitment Offer")
+    _section("Recruitment Offer")
     print(f"  A wild {champion.name}{shiny_tag} [{type_str}] Lv{level} appeared!")
 
-    print("\n  [1] Add to party")
-    print("  [2] Send to PC (permanent unlock)")
-    print("  [3] Release (skip)")
+    party_full = len(run.party) >= PARTY_MAX_SIZE
 
-    choice = _choose_int("Choose", 1, 3)
+    if not party_full:
+        # Party has room — simple add or release
+        print("\n  [1] Add to party  (also unlocks for future runs)")
+        print("  [2] Release (skip)")
+        choice = _choose_int("Choose", 1, 2)
+        if choice == 2:
+            print(f"  {champion.name} was released.")
+            return
+        # Add to party and unlock
+        new_member = _make_party_member(champion, level, is_shiny, all_champions)
+        run.party.append(new_member)
+        meta.unlocked_champions.add(champion.name)
+        print(f"  {champion.name} joined the party! (Slot {len(run.party)}/{PARTY_MAX_SIZE})")
+        print(f"  {champion.name} has been permanently unlocked!")
+    else:
+        # Party is full — replace, send to PC, or release
+        print(f"\n  Party is full ({PARTY_MAX_SIZE}/{PARTY_MAX_SIZE})!")
+        print("  [1] Replace a party member  (replaced mon goes to PC)")
+        print("  [2] Send to PC  (permanent unlock, skip party slot)")
+        print("  [3] Release (skip)")
+        choice = _choose_int("Choose", 1, 3)
 
-    if choice == 3:
-        print(f"  {champion.name} was released.")
-        return
-
-    new_member = _make_party_member(champion, level, is_shiny, all_champions)
-
-    if choice == 2 or (choice == 1 and len(run.party) >= PARTY_MAX_SIZE):
-        if choice == 1:
-            # Party full — forced choice
-            print(f"\n  Party is full ({PARTY_MAX_SIZE}/{PARTY_MAX_SIZE})!")
-            print("  [1] Replace a party member")
-            print("  [2] Send to PC instead")
-            sub = _choose_int("Choose", 1, 2)
-            if sub == 2:
-                choice = 2
+        if choice == 3:
+            print(f"  {champion.name} was released.")
+            return
 
         if choice == 2:
             msg = handle_pc_deposit(champion.name, meta, save_dir)
             print(f"  {msg}")
             return
 
-    # Add to party (possibly replacing someone)
-    if len(run.party) < PARTY_MAX_SIZE:
-        run.party.append(new_member)
-        print(f"  {champion.name} joined the party! (Slot {len(run.party)}/{PARTY_MAX_SIZE})")
-    else:
-        # Replace
+        # Replace a party member
+        new_member = _make_party_member(champion, level, is_shiny, all_champions)
         print("\n  Choose a party member to replace:")
         for i, m in enumerate(run.party, 1):
             print(f"  [{i}] {m.summary()}")
         slot = _choose_int("Replace slot", 1, len(run.party)) - 1
         old_name = run.party[slot].champion_name
         run.party[slot] = new_member
-        print(f"  {old_name} was sent to the PC.")
+        # Replaced mon goes to PC; new mon also gets unlocked
         msg = handle_pc_deposit(old_name, meta, save_dir)
-        print(f"  {msg}")
+        print(f"  {old_name} was sent to the PC.  {msg}")
+        meta.unlocked_champions.add(champion.name)
+        print(f"  {champion.name} joined the party! (Slot {slot + 1}/{PARTY_MAX_SIZE})")
+        print(f"  {champion.name} has been permanently unlocked!")
 
 
 # ═══════════════════════════════════════════════════════════════
 # STAGE FLOW
 # ═══════════════════════════════════════════════════════════════
 
-def run_normal_battle(run: RunState, all_champions: Dict, verbose: bool = True) -> bool:
+def run_normal_battle(
+    run: RunState,
+    meta: MetaState,
+    all_champions: Dict,
+    verbose: bool = True,
+) -> bool:
     """Run one normal battle. Returns True if player won."""
     realm   = run.run_map.current_node().realm
     enemies = generate_normal_encounter(all_champions, realm, run.highest_level)
@@ -265,22 +421,35 @@ def run_normal_battle(run: RunState, all_champions: Dict, verbose: bool = True) 
         f"{e.name} Lv{e.level}" if e.level is not None else e.name
         for e in enemies
     )
+    log.info("Normal battle: stage=%d realm=%s enemy=%s", run.stage, realm.name, names)
     _banner(f"Stage {run.stage}  ⚔  Wild Encounter")
     print(f"  Realm: {realm}")
     print(f"  Enemy: {names}")
 
-    # Item use before battle
-    offer_item_use(run)
+    try:
+        result = run_wilderness_battle(run.party, enemies, all_champions, verbose,
+                                       inventory=run.inventory)
+    except Exception:
+        log.exception("Exception during normal battle — treating as defeat")
+        return False
 
-    result = run_wilderness_battle(run.party, enemies, all_champions, verbose)
     run.apply_battle_result(result)
 
     if result.player_won:
+        # Perm currency: 1 monster × stage_number
+        coins = PERM_CURRENCY_PER_MONSTER * run.stage
+        run.perm_currency_earned += coins
+        log.info("Normal battle won in %d turns | perm_coins +%d | party HP: %s",
+                 result.turns_taken, coins,
+                 [f"{h}/{m.max_hp}" for h, m in zip(result.party_hp_after, run.party)])
         print("\n  ✦ Victory!")
         award_exp(run, all_champions)
         rewards = normal_battle_rewards(run.party)
         offer_rewards(run, rewards)
+        between_battle_menu(run, meta, all_champions)
     else:
+        log.info("Normal battle lost | party HP: %s",
+                 [f"{h}/{m.max_hp}" for h, m in zip(result.party_hp_after, run.party)])
         print("\n  ✦ Defeat...")
 
     return result.player_won
@@ -301,16 +470,27 @@ def run_elite_battle(
         f"{e.name} Lv{e.level}" if e.level is not None else e.name
         for e in enemies
     )
+    log.info("Elite battle: stage=%d realm=%s enemies=[%s]", run.stage, realm.name, names)
     _banner(f"Stage {run.stage}  💀  Elite Encounter  ({len(enemies)} enemies)")
     print(f"  Realm: {realm}")
     print(f"  Enemies: {names}")
 
-    offer_item_use(run)
+    try:
+        result = run_wilderness_battle(run.party, enemies, all_champions, verbose,
+                                       inventory=run.inventory)
+    except Exception:
+        log.exception("Exception during elite battle — treating as defeat")
+        return False
 
-    result = run_wilderness_battle(run.party, enemies, all_champions, verbose)
     run.apply_battle_result(result)
 
     if result.player_won:
+        # Perm currency: len(enemies) monsters × stage_number
+        coins = PERM_CURRENCY_PER_MONSTER * run.stage * len(enemies)
+        run.perm_currency_earned += coins
+        log.info("Elite battle won in %d turns | perm_coins +%d | party HP: %s",
+                 result.turns_taken, coins,
+                 [f"{h}/{m.max_hp}" for h, m in zip(result.party_hp_after, run.party)])
         print("\n  ✦ Elite defeated!")
         award_exp(run, all_champions)
 
@@ -324,7 +504,11 @@ def run_elite_battle(
         )
         handle_recruitment(run, meta, champ, level, is_shiny, all_champions, save_dir)
         run.stages_won += 1
+
+        between_battle_menu(run, meta, all_champions)
     else:
+        log.info("Elite battle lost | party HP: %s",
+                 [f"{h}/{m.max_hp}" for h, m in zip(result.party_hp_after, run.party)])
         print("\n  ✦ Defeat...")
 
     return result.player_won
@@ -380,7 +564,14 @@ def _autosave(run: RunState, account: "AccountProfile | None", save_dir: str):
     # Lazy import to avoid a circular dependency at module load time
     from .save_manager import save_account
     account.active_run = run
-    save_account(account, save_dir)
+    try:
+        save_account(account, save_dir)
+        log.debug("Autosave: stage=%d node=%d hp=%s",
+                  run.stage,
+                  run.run_map.current if run.run_map else -1,
+                  [f"{m.current_hp}/{m.max_hp}" for m in run.party])
+    except Exception:
+        log.exception("Autosave failed — game state NOT persisted")
 
 
 def run_wilderness(
@@ -421,8 +612,12 @@ def run_wilderness(
     # ── Resume or start fresh ─────────────────────────────────────
     if account is not None and account.active_run is not None:
         run = account.active_run
-        _banner("WILDERNESS MODE — Resuming Run")
         node = run.run_map.current_node() if run.run_map else None
+        log.info("Run resumed: stage=%d node=%s party=[%s]",
+                 run.stage,
+                 node.node_type.value if node else "?",
+                 ", ".join(f"{m.champion_name} Lv{m.level}" for m in run.party))
+        _banner("WILDERNESS MODE — Resuming Run")
         print(f"  Resumed at stage {run.stage}"
               + (f"  ({node.node_type.value.title()} node)" if node else ""))
         _print_party(run)
@@ -437,6 +632,8 @@ def run_wilderness(
         run     = RunState(party=[starter], currency=0, stage=1)
         run.run_map = generate_map()
 
+        log.info("Run started: starter=%s Lv%d dev_mode=%s",
+                 starter.champion_name, starter.level, dev_mode)
         _banner("WILDERNESS MODE — Run Start")
         if dev_mode:
             print("  ⚠  DEV MODE — progress will not be saved")
@@ -454,9 +651,11 @@ def run_wilderness(
             break
 
         node = run.run_map.current_node()
+        log.debug("Map node: stage=%d type=%s realm=%s id=%d",
+                  node.stage, node.node_type.value, node.realm.name, node.node_id)
 
         if node.node_type == NodeType.BATTLE:
-            won = run_normal_battle(run, all_champions, verbose)
+            won = run_normal_battle(run, meta, all_champions, verbose)
             # Autosave: battle result (HP, faint state) written back to run
             _autosave(run, account, save_dir)
 
@@ -497,6 +696,10 @@ def run_wilderness(
         _print_party(run)
 
     # ── Run end ───────────────────────────────────────────────────
+    log.info("Run ended: stages_won=%d defeated=%s currency=%d party=[%s]",
+             run.stages_won, run.run_over, run.currency,
+             ", ".join(f"{m.champion_name} Lv{m.level} {m.current_hp}/{m.max_hp}HP"
+                       for m in run.party))
     _banner("Run Over")
     if run.run_over:
         print(f"  Your party was defeated on stage {run.stage}.")
@@ -507,6 +710,14 @@ def run_wilderness(
     _print_party(run)
 
     # ── Meta update & save cleanup ────────────────────────────────
+    # Award permanent currency earned this run
+    if run.perm_currency_earned > 0:
+        meta.perm_currency += run.perm_currency_earned
+        print(f"\n  ✦ You earned {run.perm_currency_earned} 𝕮 for the Wandering Sage!")
+        print(f"    Total: {meta.perm_currency} 𝕮")
+        log.info("Perm currency awarded: +%d → total %d",
+                 run.perm_currency_earned, meta.perm_currency)
+
     update_run_stats(meta, run.stages_won, save_dir)
     print(pc_summary(meta))
 

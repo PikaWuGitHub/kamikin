@@ -1,0 +1,6 @@
+2026-04-15 22:42:18 [INFO    ] root                           — Logging started → /sessions/zealous-busy-archimedes/mnt/Kamikin (Video Game Project)/logs/kamikin_20260415_224218.log
+2026-04-15 22:42:18 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Fire Peaks, team_size=3, level_range=[6, 8], pool=60 champions
+2026-04-15 22:42:18 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Miravi  lv6
+2026-04-15 22:42:18 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Myrabyte  lv7
+2026-04-15 22:42:18 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Kitzen  lv6
+2026-04-15 22:42:18 [DEBUG   ] wilderness.enemy_gen           — Recruit candidate: Thryxa  lv8  shiny=False  (realm=Fire Peaks)

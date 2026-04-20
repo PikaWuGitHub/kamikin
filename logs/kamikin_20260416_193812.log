@@ -1,0 +1,5 @@
+2026-04-16 19:38:12 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260416_193812.log
+2026-04-16 19:38:12 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-16 19:38:12 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=3 best_stage=1 active_run=True)
+2026-04-16 19:39:26 [INFO    ] __main__                       — Session interrupted by player (Ctrl-C)
+2026-04-16 19:39:26 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally

@@ -22,8 +22,9 @@ from typing import List, Dict, TYPE_CHECKING
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from battle_engine import Champion, BattleChampion, Battle, load_champions
+from battle_engine import StatusEffect as BE_StatusEffect
 
-from .models import PartyMember, BattleResult
+from .models import PartyMember, BattleResult, Item, ItemType
 from .scaling import scale_champion, scaled_stat
 
 
@@ -79,7 +80,34 @@ def party_member_to_battle_champion(
 
     bc.level = member.level  # for display in battle UI
 
+    # Apply custom move slots if the player used the Move Tutor this run
+    if member.custom_moves:
+        move_lookup = _get_move_lookup(all_champions)
+        custom = [move_lookup[n] for n in member.custom_moves if n in move_lookup]
+        if custom:
+            bc.base.moves = custom
+
     return bc
+
+
+# ── Global move registry ─────────────────────────────────────────
+
+_move_lookup_cache: Dict[str, object] | None = None
+
+
+def _get_move_lookup(all_champions: Dict[str, Champion]) -> Dict[str, object]:
+    """
+    Build (and cache) a name→Move lookup table from the full champion roster.
+    Used by the Move Tutor and custom_moves resolution.
+    """
+    global _move_lookup_cache
+    if _move_lookup_cache is None:
+        lookup: Dict[str, object] = {}
+        for c in all_champions.values():
+            for mv in c.moves:
+                lookup[mv.name] = mv
+        _move_lookup_cache = lookup
+    return _move_lookup_cache
 
 
 def read_back_results(
@@ -93,6 +121,128 @@ def read_back_results(
         member.is_fainted = bc.is_fainted
 
 
+# ── In-battle item application ────────────────────────────────────
+
+def _apply_item_to_bc(item: "Item", bc: BattleChampion) -> str:
+    """
+    Apply a wilderness item directly to a BattleChampion during battle.
+    Mirrors apply_item() in items.py but operates on BattleChampion fields.
+    """
+    if item.item_type in (ItemType.HEAL_LOW, ItemType.HEAL_SMALL):
+        fraction = 0.25 if item.item_type == ItemType.HEAL_LOW else 0.40
+        amount   = max(1, int(bc.max_hp * fraction))
+        old_hp   = bc.current_hp
+        bc.current_hp = min(bc.max_hp, bc.current_hp + amount)
+        return f"{bc.name} recovered {bc.current_hp - old_hp} HP."
+
+    elif item.item_type == ItemType.HEAL_MED:
+        amount = max(1, int(bc.max_hp * 0.50))
+        old_hp = bc.current_hp
+        bc.current_hp = min(bc.max_hp, bc.current_hp + amount)
+        return f"{bc.name} recovered {bc.current_hp - old_hp} HP."
+
+    elif item.item_type == ItemType.HEAL_HIGH:
+        amount = max(1, int(bc.max_hp * 0.75))
+        old_hp = bc.current_hp
+        bc.current_hp = min(bc.max_hp, bc.current_hp + amount)
+        return f"{bc.name} recovered {bc.current_hp - old_hp} HP."
+
+    elif item.item_type in (ItemType.HEAL_MAX, ItemType.HEAL_FULL):
+        bc.current_hp   = bc.max_hp
+        bc.status       = BE_StatusEffect.NONE
+        bc.status_turns = 0
+        return f"{bc.name} was fully healed and status cleared!"
+
+    elif item.item_type == ItemType.HEAL_STATUS:
+        bc.status       = BE_StatusEffect.NONE
+        bc.status_turns = 0
+        return f"{bc.name}'s status conditions were cleansed."
+
+    elif item.item_type == ItemType.MP_RESTORE:
+        bc.current_mp = bc.base.max_mp
+        return f"{bc.name}'s MP was fully restored."
+
+    elif item.item_type == ItemType.REVIVE:
+        if not bc.is_fainted:
+            return f"{bc.name} isn't fainted — revive wasted!"
+        bc.is_fainted = False
+        bc.current_hp = max(1, int(bc.max_hp * 0.50))
+        return f"{bc.name} was revived with {bc.current_hp} HP!"
+
+    elif item.item_type == ItemType.RARE_EQUIP:
+        return f"[{item.name}] equipped to {bc.name} (passive system pending)."
+
+    return f"Used {item.name} on {bc.name}."
+
+
+def _make_battle_item_callback(inventory: list):
+    """
+    Returns a callback for in-battle item use.
+    Signature: callback(active_bc, team_bcs) -> bool
+    Modifies inventory in-place when an item is consumed.
+    """
+    def callback(active_bc: BattleChampion, team_bcs: list) -> bool:
+        if not inventory:
+            print("  Your bag is empty!")
+            return False
+
+        print("\n  Your items:")
+        for i, item in enumerate(inventory, 1):
+            print(f"  [{i}] {item}")
+        print("  [0] Cancel")
+
+        while True:
+            raw = input("  Item > ").strip()
+            if raw == "0" or raw == "":
+                return False
+            try:
+                idx = int(raw) - 1
+                if not (0 <= idx < len(inventory)):
+                    raise ValueError
+            except ValueError:
+                print("  Invalid — enter an item number or 0 to cancel.")
+                continue
+
+            item = inventory[idx]
+
+            # Determine valid targets
+            if item.item_type == ItemType.REVIVE:
+                targets = [bc for bc in team_bcs if bc.is_fainted]
+                if not targets:
+                    print("  No fainted monsters to revive.")
+                    continue
+            else:
+                targets = [bc for bc in team_bcs if not bc.is_fainted]
+                if not targets:
+                    print("  No available targets.")
+                    continue
+
+            if len(targets) == 1:
+                target = targets[0]
+            else:
+                print("  Target:")
+                for j, bc in enumerate(targets, 1):
+                    pct = int(bc.current_hp / bc.max_hp * 100) if bc.max_hp else 0
+                    print(f"  [{j}] {bc.name} — {bc.current_hp}/{bc.max_hp} HP ({pct}%)")
+                while True:
+                    t_raw = input("  Target > ").strip()
+                    try:
+                        t_idx = int(t_raw) - 1
+                        if 0 <= t_idx < len(targets):
+                            target = targets[t_idx]
+                            break
+                    except ValueError:
+                        pass
+                    print("  Invalid target.")
+
+            msg = _apply_item_to_bc(item, target)
+            print(f"  {msg}")
+            inventory.pop(idx)
+            return True
+
+    return callback
+
+
 # ── Battle runners ────────────────────────────────────────────────
 
 def run_wilderness_battle(
@@ -100,6 +250,7 @@ def run_wilderness_battle(
     enemy_bcs:       List[BattleChampion],
     all_champions:   Dict[str, Champion],
     verbose:         bool = True,
+    inventory:       list = None,
 ) -> BattleResult:
     """
     Run a wilderness battle between the player's living party and enemy_bcs.
@@ -136,7 +287,8 @@ def run_wilderness_battle(
     dummy_p = party_bcs[0].base
     dummy_e = enemy_bcs[0].base
 
-    battle = Battle(dummy_p, dummy_e, verbose=verbose)
+    item_cb = _make_battle_item_callback(inventory) if inventory is not None else None
+    battle = Battle(dummy_p, dummy_e, verbose=verbose, item_callback=item_cb)
     # Fix HP-bar display bug: Battle.__init__ deep-copies dummy champions into
     # self.a / self.b at full HP.  Reassign them so show_state() sees the real
     # BattleChampion objects (with current, possibly-reduced HP/MP).

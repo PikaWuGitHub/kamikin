@@ -1,0 +1,183 @@
+2026-04-16 23:48:50 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260416_234850.log
+2026-04-16 23:48:50 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-16 23:48:50 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-16 23:48:50 [INFO    ] wilderness.save_manager        — New account created (no initial unlocks — awaiting starter ceremony)
+2026-04-16 23:49:41 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=0)
+2026-04-16 23:49:52 [INFO    ] wilderness.run_manager         — Run started: starter=Myrabyte Lv5 dev_mode=False
+2026-04-16 23:49:52 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:49:52 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['46/46']
+2026-04-16 23:49:52 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Flora id=1
+2026-04-16 23:49:52 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Flora, team_size=1, level_range=[1, 3], pool=7 champions
+2026-04-16 23:49:52 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Mylaren  lv3
+2026-04-16 23:49:52 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Flora enemy=Mylaren Lv3
+2026-04-16 23:49:52 [INFO    ] battle_engine                  — Battle start: Myrabyte Lv5 (HP 46) vs Mylaren Lv3 (HP 30)
+2026-04-16 23:50:04 [DEBUG   ] battle_engine                  — Mylaren → Myrabyte | Petal Storm | dmg=6 | type=×2.0 | Myrabyte HP: 40/46
+2026-04-16 23:50:21 [DEBUG   ] battle_engine                  — Mylaren → Myrabyte | Petal Storm | dmg=4 | type=×2.0 | Myrabyte HP: 36/46
+2026-04-16 23:50:27 [DEBUG   ] battle_engine                  — Myrabyte → Mylaren | Soul Drain | dmg=8 | type=×0.5 | Mylaren HP: 22/30
+2026-04-16 23:50:41 [DEBUG   ] battle_engine                  — Myrabyte → Mylaren | Soul Drain | dmg=7 | type=×0.5 | Mylaren HP: 15/30
+2026-04-16 23:50:43 [DEBUG   ] battle_engine                  — Myrabyte → Mylaren | Soul Drain | dmg=10 | type=×0.5  CRIT | Mylaren HP: 5/30
+2026-04-16 23:50:43 [DEBUG   ] battle_engine                  — Mylaren → Myrabyte | Petal Storm | dmg=5 | type=×2.0  CRIT | Myrabyte HP: 41/46
+2026-04-16 23:50:48 [DEBUG   ] battle_engine                  — Myrabyte → Mylaren | Soul Drain | dmg=5 | type=×0.5 | Mylaren HP: 0/30
+2026-04-16 23:50:48 [INFO    ] battle_engine                  — Battle end: winner=Myrabyte after 7 turns | Myrabyte HP 43/46 | Mylaren HP 0/30
+2026-04-16 23:50:51 [INFO    ] wilderness.run_manager         — Normal battle won in 7 turns | perm_coins +1 | party HP: ['43/46']
+2026-04-16 23:50:51 [INFO    ] wilderness.run_manager         — Level-up: Myrabyte → Lv6 (max HP 55)
+2026-04-16 23:51:30 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:51:30 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['51/55']
+2026-04-16 23:51:30 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:51:30 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:51:30 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Flora id=2
+2026-04-16 23:51:30 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Flora, team_size=1, level_range=[2, 4], pool=7 champions
+2026-04-16 23:51:30 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Gravanel  lv2
+2026-04-16 23:51:30 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Flora enemy=Gravanel Lv2
+2026-04-16 23:51:30 [INFO    ] battle_engine                  — Battle start: Myrabyte Lv6 (HP 51) vs Gravanel Lv2 (HP 20)
+2026-04-16 23:51:35 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Root Crush | dmg=1 | type=×2.0 | Myrabyte HP: 50/55
+2026-04-16 23:51:44 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Root Crush | dmg=8 | type=×2.0  CRIT | Myrabyte HP: 42/55
+2026-04-16 23:51:47 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Root Crush | dmg=7 | type=×2.0  CRIT | Myrabyte HP: 35/55
+2026-04-16 23:51:54 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Root Crush | dmg=1 | type=×2.0 | Myrabyte HP: 34/55
+2026-04-16 23:51:55 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Vine Whip | dmg=1 | type=×1.0 | Myrabyte HP: 33/55
+2026-04-16 23:51:55 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Quick Thorn | dmg=1 | type=×2.0 | Myrabyte HP: 32/55
+2026-04-16 23:51:56 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Vine Whip | dmg=1 | type=×1.0 | Myrabyte HP: 31/55
+2026-04-16 23:51:57 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Quick Thorn | dmg=1 | type=×2.0 | Myrabyte HP: 30/55
+2026-04-16 23:52:02 [DEBUG   ] battle_engine                  — Gravanel → Myrabyte | Vine Whip | dmg=1 | type=×1.0 | Myrabyte HP: 29/55
+2026-04-16 23:52:02 [INFO    ] battle_engine                  — Battle end: winner=Myrabyte after 9 turns | Myrabyte HP 29/55 | Gravanel HP 0/20
+2026-04-16 23:52:03 [INFO    ] wilderness.run_manager         — Normal battle won in 9 turns | perm_coins +1 | party HP: ['29/55']
+2026-04-16 23:52:03 [INFO    ] wilderness.run_manager         — Level-up: Myrabyte → Lv7 (max HP 64)
+2026-04-16 23:52:08 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:52:08 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['59/64']
+2026-04-16 23:52:08 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:52:08 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:52:08 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Flora id=3
+2026-04-16 23:52:08 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Flora, team_size=1, level_range=[3, 5], pool=7 champions
+2026-04-16 23:52:08 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Lychbloom  lv5
+2026-04-16 23:52:08 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Flora enemy=Lychbloom Lv5
+2026-04-16 23:52:08 [INFO    ] battle_engine                  — Battle start: Myrabyte Lv7 (HP 59) vs Lychbloom Lv5 (HP 60)
+2026-04-16 23:52:14 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=9 | type=×0.5 | Lychbloom HP: 51/60
+2026-04-16 23:52:14 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=6 | type=×1.0 | Myrabyte HP: 57/64
+2026-04-16 23:52:15 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=3 | type=×1.0 | Myrabyte HP: 54/64
+2026-04-16 23:52:16 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=2 | type=×1.0 | Myrabyte HP: 52/64
+2026-04-16 23:52:18 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=9 | type=×0.5 | Lychbloom HP: 47/60
+2026-04-16 23:52:18 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=2 | type=×1.0 | Myrabyte HP: 54/64
+2026-04-16 23:52:20 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=9 | type=×0.5 | Lychbloom HP: 39/60
+2026-04-16 23:52:20 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=2 | type=×1.0 | Myrabyte HP: 56/64
+2026-04-16 23:52:20 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=9 | type=×0.5 | Lychbloom HP: 31/60
+2026-04-16 23:52:20 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Regen Spores | dmg=3 | type=×1.0 | Myrabyte HP: 57/64
+2026-04-16 23:52:23 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=10 | type=×0.5 | Lychbloom HP: 6/60
+2026-04-16 23:52:23 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Regen Spores | dmg=3 | type=×1.0 | Myrabyte HP: 55/64
+2026-04-16 23:52:23 [INFO    ] battle_engine                  — Battle end: winner=Myrabyte after 8 turns | Myrabyte HP 47/64 | Lychbloom HP 0/60
+2026-04-16 23:52:25 [INFO    ] wilderness.run_manager         — Normal battle won in 8 turns | perm_coins +1 | party HP: ['47/64']
+2026-04-16 23:52:25 [INFO    ] wilderness.run_manager         — Level-up: Myrabyte → Lv8 (max HP 73)
+2026-04-16 23:52:32 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:52:32 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['54/73']
+2026-04-16 23:52:32 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:52:32 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:52:32 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Flora id=4
+2026-04-16 23:52:32 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Flora, team_size=1, level_range=[4, 6], pool=7 champions
+2026-04-16 23:52:32 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Fernace  lv5
+2026-04-16 23:52:32 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Flora enemy=Fernace Lv5
+2026-04-16 23:52:32 [INFO    ] battle_engine                  — Battle start: Myrabyte Lv8 (HP 54) vs Fernace Lv5 (HP 40)
+2026-04-16 23:52:36 [DEBUG   ] battle_engine                  — Myrabyte → Fernace | Soul Drain | dmg=19 | type=×0.5  CRIT | Fernace HP: 21/40
+2026-04-16 23:52:36 [DEBUG   ] battle_engine                  — Fernace → Myrabyte | Overheat | dmg=12 | type=×1.0 | Myrabyte HP: 51/73
+2026-04-16 23:52:38 [DEBUG   ] battle_engine                  — Myrabyte → Fernace | Soul Drain | dmg=12 | type=×0.5 | Fernace HP: 9/40
+2026-04-16 23:52:38 [DEBUG   ] battle_engine                  — Fernace → Myrabyte | Overheat | dmg=5 | type=×1.0 | Myrabyte HP: 52/73
+2026-04-16 23:52:42 [DEBUG   ] battle_engine                  — Fernace → Myrabyte | Ember Blast | dmg=1 | type=×1.0 | Myrabyte HP: 51/73
+2026-04-16 23:52:44 [DEBUG   ] battle_engine                  — Myrabyte → Fernace | Soul Drain | dmg=9 | type=×0.5 | Fernace HP: 0/40
+2026-04-16 23:52:44 [INFO    ] battle_engine                  — Battle end: winner=Myrabyte after 4 turns | Myrabyte HP 55/73 | Fernace HP 0/40
+2026-04-16 23:52:49 [INFO    ] wilderness.run_manager         — Normal battle won in 4 turns | perm_coins +1 | party HP: ['55/73']
+2026-04-16 23:52:49 [INFO    ] wilderness.run_manager         — Level-up: Myrabyte → Lv9 (max HP 82)
+2026-04-16 23:52:58 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:52:58 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=4 hp=['62/82']
+2026-04-16 23:52:58 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:52:58 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 23:52:58 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Flora id=5
+2026-04-16 23:52:58 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Flora, team_size=1, level_range=[5, 7], pool=7 champions
+2026-04-16 23:52:58 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Lychbloom  lv5
+2026-04-16 23:52:58 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Flora enemy=Lychbloom Lv5
+2026-04-16 23:52:58 [INFO    ] battle_engine                  — Battle start: Myrabyte Lv9 (HP 62) vs Lychbloom Lv5 (HP 60)
+2026-04-16 23:53:06 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=15 | type=×0.5 | Lychbloom HP: 45/60
+2026-04-16 23:53:06 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=5 | type=×1.0 | Myrabyte HP: 64/82
+2026-04-16 23:53:06 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=14 | type=×0.5 | Lychbloom HP: 33/60
+2026-04-16 23:53:06 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=4 | type=×1.0 | Myrabyte HP: 67/82
+2026-04-16 23:53:07 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=14 | type=×0.5 | Lychbloom HP: 21/60
+2026-04-16 23:53:07 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=4 | type=×1.0 | Myrabyte HP: 70/82
+2026-04-16 23:53:08 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=1 | type=×1.0 | Myrabyte HP: 69/82
+2026-04-16 23:53:09 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Soul Drain | dmg=1 | type=×1.0 | Myrabyte HP: 68/82
+2026-04-16 23:53:10 [DEBUG   ] battle_engine                  — Myrabyte → Lychbloom | Soul Drain | dmg=14 | type=×0.5 | Lychbloom HP: 9/60
+2026-04-16 23:53:10 [DEBUG   ] battle_engine                  — Lychbloom → Myrabyte | Regen Spores | dmg=3 | type=×1.0 | Myrabyte HP: 72/82
+2026-04-16 23:53:10 [INFO    ] battle_engine                  — Battle end: winner=Myrabyte after 6 turns | Myrabyte HP 72/82 | Lychbloom HP 0/60
+2026-04-16 23:53:16 [INFO    ] wilderness.run_manager         — Normal battle won in 6 turns | perm_coins +1 | party HP: ['72/82']
+2026-04-16 23:53:16 [INFO    ] wilderness.run_manager         — Level-up: Myrabyte → Lv10 (max HP 91)
+2026-04-16 23:53:22 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:53:22 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=5 hp=['80/91']
+2026-04-16 23:53:22 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:53:22 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=6 hp=['80/91']
+2026-04-16 23:53:22 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=elite realm=Flora id=6
+2026-04-16 23:53:22 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Flora, team_size=2, level_range=[7, 9], pool=7 champions
+2026-04-16 23:53:22 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Trevolt  lv8
+2026-04-16 23:53:22 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Fernace  lv9
+2026-04-16 23:53:22 [INFO    ] wilderness.run_manager         — Elite battle: stage=1 realm=Flora enemies=[Trevolt Lv8, Fernace Lv9]
+2026-04-16 23:53:22 [INFO    ] battle_engine                  — Team battle start: player[Myrabyte Lv10] vs ai[Trevolt Lv8, Fernace Lv9]
+2026-04-16 23:53:28 [DEBUG   ] battle_engine                  — Trevolt → Myrabyte | Volt Beam | dmg=60 | type=×4.0 | Myrabyte HP: 20/91
+2026-04-16 23:53:28 [DEBUG   ] battle_engine                  — Myrabyte → Trevolt | Soul Drain | dmg=6 | type=×0.2 | Trevolt HP: 44/50
+2026-04-16 23:53:31 [DEBUG   ] battle_engine                  — Trevolt → Myrabyte | Volt Beam | dmg=23 | type=×4.0 | Myrabyte HP: 0/91
+2026-04-16 23:53:31 [INFO    ] battle_engine                  — Team battle end: winner=Opponent | player 0 alive | opponent 2 alive | turns=2
+2026-04-16 23:53:33 [INFO    ] wilderness.run_manager         — Elite battle lost | party HP: ['0/91']
+2026-04-16 23:53:33 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=0)
+2026-04-16 23:53:33 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=6 hp=['0/91']
+2026-04-16 23:53:33 [INFO    ] wilderness.run_manager         — Run ended: stages_won=0 defeated=True currency=57 party=[Myrabyte Lv10 0/91HP]
+2026-04-16 23:53:33 [INFO    ] wilderness.run_manager         — Perm currency awarded: +5 → total 5
+2026-04-16 23:53:33 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=1)
+2026-04-16 23:53:33 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=1 best_stage=0 active_run=False)
+2026-04-16 23:54:13 [INFO    ] __main__                       — Session interrupted by player (Ctrl-C)
+2026-04-16 23:54:13 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally

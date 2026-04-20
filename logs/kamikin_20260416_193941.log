@@ -1,0 +1,168 @@
+2026-04-16 19:39:41 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260416_193941.log
+2026-04-16 19:39:41 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-16 19:39:41 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=3 best_stage=1 active_run=True)
+2026-04-16 19:39:52 [INFO    ] wilderness.run_manager         — Run resumed: stage=1 node=battle party=[Solaire Lv5]
+2026-04-16 19:39:52 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Aqua/Frost id=1
+2026-04-16 19:39:52 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=1, level_range=[1, 3], pool=9 champions
+2026-04-16 19:39:52 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Eurgeist  lv1
+2026-04-16 19:39:52 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Aqua/Frost enemy=Eurgeist Lv1
+2026-04-16 19:39:52 [INFO    ] battle_engine                  — Battle start: Solaire Lv5 (HP 34) vs Eurgeist Lv1 (HP 10)
+2026-04-16 19:40:49 [DEBUG   ] battle_engine                  — Solaire → Eurgeist | Ember Blast | dmg=10 | type=×0.2 | Eurgeist HP: 0/10
+2026-04-16 19:40:49 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 1 turns | Solaire HP 34/34 | Eurgeist HP 0/10
+2026-04-16 19:42:22 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | perm_coins +1 | party HP: ['34/34']
+2026-04-16 19:42:22 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv6 (max HP 41)
+2026-04-16 19:42:53 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=3)
+2026-04-16 19:42:53 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=1 hp=['41/41']
+2026-04-16 19:42:54 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:42:54 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:42:54 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Aqua/Frost id=2
+2026-04-16 19:42:54 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=1, level_range=[2, 4], pool=9 champions
+2026-04-16 19:42:54 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Frisela  lv3
+2026-04-16 19:42:54 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Aqua/Frost enemy=Frisela Lv3
+2026-04-16 19:42:54 [INFO    ] battle_engine                  — Battle start: Solaire Lv6 (HP 41) vs Frisela Lv3 (HP 30)
+2026-04-16 19:43:02 [DEBUG   ] battle_engine                  — Solaire → Frisela | Ember Blast | dmg=30 | type=×4.0 | Frisela HP: 0/30
+2026-04-16 19:43:02 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 1 turns | Solaire HP 41/41 | Frisela HP 0/30
+2026-04-16 19:43:05 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | perm_coins +1 | party HP: ['41/41']
+2026-04-16 19:43:05 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv7 (max HP 48)
+2026-04-16 19:43:14 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=3)
+2026-04-16 19:43:14 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=2 hp=['48/48']
+2026-04-16 19:43:14 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:43:14 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:43:14 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Aqua/Frost id=3
+2026-04-16 19:43:14 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=1, level_range=[3, 5], pool=9 champions
+2026-04-16 19:43:14 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Otanei  lv5
+2026-04-16 19:43:14 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Aqua/Frost enemy=Otanei Lv5
+2026-04-16 19:43:14 [INFO    ] battle_engine                  — Battle start: Solaire Lv7 (HP 48) vs Otanei Lv5 (HP 40)
+2026-04-16 19:43:21 [DEBUG   ] battle_engine                  — Solaire → Otanei | Ember Blast | dmg=16 | type=×0.5 | Otanei HP: 24/40
+2026-04-16 19:43:21 [DEBUG   ] battle_engine                  — Otanei → Solaire | Hydro Pulse | dmg=21 | type=×2.0 | Solaire HP: 27/48
+2026-04-16 19:43:25 [DEBUG   ] battle_engine                  — Solaire → Otanei | Ember Blast | dmg=22 | type=×0.5  CRIT | Otanei HP: 2/40
+2026-04-16 19:43:25 [DEBUG   ] battle_engine                  — Otanei → Solaire | Hydro Pulse | dmg=18 | type=×2.0 | Solaire HP: 9/48
+2026-04-16 19:43:30 [DEBUG   ] battle_engine                  — Solaire → Otanei | Ember Blast | dmg=2 | type=×0.5  CRIT | Otanei HP: 0/40
+2026-04-16 19:43:30 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 3 turns | Solaire HP 9/48 | Otanei HP 0/40
+2026-04-16 19:43:32 [INFO    ] wilderness.run_manager         — Normal battle won in 3 turns | perm_coins +1 | party HP: ['9/48']
+2026-04-16 19:43:32 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv8 (max HP 54)
+2026-04-16 19:43:46 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=3)
+2026-04-16 19:43:46 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=3 hp=['50/54']
+2026-04-16 19:43:46 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:43:46 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:43:46 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Aqua/Frost id=4
+2026-04-16 19:43:46 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=1, level_range=[4, 6], pool=9 champions
+2026-04-16 19:43:46 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Eurgeist  lv5
+2026-04-16 19:43:46 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Aqua/Frost enemy=Eurgeist Lv5
+2026-04-16 19:43:46 [INFO    ] battle_engine                  — Battle start: Solaire Lv8 (HP 50) vs Eurgeist Lv5 (HP 50)
+2026-04-16 19:43:52 [DEBUG   ] battle_engine                  — Eurgeist → Solaire | Soul Drain | dmg=3 | type=×1.0 | Solaire HP: 47/54
+2026-04-16 19:43:56 [DEBUG   ] battle_engine                  — Solaire → Eurgeist | Ember Blast | dmg=9 | type=×0.2 | Eurgeist HP: 41/50
+2026-04-16 19:43:56 [DEBUG   ] battle_engine                  — Eurgeist → Solaire | Soul Drain | dmg=8 | type=×1.0 | Solaire HP: 39/54
+2026-04-16 19:44:00 [DEBUG   ] battle_engine                  — Solaire → Eurgeist | Ember Blast | dmg=9 | type=×0.2 | Eurgeist HP: 36/50
+2026-04-16 19:44:00 [DEBUG   ] battle_engine                  — Eurgeist → Solaire | Soul Drain | dmg=9 | type=×1.0 | Solaire HP: 30/54
+2026-04-16 19:44:01 [DEBUG   ] battle_engine                  — Solaire → Eurgeist | Ember Blast | dmg=9 | type=×0.2 | Eurgeist HP: 31/50
+2026-04-16 19:44:10 [DEBUG   ] battle_engine                  — Eurgeist → Solaire | Water Cleanse | dmg=1 | type=×1.0 | Solaire HP: 29/54
+2026-04-16 19:44:23 [DEBUG   ] battle_engine                  — Eurgeist → Solaire | Water Cleanse | dmg=1 | type=×1.0 | Solaire HP: 28/54
+2026-04-16 19:44:23 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 7 turns | Solaire HP 28/54 | Eurgeist HP 0/50
+2026-04-16 19:44:25 [INFO    ] wilderness.run_manager         — Normal battle won in 7 turns | perm_coins +1 | party HP: ['28/54']
+2026-04-16 19:44:25 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv9 (max HP 61)
+2026-04-16 19:45:00 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=3)
+2026-04-16 19:45:00 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=4 hp=['56/61']
+2026-04-16 19:45:00 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:45:00 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:45:00 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=battle realm=Aqua/Frost id=5
+2026-04-16 19:45:00 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=1, level_range=[5, 7], pool=9 champions
+2026-04-16 19:45:00 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Nyoroa  lv7
+2026-04-16 19:45:00 [INFO    ] wilderness.run_manager         — Normal battle: stage=1 realm=Aqua/Frost enemy=Nyoroa Lv7
+2026-04-16 19:45:00 [INFO    ] battle_engine                  — Battle start: Solaire Lv9 (HP 56) vs Nyoroa Lv7 (HP 50)
+2026-04-16 19:45:03 [DEBUG   ] battle_engine                  — Nyoroa → Solaire | Glacial Crash | dmg=8 | type=×0.5 | Solaire HP: 48/61
+2026-04-16 19:45:03 [DEBUG   ] battle_engine                  — Solaire → Nyoroa | Ember Blast | dmg=48 | type=×2.0 | Nyoroa HP: 0/50
+2026-04-16 19:45:03 [INFO    ] battle_engine                  — Battle end: winner=Solaire after 1 turns | Solaire HP 48/61 | Nyoroa HP 0/50
+2026-04-16 19:45:05 [INFO    ] wilderness.run_manager         — Normal battle won in 1 turns | perm_coins +1 | party HP: ['48/61']
+2026-04-16 19:45:05 [INFO    ] wilderness.run_manager         — Level-up: Solaire → Lv10 (max HP 68)
+2026-04-16 19:45:27 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=3)
+2026-04-16 19:45:27 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=5 hp=['54/68']
+2026-04-16 19:45:27 [ERROR   ] wilderness.save_manager        — Failed to save account to C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:45:27 [ERROR   ] wilderness.run_manager         — Autosave failed — game state NOT persisted
+Traceback (most recent call last):
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\run_manager.py", line 568, in _autosave
+    save_account(account, save_dir)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\wilderness\save_manager.py", line 266, in save_account
+    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    ~~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json.tmp' -> 'C:\\Users\\12034\\OneDrive\\Desktop\\Kamikin (Video Game Project)\\account.json'
+2026-04-16 19:45:27 [DEBUG   ] wilderness.run_manager         — Map node: stage=1 type=elite realm=Aqua/Frost id=6
+2026-04-16 19:45:27 [DEBUG   ] wilderness.enemy_gen           — Generating encounter: realm=Aqua/Frost, team_size=2, level_range=[7, 9], pool=9 champions
+2026-04-16 19:45:27 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Zerine  lv9
+2026-04-16 19:45:27 [DEBUG   ] wilderness.enemy_gen           —   Enemy: Finyu  lv7
+2026-04-16 19:45:27 [INFO    ] wilderness.run_manager         — Elite battle: stage=1 realm=Aqua/Frost enemies=[Zerine Lv9, Finyu Lv7]
+2026-04-16 19:45:27 [INFO    ] battle_engine                  — Team battle start: player[Solaire Lv10] vs ai[Zerine Lv9, Finyu Lv7]
+2026-04-16 19:45:33 [DEBUG   ] battle_engine                  — Zerine → Solaire | Glacial Crash | dmg=10 | type=×0.5 | Solaire HP: 44/68
+2026-04-16 19:45:33 [DEBUG   ] battle_engine                  — Solaire → Zerine | Ember Blast | dmg=67 | type=×2.0 | Zerine HP: 0/70
+2026-04-16 19:45:43 [DEBUG   ] battle_engine                  — Finyu → Solaire | Hydro Pulse | dmg=32 | type=×2.0 | Solaire HP: 12/68
+2026-04-16 19:45:57 [DEBUG   ] battle_engine                  — Finyu → Solaire | Hydro Pulse | dmg=33 | type=×2.0 | Solaire HP: 13/68
+2026-04-16 19:46:03 [DEBUG   ] battle_engine                  — Finyu → Solaire | Hydro Pulse | dmg=11 | type=×2.0 | Solaire HP: 2/68
+2026-04-16 19:46:08 [DEBUG   ] battle_engine                  — Finyu → Solaire | Hydro Pulse | dmg=2 | type=×2.0 | Solaire HP: 0/68
+2026-04-16 19:46:08 [INFO    ] battle_engine                  — Team battle end: winner=Opponent | player 0 alive | opponent 1 alive | turns=5
+2026-04-16 19:46:11 [INFO    ] wilderness.run_manager         — Elite battle lost | party HP: ['0/68']
+2026-04-16 19:46:11 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=True, total_runs=3)
+2026-04-16 19:46:11 [DEBUG   ] wilderness.run_manager         — Autosave: stage=1 node=6 hp=['0/68']
+2026-04-16 19:46:11 [INFO    ] wilderness.run_manager         — Run ended: stages_won=0 defeated=True currency=17 party=[Solaire Lv10 0/68HP]
+2026-04-16 19:46:11 [INFO    ] wilderness.run_manager         — Perm currency awarded: +5 → total 7
+2026-04-16 19:46:11 [DEBUG   ] wilderness.save_manager        — Account saved: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (active_run=False, total_runs=4)
+2026-04-16 19:46:11 [DEBUG   ] wilderness.save_manager        — Account loaded: C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json (runs=4 best_stage=1 active_run=False)
+2026-04-16 23:48:41 [INFO    ] __main__                       — Session interrupted by player (Ctrl-C)
+2026-04-16 23:48:41 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally

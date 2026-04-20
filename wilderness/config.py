@@ -57,11 +57,30 @@ NODE_TYPE_WEIGHTS = {
     "elite":  30,
 }
 
-# ── Economy ──────────────────────────────────────────────────────
-SHOP_HEAL_SMALL_COST     = 20
-SHOP_HEAL_FULL_COST      = 60
-SHOP_REVIVE_COST         = 80
-SHOP_RARE_ITEM_COST      = 120
+# ── Shop (in-run currency) ───────────────────────────────────────
+SHOP_HEAL_LOW_COST       = 15    # Essence Shard   — 25% HP
+SHOP_HEAL_MED_COST       = 30    # Spirit Herb     — 50% HP
+SHOP_HEAL_HIGH_COST      = 55    # Vital Elixir    — 75% HP
+SHOP_HEAL_MAX_COST       = 80    # Spirit Water    — 100% HP + cleanse
+SHOP_HEAL_STATUS_COST    = 25    # Purifying Dust  — cleanse status
+SHOP_MP_RESTORE_COST     = 35    # Stamina Crystal — 100% MP
+SHOP_REVIVE_COST         = 90    # Revival Spark   — revive at 50% HP
+
+# ── Move Tutor / Wandering Sage (permanent meta-currency) ────────
+# Permanent currency earned per monster defeated = stage_number × 1.
+# (multiplier is the current stage number; each new stage doubles the rate)
+PERM_CURRENCY_PER_MONSTER = 1    # base coins per monster; multiplied by stage
+
+# cost = max(TUTOR_MIN_COST, learn_level × TUTOR_COST_PER_LEVEL)
+# ⚠ Tune these values once move balance is set — marked as PLACEHOLDER
+TUTOR_COST_PER_LEVEL     = 2     # PLACEHOLDER: coins per learn_level point
+TUTOR_MIN_COST           = 10    # PLACEHOLDER: floor cost for any tutor move
+NUM_TUTOR_MOVES          = 12    # number of moves in each champion's learn list
+
+# Learn level thresholds assigned to tutor moves in ascending order.
+# The i-th move in a champion's learn list (sorted by base power) gets
+# TUTOR_LEARN_LEVELS[i].  Extend the list for longer learn lists.
+TUTOR_LEARN_LEVELS = [10, 15, 20, 25, 30, 35, 40, 45, 55, 65, 75, 90]
 
 # ── Realms ───────────────────────────────────────────────────────
 ESSENCES = [

@@ -26,10 +26,13 @@ import random
 import sys
 import os
 import math
+import logging
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional, List, Dict, Tuple
 from copy import deepcopy
+
+log = logging.getLogger(__name__)
 
 # ═══════════════════════════════════════════════════════════════
 # CONSTANTS
@@ -808,7 +811,8 @@ class Battle:
     def __init__(self,
                  champion_a: Champion,
                  champion_b: Champion,
-                 verbose: bool = True):
+                 verbose: bool = True,
+                 item_callback = None):
         self.a = BattleChampion(deepcopy(champion_a))
         self.b = BattleChampion(deepcopy(champion_b))
         self.verbose  = verbose
@@ -816,6 +820,8 @@ class Battle:
         self.log: List[str] = []
         self.fate_break_used = False  # Fate Break can be used once per battle
         self.last_turn_state = None  # (saved_a, saved_b, move_p, move_ai, first, second, mv1, mv2)
+        # Optional callable(active_bc, team_bcs) -> bool for wilderness item use
+        self.item_callback = item_callback
 
     def _print(self, msg: str = ""):
         if self.verbose:
@@ -938,6 +944,13 @@ class Battle:
 
         actual_dmg = defender.take_damage(dmg)
         self._print(f"  Dealt {actual_dmg} damage  [{variance:.2f} roll]{hit_desc}")
+        log.debug(
+            "%s → %s | %s | dmg=%d | type=×%.1f%s | %s HP: %d/%d",
+            attacker.name, defender.name, move.name,
+            actual_dmg, type_mult,
+            "  CRIT" if "CRITICAL HIT" in hit_desc else "",
+            defender.name, defender.current_hp, defender.max_hp,
+        )
 
         # Drain healing
         if actual_move.drain_fraction > 0:
@@ -1098,6 +1111,7 @@ class Battle:
 
     def run_auto(self, max_turns: int = 50) -> Optional[str]:
         """Fully automated simulation — AI picks moves greedily."""
+        log.info("Battle start (auto): %s vs %s", self.a.name, self.b.name)
         self._banner(f"⚔  {self.a.name} vs {self.b.name}  ⚔")
         self.show_state()
 
@@ -1145,6 +1159,7 @@ class Battle:
         else:
             winner = "Draw"
 
+        log.info("Battle end (auto): winner=%s after %d turns", winner, self.turn_num)
         self._banner(f"🏆  BATTLE OVER — {winner} wins after {self.turn_num} turns!")
         self._print(f"  {self.a.name}: {self.a.current_hp}/{self.a.max_hp} HP")
         self._print(f"  {self.b.name}: {self.b.current_hp}/{self.b.max_hp} HP")
@@ -1181,6 +1196,11 @@ class Battle:
                         ai: BattleChampion,
                         max_turns: int = 50) -> Optional[str]:
         """Interactive player-vs-AI battle."""
+        lv_p = f" Lv{player.level}" if player.level is not None else ""
+        lv_a = f" Lv{ai.level}" if ai.level is not None else ""
+        log.info("Battle start: %s%s (HP %d) vs %s%s (HP %d)",
+                 player.name, lv_p, player.current_hp,
+                 ai.name,     lv_a, ai.current_hp)
         self._banner(f"⚔  {player.name} (YOU) vs {ai.name} (AI)  ⚔")
         self.show_state()
 
@@ -1203,6 +1223,7 @@ class Battle:
                 self._restore_inplace(player, saved_a)
                 self._restore_inplace(ai, saved_b)
 
+                log.info("Fate Break used by %s at turn %d", player.name, turn)
                 self._print(f"\n  ✦ {player.name} activates Fate Break!")
                 self._print(f"  Rewinding turn {turn - 1} — replaying with new RNG...\n")
                 self._banner(f"TURN {turn - 1}  [FATE BREAK REPLAY]")
@@ -1261,6 +1282,10 @@ class Battle:
         elif ai.current_hp > player.current_hp: winner = ai.name
         else: winner = "Draw"
 
+        log.info("Battle end: winner=%s after %d turns | %s HP %d/%d | %s HP %d/%d",
+                 winner, self.turn_num,
+                 player.name, player.current_hp, player.max_hp,
+                 ai.name,     ai.current_hp,     ai.max_hp)
         self._banner(f"🏆  BATTLE OVER — {winner} wins after {self.turn_num} turns!")
         input("\n  Press Enter to exit...")
         return winner
@@ -1282,6 +1307,8 @@ class Battle:
         fate_break_available = self.last_turn_state is not None and not self.fate_break_used
         if fate_break_available:
             print(f"  [f] Fate Break  (replay last turn with new RNG — once per battle)")
+        if self.item_callback is not None:
+            print(f"  [i] Item  (use an item from your bag)")
 
         while True:
             choice = input("  > ").strip().lower()
@@ -1292,13 +1319,18 @@ class Battle:
                 return Move("Guard","Neutral",MoveCategory.STATUS,0,1.0,0,description="Guard action")
             if choice == "f" and fate_break_available:
                 return Move("Fate Break","Neutral",MoveCategory.STATUS,0,1.0,0,description="Fate Break")
+            if choice == "i" and self.item_callback is not None:
+                used = self.item_callback(player, [player])
+                if used:
+                    return Move("Item","Neutral",MoveCategory.STATUS,0,1.0,0,description="Item used")
+                continue  # player cancelled — re-prompt
             try:
                 idx = int(choice) - 1
                 if 0 <= idx < len(moves):
                     return moves[idx]
             except ValueError:
                 pass
-            print("  Invalid choice — enter a number or 'g'.")
+            print("  Invalid choice — enter a number, 'g', or 'i'.")
 
     # ── 6v6 Team Battle helpers ──────────────────────────────────
 
@@ -1349,6 +1381,8 @@ class Battle:
         fate_break_available = self.last_turn_state is not None and not self.fate_break_used
         if fate_break_available:
             print(f"  [f] Fate Break  (replay last turn with new RNG — once per battle)")
+        if self.item_callback is not None:
+            print(f"  [i] Item  (use an item from your bag)")
 
         while True:
             choice = input("  > ").strip().lower()
@@ -1360,6 +1394,11 @@ class Battle:
                 return Move("Switch", "Neutral", MoveCategory.STATUS, 0, 1.0, 0, description="Switch action")
             if choice == "f" and fate_break_available:
                 return Move("Fate Break", "Neutral", MoveCategory.STATUS, 0, 1.0, 0, description="Fate Break")
+            if choice == "i" and self.item_callback is not None:
+                used = self.item_callback(active, player_team)
+                if used:
+                    return Move("Item", "Neutral", MoveCategory.STATUS, 0, 1.0, 0, description="Item used")
+                continue  # player cancelled — re-prompt
             try:
                 idx = int(choice) - 1
                 if 0 <= idx < len(moves):
@@ -1401,6 +1440,9 @@ class Battle:
                              ai_team: List["BattleChampion"],
                              max_turns: int = 300) -> Optional[str]:
         """6v6 interactive team battle. Player picks moves; AI plays greedily."""
+        log.info("Team battle start: player[%s] vs ai[%s]",
+                 ", ".join(f"{m.name} Lv{m.level}" if m.level else m.name for m in player_team),
+                 ", ".join(f"{m.name} Lv{m.level}" if m.level else m.name for m in ai_team))
         self._banner("⚔  6v6 TEAM BATTLE  ⚔")
 
         p_active = player_team[0]
@@ -1436,11 +1478,12 @@ class Battle:
                 p_active = player_team[fb_p_idx]
                 a_active = ai_team[fb_a_idx]
 
+                log.info("Fate Break used (team battle) at turn %d", turn)
                 self._print(f"\n  ✦ Fate Break activated! Replaying last turn with new RNG...")
                 self._show_team_header(player_team, ai_team, p_active, a_active)
 
-                # Replay — same moves, new RNG (skip Switch/Guard replays for simplicity)
-                if fb_move_p.name not in ("Switch", "Guard", "Fate Break"):
+                # Replay — same moves, new RNG (skip Switch/Guard/Item replays for simplicity)
+                if fb_move_p.name not in ("Switch", "Guard", "Fate Break", "Item"):
                     fb_first, fb_second, fb_mv1, fb_mv2, _, _ = self._turn_order(
                         p_active, "attack", a_active, "attack", fb_move_p, fb_move_ai
                     )
@@ -1521,6 +1564,8 @@ class Battle:
         else:
             winner = "Draw"
 
+        log.info("Team battle end: winner=%s | player %d alive | opponent %d alive | turns=%d",
+                 winner, p_alive, a_alive, self.turn_num)
         self._banner(f"🏆  BATTLE OVER — {winner} wins!  "
                      f"(Player: {p_alive} left  |  Opponent: {a_alive} left)")
         input("\n  Press Enter to exit...")
@@ -1581,6 +1626,13 @@ def run_damage_test():
 
 def main():
     args = sys.argv[1:]
+
+    # Set up logging when running battle_engine.py standalone
+    try:
+        from logger import setup_logging
+        setup_logging(debug="--debug" in args)
+    except ImportError:
+        logging.basicConfig(level=logging.DEBUG)
 
     champions = load_champions(_default_csv_path())
     print(f"  Loaded {len(champions)} champions.")

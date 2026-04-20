@@ -17,11 +17,14 @@ difficulty tiers) without changing the interface.
 """
 
 from __future__ import annotations
+import logging
 import random
 import sys
 import os
 from copy import deepcopy
 from typing import List, Dict, Optional, TYPE_CHECKING
+
+log = logging.getLogger(__name__)
 
 # Allow importing from parent directory
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -94,6 +97,11 @@ def generate_enemy_team(
     pool    = champions_for_realm(all_champions, realm)
     enemies: List[BattleChampion] = []
 
+    log.debug(
+        "Generating encounter: realm=%s, team_size=%d, level_range=[%d, %d], pool=%d champions",
+        realm.name, team_size, lo, hi, len(pool),
+    )
+
     for _ in range(team_size):
         champ   = deepcopy(random.choice(pool))
         level   = _sample_level(lo, hi)
@@ -101,6 +109,7 @@ def generate_enemy_team(
         bc      = BattleChampion(scaled)
         bc.level = level  # for display in battle UI
         enemies.append(bc)
+        log.debug("  Enemy: %s  lv%d", champ.name, level)
 
     return enemies
 
@@ -155,9 +164,13 @@ def generate_recruit_candidate(
     Returns (champion, level, is_shiny).
     The caller (run_manager) decides whether the player accepts it.
     """
-    lo, hi  = enemy_level_range(highest_player_level)
-    pool    = champions_for_realm(all_champions, realm)
-    champ   = deepcopy(random.choice(pool))
-    level   = _sample_level(lo, hi)
+    lo, hi   = enemy_level_range(highest_player_level)
+    pool     = champions_for_realm(all_champions, realm)
+    champ    = deepcopy(random.choice(pool))
+    level    = _sample_level(lo, hi)
     is_shiny = random.random() < shiny_chance
+    log.debug(
+        "Recruit candidate: %s  lv%d  shiny=%s  (realm=%s)",
+        champ.name, level, is_shiny, realm.name,
+    )
     return champ, level, is_shiny

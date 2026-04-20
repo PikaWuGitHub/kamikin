@@ -72,8 +72,13 @@ def pc_summary(meta: MetaState) -> str:
         for name in sorted(meta.unlocked_champions):
             bonus = meta.pc_bonuses.get(name, 0)
             bonus_str = f"  [IV ×{bonus}]" if bonus > 0 else ""
-            lines.append(f"  • {name}{bonus_str}")
-    lines.append(f"\n  Total runs: {meta.total_runs}  |  Best stage: {meta.best_stage}")
+            tutor_count = len(meta.unlocked_moves.get(name, set()))
+            tutor_str = f"  [{tutor_count} tutor moves]" if tutor_count else ""
+            lines.append(f"  • {name}{bonus_str}{tutor_str}")
+    lines.append(
+        f"\n  Total runs: {meta.total_runs}  |  Best stage: {meta.best_stage}"
+        f"  |  Wandering Sage currency: {meta.perm_currency} 𝕮"
+    )
     return "\n".join(lines)
 
 

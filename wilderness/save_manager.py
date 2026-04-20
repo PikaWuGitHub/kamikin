@@ -21,10 +21,13 @@ Design decisions
 
 from __future__ import annotations
 import json
+import logging
 import os
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Dict, List, Optional
+
+log = logging.getLogger(__name__)
 
 from .models import (
     MetaState, RunState, RunMap, MapNode,
@@ -66,6 +69,8 @@ def _meta_to_dict(meta: MetaState) -> dict:
         "pc_bonuses":         meta.pc_bonuses,
         "total_runs":         meta.total_runs,
         "best_stage":         meta.best_stage,
+        "perm_currency":      meta.perm_currency,
+        "unlocked_moves":     {k: sorted(v) for k, v in meta.unlocked_moves.items()},
     }
 
 
@@ -106,6 +111,7 @@ def _party_member_to_dict(m: PartyMember) -> dict:
         "is_fainted":    m.is_fainted,
         "is_shiny":      m.is_shiny,
         "held_item":     m.held_item,
+        "custom_moves":  m.custom_moves,
     }
 
 
@@ -119,13 +125,14 @@ def _item_to_dict(item: Item) -> dict:
 
 def _run_state_to_dict(run: RunState) -> dict:
     return {
-        "stage":      run.stage,
-        "stages_won": run.stages_won,
-        "currency":   run.currency,
-        "run_over":   run.run_over,
-        "party":      [_party_member_to_dict(m) for m in run.party],
-        "inventory":  [_item_to_dict(i) for i in run.inventory],
-        "run_map":    _run_map_to_dict(run.run_map) if run.run_map else None,
+        "stage":               run.stage,
+        "stages_won":          run.stages_won,
+        "currency":            run.currency,
+        "run_over":            run.run_over,
+        "perm_currency_earned": run.perm_currency_earned,
+        "party":               [_party_member_to_dict(m) for m in run.party],
+        "inventory":           [_item_to_dict(i) for i in run.inventory],
+        "run_map":             _run_map_to_dict(run.run_map) if run.run_map else None,
     }
 
 
@@ -143,11 +150,14 @@ def _account_to_dict(profile: AccountProfile) -> dict:
 # ═══════════════════════════════════════════════════════════════
 
 def _meta_from_dict(d: dict) -> MetaState:
+    raw_moves = d.get("unlocked_moves", {})
     return MetaState(
         unlocked_champions = set(d.get("unlocked_champions", [])),
         pc_bonuses         = d.get("pc_bonuses", {}),
         total_runs         = d.get("total_runs", 0),
         best_stage         = d.get("best_stage", 0),
+        perm_currency      = d.get("perm_currency", 0),
+        unlocked_moves     = {k: set(v) for k, v in raw_moves.items()},
     )
 
 
@@ -189,12 +199,18 @@ def _party_member_from_dict(d: dict) -> PartyMember:
         is_fainted    = d.get("is_fainted", False),
         is_shiny      = d.get("is_shiny", False),
         held_item     = d.get("held_item"),
+        custom_moves  = d.get("custom_moves", []),
     )
 
 
 def _item_from_dict(d: dict) -> Item:
+    try:
+        itype = ItemType(d["item_type"])
+    except ValueError:
+        # Unknown item type from an old save — treat as a small heal item
+        itype = ItemType.HEAL_LOW
     return Item(
-        item_type   = ItemType(d["item_type"]),
+        item_type   = itype,
         name        = d["name"],
         description = d["description"],
     )
@@ -202,12 +218,13 @@ def _item_from_dict(d: dict) -> Item:
 
 def _run_state_from_dict(d: dict) -> RunState:
     run = RunState(
-        party      = [_party_member_from_dict(m) for m in d.get("party", [])],
-        inventory  = [_item_from_dict(i) for i in d.get("inventory", [])],
-        currency   = d.get("currency", 0),
-        stage      = d.get("stage", 1),
-        run_over   = d.get("run_over", False),
-        stages_won = d.get("stages_won", 0),
+        party                = [_party_member_from_dict(m) for m in d.get("party", [])],
+        inventory            = [_item_from_dict(i) for i in d.get("inventory", [])],
+        currency             = d.get("currency", 0),
+        stage                = d.get("stage", 1),
+        run_over             = d.get("run_over", False),
+        stages_won           = d.get("stages_won", 0),
+        perm_currency_earned = d.get("perm_currency_earned", 0),
     )
     if d.get("run_map"):
         run.run_map = _run_map_from_dict(d["run_map"])
@@ -242,10 +259,16 @@ def save_account(profile: AccountProfile, save_dir: str = ".") -> str:
     """
     path    = _account_path(save_dir)
     tmp     = path + ".tmp"
-    payload = json.dumps(_account_to_dict(profile), indent=2, ensure_ascii=False)
-    with open(tmp, "w", encoding="utf-8") as f:
-        f.write(payload)
-    os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+    try:
+        payload = json.dumps(_account_to_dict(profile), indent=2, ensure_ascii=False)
+        with open(tmp, "w", encoding="utf-8") as f:
+            f.write(payload)
+        os.replace(tmp, path)   # atomic on POSIX; best-effort on Windows
+        log.debug("Account saved: %s (active_run=%s, total_runs=%d)",
+                  path, profile.active_run is not None, profile.meta.total_runs)
+    except Exception:
+        log.exception("Failed to save account to %s", path)
+        raise
     return path
 
 
@@ -258,22 +281,33 @@ def load_account(save_dir: str = ".") -> Optional[AccountProfile]:
     """
     path = _account_path(save_dir)
     if not os.path.exists(path):
+        log.debug("No account file at %s — new player", path)
         return None
     try:
         with open(path, encoding="utf-8") as f:
-            return _account_from_dict(json.load(f))
+            profile = _account_from_dict(json.load(f))
+        log.debug("Account loaded: %s (runs=%d best_stage=%d active_run=%s)",
+                  path, profile.meta.total_runs, profile.meta.best_stage,
+                  profile.active_run is not None)
+        return profile
     except (json.JSONDecodeError, KeyError, ValueError):
-        return None   # corrupt save — caller decides what to do
+        log.exception("Corrupt account save at %s — returning None", path)
+        return None
 
 
 def create_account(save_dir: str = ".") -> AccountProfile:
     """
-    Build a brand-new AccountProfile with initial starter unlocks.
+    Build a brand-new AccountProfile with no initial unlocks.
+
+    The first champion is chosen during the starter ceremony in wilderness_mode.py
+    and added to meta.unlocked_champions before the first run begins.
 
     Does NOT write to disk — call save_account() afterward if desired.
     """
-    meta = MetaState(unlocked_champions=set(INITIAL_UNLOCKED_CHAMPIONS))
-    return AccountProfile(meta=meta)
+    meta = MetaState(unlocked_champions=set())
+    profile = AccountProfile(meta=meta)
+    log.info("New account created (no initial unlocks — awaiting starter ceremony)")
+    return profile
 
 
 def clear_active_run(profile: AccountProfile, save_dir: str = ".") -> None:

@@ -1,0 +1,6 @@
+2026-04-17 00:07:54 [INFO    ] root                           — Logging started → C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\logs\kamikin_20260417_000754.log
+2026-04-17 00:07:54 [INFO    ] __main__                       — Kamikin Wilderness Mode starting (dev=False)
+2026-04-17 00:07:54 [DEBUG   ] wilderness.save_manager        — No account file at C:\Users\12034\OneDrive\Desktop\Kamikin (Video Game Project)\account.json — new player
+2026-04-17 00:07:54 [INFO    ] wilderness.save_manager        — New account created (no initial unlocks — awaiting starter ceremony)
+2026-04-17 00:15:06 [INFO    ] __main__                       — Session interrupted by player (Ctrl-C)
+2026-04-17 00:15:06 [INFO    ] __main__                       — Kamikin Wilderness Mode exiting normally
